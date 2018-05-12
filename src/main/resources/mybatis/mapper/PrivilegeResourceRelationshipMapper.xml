@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.flow.dao.mapper.PrivilegeResourceRelationshipMapper" >
+  <resultMap id="BaseResultMap" type="org.flow.entity.PrivilegeResourceRelationship" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="privilege_id" property="privilegeId" jdbcType="BIGINT" />
+    <result column="resource_id" property="resourceId" jdbcType="BIGINT" />
+    <result column="enabled" property="enabled" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from privilege_resource_relationship
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.flow.entity.PrivilegeResourceRelationship" >
+    insert into privilege_resource_relationship (id, privilege_id, resource_id, 
+      enabled, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{privilegeId,jdbcType=BIGINT}, #{resourceId,jdbcType=BIGINT}, 
+      #{enabled,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.flow.entity.PrivilegeResourceRelationship" >
+    update privilege_resource_relationship
+    set privilege_id = #{privilegeId,jdbcType=BIGINT},
+      resource_id = #{resourceId,jdbcType=BIGINT},
+      enabled = #{enabled,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, privilege_id, resource_id, enabled, create_time, update_time
+    from privilege_resource_relationship
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, privilege_id, resource_id, enabled, create_time, update_time
+    from privilege_resource_relationship
+  </select>
+</mapper>

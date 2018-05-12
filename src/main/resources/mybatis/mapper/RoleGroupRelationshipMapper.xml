@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.flow.dao.mapper.RoleGroupRelationshipMapper" >
+  <resultMap id="BaseResultMap" type="org.flow.entity.RoleGroupRelationship" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="group_id" property="groupId" jdbcType="BIGINT" />
+    <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="enabled" property="enabled" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from role_group_relationship
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.flow.entity.RoleGroupRelationship" >
+    insert into role_group_relationship (id, group_id, role_id, 
+      enabled, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{groupId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, 
+      #{enabled,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.flow.entity.RoleGroupRelationship" >
+    update role_group_relationship
+    set group_id = #{groupId,jdbcType=BIGINT},
+      role_id = #{roleId,jdbcType=BIGINT},
+      enabled = #{enabled,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, group_id, role_id, enabled, create_time, update_time
+    from role_group_relationship
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, group_id, role_id, enabled, create_time, update_time
+    from role_group_relationship
+  </select>
+</mapper>
