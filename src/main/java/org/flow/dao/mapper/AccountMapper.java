@@ -13,6 +13,8 @@ public interface AccountMapper {
 
     Account selectByPrimaryKey(Long id);
 
+    Account selectByUsername(String username);
+
     List<Account> selectAll();
 
     int updateByPrimaryKey(Account record);

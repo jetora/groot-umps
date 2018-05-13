@@ -33,6 +33,11 @@
     from account
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select id, username, password, enabled, create_time, update_time
+    from account
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select id, username, password, enabled, create_time, update_time
     from account
