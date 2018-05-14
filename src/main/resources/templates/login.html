@@ -109,6 +109,22 @@
     <script src="../static/js/plugins/modernizr.custom.17732.js"></script>
     <script src="../static/js/plugins/sweetalert.min.js"></script>
     <script type="text/javascript">
+        $(function () {
+            $("#log_password").keypress(function (e) {
+                var key = window.event ? e.keyCode : e.which;
+                if (key.toString() == "13") {
+                    $('#log_in').trigger("click");
+                    return false;
+                }
+            });
+            $("#reg_pwd2").keypress(function (e) {
+                var key = window.event ? e.keyCode : e.which;
+                if (key.toString() == "13") {
+                    $('#log_register').trigger("click");
+                    return false;
+                }
+            })
+        })
         $().ready(function () {
             $('#log_in').click(function () {
                 var log_username = $('#log_username').val();
@@ -146,23 +162,19 @@
 
             $('#reg_username').blur(function () {
                 if( $("#reg_username").val().length < 6 ){
-                    $("#reg_username_message").html("请输入至少6位的用户名.");
-                    $("#reg_username_message").css("color","red");
+                    invalidatecheck("#reg_username_message","请输入至少6位的用户名.","red");
                     $("#log_register").attr("disabled","disabled");
                 }else {
-                    $("#reg_username_message").html("用户名格式正确.");
-                    $("#reg_username_message").css("color","green");
+                    invalidatecheck("#reg_username_message","用户名格式正确.","green");
                     $("#log_register").removeAttr("disabled");
                 }
             });
             $('#reg_email').blur(function () {
                 if( $("#reg_email").val()!="" && !/.+@.+\.[a-zA-Z]{2,4}$/.test($("#reg_email").val()) ){
-                    $("#reg_email_message").html("E-Mail地址格式不正确.");
-                    $("#reg_email_message").css("color","red");
+                    invalidatecheck("#reg_email_message","E-Mail地址格式不正确.","red");
                     $("#log_register").attr("disabled","disabled");
                 }else if ($("#reg_email").val()!="") {
-                    $("#reg_email_message").html("E-Mail地址格式正确.");
-                    $("#reg_email_message").css("color","green");
+                    invalidatecheck("#reg_email_message","E-Mail地址格式正确.","green");
                     $("#log_register").removeAttr("disabled");
                 }else {
                     $("#log_register").removeAttr("disabled");
@@ -174,14 +186,16 @@
             var pwd2 = $("#reg_pwd2").val();
             if (pwd1 == pwd2)
             {
-                $("#reg_password2_message").html("密码一致");
-                $("#reg_password2_message").css("color","green");
+                invalidatecheck("#reg_password2_message","密码一致","green");
                 $("#log_register").removeAttr("disabled");
             }else {
-                $("#reg_password2_message").html("两次输入的密码不一致");
-                $("#reg_password2_message").css("color","red")
+                invalidatecheck("#reg_password2_message","两次输入的密码不一致","red");
                 $("#log_register").attr("disabled","disabled");
             }
+        };
+        function invalidatecheck(pluginid,text,color) {
+            $(pluginid).html(text);
+            $(pluginid).css("color",color);
         }
     </script>
 
