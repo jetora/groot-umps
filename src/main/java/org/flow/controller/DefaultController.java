@@ -10,4 +10,15 @@ public class DefaultController extends BaseController {
     public String login() {
         return "/login";
     }
+
+    @GetMapping("/fixed_footer")
+    public String plainPage(){
+        return "/fixed_footer";
+    }
+
+    @GetMapping("/accountmanage")
+    public String AccountManage(){
+        return "accountmanage";
+    }
+
 }

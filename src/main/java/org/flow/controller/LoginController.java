@@ -26,9 +26,6 @@ public class LoginController extends BaseController {
         Account account;
         try {
             account = accountService.findAccountByName(req.getUsername());
-            System.out.println("1111111111111111111");
-            System.out.println(account);
-            System.out.println(req);
             if (account!=null && req.getPassword().equals(account.getPassword())){
                 return ResultUtil.buildResult(ErrorCode.OK.getCode(),ErrorCode.OK.getMessage(),account);
             }else if (account!=null && !req.getPassword().equals(account.getPassword())){
