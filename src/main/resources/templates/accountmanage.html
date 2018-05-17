@@ -402,6 +402,19 @@
     <!-- layer-->
     <script src="../static/js/plugins/layer/v3.1.1/layer.js"></script>
     <script type="text/javascript">
+        $(document).on('keydown', function (event) {
+            // 键盘翻页事件
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode == 38 || e && e.keyCode == 37) {//上,左
+                // 上一页
+                $('.page-pre').click()
+            }
+            if (e && e.keyCode == 40 || e && e.keyCode == 39) {//下,右
+                // 下一页
+                $('.page-next').click()
+            }
+
+        })
         // 初始化页面加载表格数据
         $(function () {
             $('#enabled_type').val("")
