@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @RestController
+@RequestMapping("/api")
 public class LoginController extends BaseController {
     @Resource
     private AccountService accountService;

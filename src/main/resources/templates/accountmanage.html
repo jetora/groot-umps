@@ -227,19 +227,19 @@
                                       <form class="form-inline">
                                           <div class="form-group">
                                               <div class="input-group">
-                                                  <span class="input-group-addon">是否可用</span>
-                                                  <select name="archType" id="archType" class="form-control" aria-describedby="sizing-addon3">
-                                                      <option value="-1">全部</option>
-                                                      <option value="1">可用</option>
-                                                      <option value="2">不可用</option>
-                                                  </select>
+                                                  <span class="input-group-addon">用户名</span>
+                                                  <input type="text" id="search_username" name="search_content"
+                                                          placeholder="" class="form-control" aria-describedby="sizing-addon3"/>
                                               </div>
                                           </div>
                                           <div class="form-group">
                                               <div class="input-group">
-                                                  <span class="input-group-addon">用户名</span>
-                                                  <input type="text" id="search_username" name="search_content"
-                                                          placeholder="" class="form-control" aria-describedby="sizing-addon3"/>
+                                                  <span class="input-group-addon">是否可用</span>
+                                                  <select name="enabled_type" id="archType" class="form-control" aria-describedby="sizing-addon3">
+                                                      <option value="-1">全部</option>
+                                                      <option value="1">可用</option>
+                                                      <option value="2">不可用</option>
+                                                  </select>
                                               </div>
                                           </div>
                                           <button class="btn btn-primary btn-search" type="button" onclick="searchData()">查询</button>
@@ -404,7 +404,7 @@
     <script type="text/javascript">
         // 初始化页面加载表格数据
         $(function () {
-            $('#archType').val("")
+            $('#enabled_type').val("")
             $('#search_username').val("")
             $('#search_username').bind('keyup', function (event) {
                 if (event.keyCode == "13") {
@@ -417,20 +417,33 @@
             oTable.Init();
         });
         function resetData() {
-            $('#archType').val("")
+            $('#enabled_type').val("")
             $('#search_username').val("")
             searchData()
         }
         // 点击查询按钮
         function searchData() {
             $('#account_table').bootstrapTable('refreshOptions', {pageNumber: 1, offset: 0});
-//        $('#project_table').bootstrapTable('refresh');
+            //$('#account_table').bootstrapTable('refresh');
+        }
+        // 表格数据查询参数
+        var queryParams = function (params) {
+            //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
+            var param = {
+                rows: params.limit,                         //页面大小
+                page: (params.offset / params.limit) + 1,   //页码
+                sort: params.sort,      //排序列名
+                sortOrder: params.order, //排位命令（desc，asc）
+                username : $("#search_username").val(),
+                enabled : $("#enabled_type").val()
+            };
+            return param;
         }
         var TableInit = function () {
             var oTableInit = new Object();
             oTableInit.Init = function () {
                 $('#account_table').bootstrapTable({
-                    url: '/account',                      //请求后台的URL（*）
+                    url: '/api/account',                      //请求后台的URL（*）
                     method: 'GET',                      //请求方式（*）
                     //toolbar: '#toolbar',              //工具按钮用哪个容器
                     striped: true,                      //是否显示行间隔色
@@ -459,16 +472,7 @@
                     paginationFirstText: "First",
                     paginationLastText: "Last",
                     //得到查询的参数
-                    queryParams : function (params) {
-                        //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
-                        var temp = {
-                            rows: params.limit,                         //页面大小
-                            page: (params.offset / params.limit) + 1,   //页码
-                            sort: params.sort,      //排序列名
-                            sortOrder: params.order //排位命令（desc，asc）
-                        };
-                        return temp;
-                    },
+                    queryParams : queryParams,
                     onLoadSuccess: function (data) {
                         //console.log(data);
                     },
@@ -573,11 +577,7 @@
                     reverseButtons: true
                 }).then((result) => {
                     if (result.value) {
-                    swalWithBootstrapButtons(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
+                    delete_Data(row.id);
                 } else if (
                     // Read more about handling dismissals
                     result.dismiss === swal.DismissReason.cancel
@@ -601,6 +601,7 @@
             accountModal.find('.modal-body #id').val("");
             accountModal.find('.modal-body #username').val("");
             accountModal.find('.modal-body #password').val("");
+            accountModal.find('.modal-body #enabled').selectpicker('val',1);
             accountModal.modal("show");
         }
         function editData(row) {
@@ -640,28 +641,38 @@
         function opt_account(data) {
             var change_flag = data.change_flag;
             var req_type;
-            if (change_flag){
-                req_type="put";
-            } else {
-                req_type="post";
-            }
+            var id = $('#id').val();
             var username = $('#username').val();
             var password = $('#password').val();
             var enabled = $('#enabled').val();
-            var data = {
-                username:username,
-                password:password,
-                enabled:enabled
-            };
-            console.log(data);
+            var data;
+            if (change_flag){
+                req_type="put";
+                data = {
+                    id:id,
+                    username:username,
+                    password:password,
+                    enabled:enabled
+                };
+            } else {
+                req_type="post";
+                data = {
+                    username:username,
+                    password:password,
+                    enabled:enabled
+                };
+            }
             // ajax新增项目数据
             $.ajax({
-                url: "/account",
+                url: encodeURI("/api/account"),
                 type: req_type,
                 contentType:"application/json; charset=utf-8",
                 dataType: 'json',
                 cache: false,
                 async: true,
+                //beforeSend: function(request) {
+                //    request.setRequestHeader("Authorization", "Bearer xxxxxxxxxx");
+                //},
                 data: JSON.stringify(data),
                 success: function (ret) {
                     // 新增成功
@@ -686,8 +697,52 @@
                             timer: 1500
                         })
                     }
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    switch(XMLHttpRequest.status){
+                        case 401:
+                            break;
+                        case 404:
+                            break;
+                        case 500:
+                            break;
+                    }
                 }
             })
+        }
+        // 根据id删除
+        function delete_Data(id) {
+            // 获取数据
+            //var data = {};
+            //data.id = id;
+            // ajax删除数据
+            $.ajax({
+                url: "/api/account/"+id,
+                type: 'delete',
+                dataType: 'json',
+                success: function (ret) {
+                    if (ret.code != "200") {
+                        swal("Delete Failed!")
+                    } else {
+                        $('#account_table').bootstrapTable('refresh');
+                        swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                    }
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    switch(XMLHttpRequest.status){
+                        case 401:
+                            break;
+                        case 404:
+                            break;
+                        case 500:
+                            break;
+                    }
+                }
+            })
+        }
+        function delDatabatch() {
+            var $table = $('#account_table')
+            alert('getSelections: ' + JSON.stringify($table.bootstrapTable('getSelections')));
         }
     </script>
   </body>

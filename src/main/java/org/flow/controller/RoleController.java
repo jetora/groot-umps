@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class RoleController extends BaseController{
     @Resource
     private RoleService roleService;
