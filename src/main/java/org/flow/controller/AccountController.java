@@ -39,7 +39,7 @@ public class AccountController extends BaseController{
     @GetMapping(value = "/pageInfo",produces = { "application/json;charset=UTF-8" })
     public BootStrapResult<List<Account>> pageInfo(HttpServletRequest request){
 
-        System.out.println("111111111111111111");
+
         Map params = HttpUtil.getParams(request);
         List<Account> accounts =accountService.findAccountAll();
         int total = accounts.size();
