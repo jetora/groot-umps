@@ -42,4 +42,9 @@
     select id, username, password, enabled, create_time, update_time
     from account
   </select>
+  <select id="selectByPager" resultMap="BaseResultMap">
+    select id, username, password, enabled, create_time, update_time
+    from account
+    limit #{offSet} , #{pageSize}
+  </select>
 </mapper>

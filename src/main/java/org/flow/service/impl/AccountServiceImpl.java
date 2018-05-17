@@ -1,5 +1,6 @@
 package org.flow.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import org.flow.dao.mapper.AccountMapper;
 import org.flow.entity.Account;
 import org.flow.service.AccountService;
@@ -19,6 +20,13 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public List<Account> findAccountAll() {
         return accountMapper.selectAll();
+    }
+
+    @Override
+    public List<Account> findAccountAll(int offset, int pageSize) {
+        //使用分页插件,核心代码就这一行
+        //PageHelper.startPage(pageNum, pageSize);
+        return accountMapper.selectByPager(offset,pageSize);
     }
 
     @Override

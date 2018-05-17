@@ -235,7 +235,7 @@
                                           <div class="form-group">
                                               <div class="input-group">
                                                   <span class="input-group-addon">是否可用</span>
-                                                  <select name="enabled_type" id="archType" class="form-control" aria-describedby="sizing-addon3">
+                                                  <select name="enabled_type" id="enabled_type" class="form-control" aria-describedby="sizing-addon3">
                                                       <option value="-1">全部</option>
                                                       <option value="1">可用</option>
                                                       <option value="2">不可用</option>
@@ -439,53 +439,61 @@
             $('#account_table').bootstrapTable('refreshOptions', {pageNumber: 1, offset: 0});
             //$('#account_table').bootstrapTable('refresh');
         }
+        var responseHandler = function (e) {
+            if (e.data && e.data.length > 0) {
+                return { "rows": e.data, "total": e.total };
+            }
+            else {
+                return { "rows": [], "total": 0 };
+            }
+        }
         // 表格数据查询参数
         var queryParams = function (params) {
-            //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
-            var param = {
-                rows: params.limit,                         //页面大小
-                page: (params.offset / params.limit) + 1,   //页码
-                sort: params.sort,      //排序列名
-                sortOrder: params.order, //排位命令（desc，asc）
-                username : $("#search_username").val(),
-                enabled : $("#enabled_type").val()
+            var temp = {
+                pageSize : params.limit,
+                offset: params.offset
             };
-            return param;
+            $.each(params, function (index, value) {
+                console.log(index+"---"+value);
+            })
+            return temp;
         }
         var TableInit = function () {
             var oTableInit = new Object();
             oTableInit.Init = function () {
                 $('#account_table').bootstrapTable({
-                    url: '/api/account',                      //请求后台的URL（*）
+                    url: '/api/pageInfo',                      //请求后台的URL（*）
                     method: 'GET',                      //请求方式（*）
-                    //toolbar: '#toolbar',              //工具按钮用哪个容器
-                    striped: true,                      //是否显示行间隔色
-                    cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
-                    pagination: true,                   //是否显示分页（*）
-                    sortable: true,                     //是否启用排序
+                    dataType: "json",
+                    contentType: 'application/json,charset=utf-8',
+                    toolbar: "#toolbar",                //一个jQuery 选择器，指明自定义的toolbar 例如:#toolbar, .toolbar.
+                    uniqueId: "id",                    //每一行的唯一标识，一般为主键列
+                    //height: document.body.clientHeight-165,   //动态获取高度值，可以使表格自适应页面
+                    cache: false,                       // 不缓存
+                    striped: true,                      // 隔行加亮
+                    queryParamsType: "limit",           //设置为"undefined",可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+                                                        //设置为"limit",符合 RESTFul 格式的参数,可以获取limit, offset, search, sort, order
+                    queryParams: queryParams,
+                    sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                    // sortable: true,                     //是否启用排序;意味着整个表格都会排序
+                    sortName: 'uid',                    // 设置默认排序为 name
                     sortOrder: "asc",                   //排序方式
-                    sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
-                    pageNumber: 1,                      //初始化加载第一页，默认第一页,并记录
-                    pageSize: 10,                     //每页的记录行数（*）
-                    pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
-                    search: false,                      //是否显示表格搜索
+                    pagination: true,                   //是否显示分页（*）
+                    search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
                     strictSearch: true,
-                    showColumns: true,                  //是否显示所有的列（选择显示的列）
+                    showColumns: true,                  //是否显示所有的列
                     showRefresh: true,                  //是否显示刷新按钮
-                    minimumCountColumns: 2,             //最少允许的列数
-                    clickToSelect: false,                //是否启用点击选中行
-                    //height: 500,                      //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-                    uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
-                    showToggle: false,                   //是否显示详细视图和列表视图的切换按钮
-                    cardView: false,                    //是否显示详细视图
-                    smartDisplay: false,
-                    detailView: false,                  //是否显示父子表
+                    showToggle:true,                    //是否显示详细视图和列表视图
+                    clickToSelect: true,                //是否启用点击选中行
+                    minimumCountColumns: 2,          //最少允许的列数 clickToSelect: true, //是否启用点击选中行
+                    pageNumber: 1,                   //初始化加载第一页，默认第一页
+                    pageSize: 10,                    //每页的记录行数（*）
+                    pageList: [10, 25, 50, 100],     //可供选择的每页的行数（*）
                     paginationPreText: "Previous",
                     paginationNextText: "Next",
                     paginationFirstText: "First",
                     paginationLastText: "Last",
-                    //得到查询的参数
-                    queryParams : queryParams,
+                    responseHandler: responseHandler,
                     onLoadSuccess: function (data) {
                         //console.log(data);
                     },
@@ -493,6 +501,9 @@
                         layer.msg("加载数据失败", {time : 1500, icon : 2});
                         //console.log(data);
                         //$('#account_table').boostrapTable('load', savedData);
+                    },
+                    formatLoadingMessage: function () {
+                        return "请稍等，正在加载中...";
                     },
                     columns: [
                         {

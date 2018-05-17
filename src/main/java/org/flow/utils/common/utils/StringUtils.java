@@ -16,8 +16,8 @@ public class StringUtils extends org.springframework.util.StringUtils {
         return collectionToDelimitedString(coll, ",");
     }
 
-    public static String[] split(String str) {
-        return delimitedListToStringArray(str, ",");
+    public static String[] split(String str,String op) {
+        return delimitedListToStringArray(str, op);
     }
 
     public static String clean(String in) {
