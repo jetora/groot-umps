@@ -1,7 +1,6 @@
 package org.flow.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.PageHelper;
 import org.flow.entity.Account;
 import org.flow.service.AccountService;
 import org.flow.utils.common.enums.ErrorCode;
@@ -50,7 +49,6 @@ public class AccountController extends BaseController{
         //if (StringUtils.notNull(request.getParameter("pageSize")) && StringUtils.notNull(request.getParameter("offset"))) {
         int pageSize = Integer.parseInt(request.getParameter("pageSize"));
         int offset = Integer.parseInt(request.getParameter("offset"));
-        //PageHelper.startPage(offset,pageSize);
         //}
 
         List<Account> accountList = new ArrayList<>();
