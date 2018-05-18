@@ -42,9 +42,28 @@
     select id, username, password, enabled, create_time, update_time
     from account
   </select>
+  <select id="selectCount" resultType="java.lang.Integer" >
+    select count(id)
+    from account
+  </select>
   <select id="selectByPager" resultMap="BaseResultMap">
     SELECT t1.id, t1.username, t1.password, t1.enabled, t1.create_time, t1.update_time FROM account AS t1
-    JOIN (SELECT id FROM account ORDER BY id LIMIT #{offSet} , #{pageSize}) AS t2
-    WHERE t1.id = t2.id ORDER BY t1.id LIMIT #{pageSize}
+    JOIN
+    ( SELECT id FROM account where 1=1
+    <if test="username != null and username !=''" >
+      and username = #{username}
+    </if>
+    <if test="enabled != -1">
+      and enabled = #{enabled}
+    </if>
+    ORDER BY #{ordername} #{order} LIMIT #{offSet} , #{pageSize}) AS t2
+    WHERE t1.id = t2.id
+    <if test="username != null and username !=''" >
+      and username = #{username}
+    </if>
+    <if test="enabled != -1">
+      and enabled = #{enabled}
+    </if>
+    ORDER BY #{ordername} #{order}  LIMIT #{pageSize}
   </select>
 </mapper>

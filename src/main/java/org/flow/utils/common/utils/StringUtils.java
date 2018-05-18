@@ -1,6 +1,7 @@
 package org.flow.utils.common.utils;
 
 import java.util.Collection;
+import java.util.List;
 
 public class StringUtils extends org.springframework.util.StringUtils {
 
@@ -80,6 +81,24 @@ public class StringUtils extends org.springframework.util.StringUtils {
         } else {
             return true;
         }
+    }
+    public static boolean notNull(Object obj) {
+        if ( obj == null){
+            return false;
+        }
+        if ((obj instanceof String)){
+            if (obj == null || ((String) obj).trim().length() <= 0 || "".equals(obj) || "null".equals(obj)) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        if ((obj instanceof List)){
+            if (((List) obj).size()!=0){
+                return true;
+            }
+        }
+        return false;
     }
     /**
      * @param stringArray  待处理字符串数组

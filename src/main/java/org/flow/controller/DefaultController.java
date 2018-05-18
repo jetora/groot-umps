@@ -16,9 +16,9 @@ public class DefaultController extends BaseController {
         return "/fixed_footer";
     }
 
-    @GetMapping("/accountmanage")
+    @GetMapping("/account")
     public String AccountManage(){
-        return "accountmanage";
+        return "account";
     }
 
 }

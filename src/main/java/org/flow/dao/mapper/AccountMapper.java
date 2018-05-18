@@ -20,7 +20,9 @@ public interface AccountMapper {
 
     //List<Account> selectByPager(int pageNum, int pageSize);
 
-    List<Account> selectByPager(@Param("offSet") Integer offSet, @Param("pageSize") Integer pageSize);
+    List<Account> selectByPager(@Param("offSet") Integer offSet, @Param("pageSize") Integer pageSize,@Param("ordername") String ordername,@Param("order") String order,@Param("username") String username,@Param("enabled") int enabled);
 
     int updateByPrimaryKey(Account record);
+
+    int selectCount();
 }

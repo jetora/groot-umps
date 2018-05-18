@@ -22,8 +22,13 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public List<Account> findAccountAll(int offset, int pageSize) {
-        return accountMapper.selectByPager(offset,pageSize);
+    public List<Account> findAccountAll(int offset, int pageSize,String ordername,String order,String username,int enabled) {
+        return accountMapper.selectByPager(offset,pageSize,ordername,order,username,enabled);
+    }
+
+    @Override
+    public int findTotal() {
+        return accountMapper.selectCount();
     }
 
     @Override

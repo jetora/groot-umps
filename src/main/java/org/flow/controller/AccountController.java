@@ -38,24 +38,39 @@ public class AccountController extends BaseController{
     //条件查询
     @GetMapping(value = "/pageInfo",produces = { "application/json;charset=UTF-8" })
     public BootStrapResult<List<Account>> pageInfo(HttpServletRequest request){
-
-
         Map params = HttpUtil.getParams(request);
-        List<Account> accounts =accountService.findAccountAll();
-        int total = accounts.size();
-
-        //int pageNum = params.get("pageNum");
-        //int pageSize = params.get("pageSize");
-        //if (StringUtils.notNull(request.getParameter("pageSize")) && StringUtils.notNull(request.getParameter("offset"))) {
-        int pageSize = Integer.parseInt(request.getParameter("pageSize"));
-        int offset = Integer.parseInt(request.getParameter("offset"));
-        //}
+        //List<Account> accounts =accountService.findAccountAll();
+        //int total = accounts.size();
+        int total = 0;
+        String username = "";
+        int enabled = -1;
+        String order = "id";
+        String ordername = "asc";
 
         List<Account> accountList = new ArrayList<>();
         BootStrapResult<List<Account>> result= new BootStrapResult<>();
 
-        accountList = accountService.findAccountAll(offset,pageSize);
+        if (StringUtils.notNull(params.get("username"))){
+            username = String.valueOf(params.get("username"));
+        }
+        if (StringUtils.notNull(params.get("enabled"))){
+            enabled = Integer.parseInt((String)params.get("enabled"));
+        }
+        if (StringUtils.notNull(params.get("order"))){
+            order = String.valueOf(params.get("order"));
+        }
+        if (StringUtils.notNull(params.get("ordername"))){
+            ordername = String.valueOf(params.get("ordername"));
+        }
+        int pageSize = Integer.parseInt(request.getParameter("pageSize"));
+        int offset = Integer.parseInt(request.getParameter("offset"));
 
+        accountList = accountService.findAccountAll(offset,pageSize,ordername,order,username,enabled);
+        if (StringUtils.notNull(params.get("username")) || StringUtils.notNull(params.get("enabled"))){
+            total = accountList.size();
+        } else {
+            total = accountService.findTotal();
+        }
         result.setCode(HttpStatus.OK.toString());
         result.setMsg("success");
         result.setData(accountList);
