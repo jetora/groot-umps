@@ -27,6 +27,11 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public int findWhereTotal(String ordername, String order, String username, int enabled) {
+        return accountMapper.selectByWhereCount(ordername,order,username,enabled);
+    }
+
+    @Override
     public int findTotal() {
         return accountMapper.selectCount();
     }

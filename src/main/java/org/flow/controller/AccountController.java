@@ -44,37 +44,46 @@ public class AccountController extends BaseController{
         int total = 0;
         String username = "";
         int enabled = -1;
-        String order = "id";
-        String ordername = "asc";
+        String  ordername= "id";
+        String order = "asc";
 
         List<Account> accountList = new ArrayList<>();
         BootStrapResult<List<Account>> result= new BootStrapResult<>();
 
-        if (StringUtils.notNull(params.get("username"))){
-            username = String.valueOf(params.get("username"));
-        }
-        if (StringUtils.notNull(params.get("enabled"))){
-            enabled = Integer.parseInt((String)params.get("enabled"));
-        }
-        if (StringUtils.notNull(params.get("order"))){
-            order = String.valueOf(params.get("order"));
-        }
-        if (StringUtils.notNull(params.get("ordername"))){
-            ordername = String.valueOf(params.get("ordername"));
-        }
-        int pageSize = Integer.parseInt(request.getParameter("pageSize"));
-        int offset = Integer.parseInt(request.getParameter("offset"));
+        try {
+            if (StringUtils.notNull(params.get("username"))){
+                username = String.valueOf(params.get("username"));
+            }
+            if (StringUtils.notNull(params.get("enabled"))){
+                enabled = Integer.parseInt((String)params.get("enabled"));
+            }
+            if (StringUtils.notNull(params.get("order"))){
+                order = String.valueOf(params.get("order"));
+            }
+            if (StringUtils.notNull(params.get("ordername"))){
+                ordername = String.valueOf(params.get("ordername"));
+            }
+            int pageSize = Integer.parseInt(request.getParameter("pageSize"));
+            int offset = Integer.parseInt(request.getParameter("offset"));
 
-        accountList = accountService.findAccountAll(offset,pageSize,ordername,order,username,enabled);
-        if (StringUtils.notNull(params.get("username")) || StringUtils.notNull(params.get("enabled"))){
-            total = accountList.size();
-        } else {
-            total = accountService.findTotal();
+            accountList = accountService.findAccountAll(offset,pageSize,ordername,order,username,enabled);
+            if (StringUtils.notNull(params.get("username")) || StringUtils.notNull(params.get("enabled"))){
+                //total = accountList.size();
+                total = accountService.findWhereTotal(ordername,order,username,enabled);
+            } else {
+                total = accountService.findTotal();
+            }
+            result.setCode(HttpStatus.OK.toString());
+            result.setMsg("success");
+            result.setData(accountList);
+            result.setTotal(total);
+        }catch (Exception ex){
+            result.setCode(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+            result.setMsg("failed");
+            result.setData(accountList);
+            result.setTotal(total);
         }
-        result.setCode(HttpStatus.OK.toString());
-        result.setMsg("success");
-        result.setData(accountList);
-        result.setTotal(total);
+
         return result;
     }
     //根据id查询

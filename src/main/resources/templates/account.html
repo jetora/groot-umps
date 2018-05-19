@@ -458,8 +458,6 @@
         }
         var responseHandler = function (e) {
             if (e.data && e.data.length > 0) {
-                console.log(11111111);
-                console.log(e.total);
                 return { "rows": e.data, "total": e.total };
             }
             else {
@@ -476,9 +474,9 @@
                 username: $("#search_username").val(),
                 enabled: $("#enabled_type").val()
             };
-            $.each(params, function (index, value) {
-                console.log(index+"---"+value);
-            })
+            //$.each(params, function (index, value) {
+            //    console.log(index+"---"+value);
+            //})
             return temp;
         }
         var TableInit = function () {

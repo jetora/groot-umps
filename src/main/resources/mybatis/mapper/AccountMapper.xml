@@ -56,7 +56,18 @@
     <if test="enabled != -1">
       and enabled = #{enabled}
     </if>
-    ORDER BY #{ordername} #{order} LIMIT #{offSet} , #{pageSize}) AS t2
+    <choose>
+      <when test="ordername=='createTime'">
+        ORDER BY create_time
+      </when>
+      <when test="ordername=='updateTime'">
+        ORDER BY update_time
+      </when>
+      <otherwise>
+        ORDER BY ${ordername}
+      </otherwise>
+    </choose>
+    ${order} LIMIT #{offSet} , #{pageSize}) AS t2
     WHERE t1.id = t2.id
     <if test="username != null and username !=''" >
       and username = #{username}
@@ -64,6 +75,29 @@
     <if test="enabled != -1">
       and enabled = #{enabled}
     </if>
-    ORDER BY #{ordername} #{order}  LIMIT #{pageSize}
+    <choose>
+      <when test="ordername=='createTime'">
+        ORDER BY create_time
+      </when>
+      <when test="ordername=='updateTime'">
+        ORDER BY update_time
+      </when>
+      <otherwise>
+        ORDER BY ${ordername}
+      </otherwise>
+    </choose>
+    ${order}  LIMIT #{pageSize}
+  </select>
+  <select id="selectByWhereCount" resultType="java.lang.Integer">
+    select count(id)
+    from account
+    where 1=1
+    <if test="username != null and username !=''" >
+      and username = #{username}
+    </if>
+    <if test="enabled != -1">
+      and enabled = #{enabled}
+    </if>
+    ORDER BY #{ordername} #{order}
   </select>
 </mapper>
