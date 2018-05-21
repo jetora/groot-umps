@@ -208,7 +208,7 @@
                 <ol class="breadcrumb">
                     <li><a href="#">Home</a></li>
                     <li><a>角色用户管理</a></li>
-                    <li class="active">用户管理</li>
+                    <li class="active">角色管理</li>
                 </ol>
             </div>
           <div class="animated zoomInUp">
@@ -235,8 +235,8 @@
                                       <form class="form-inline">
                                           <div class="form-group">
                                               <div class="input-group">
-                                                  <span class="input-group-addon">用户名</span>
-                                                  <input type="text" id="search_username" name="search_content"
+                                                  <span class="input-group-addon">角色名</span>
+                                                  <input type="text" id="search_rolename" name="search_content"
                                                           placeholder="" class="form-control" aria-describedby="sizing-addon3"/>
                                               </div>
                                           </div>
@@ -315,10 +315,10 @@
                               <br/>
                               <br/>
                               <!--table start-->
-                              <table id="account_table" class="col-xs-12" data-toolbar="#toolbar"></table>
+                              <table id="role_table" class="col-xs-12" data-toolbar="#toolbar"></table>
                               <!--table end-->
                               <!-- add modal start-->
-                              <div class="modal fade bs-example-modal-lg" id="accountModal" tabindex="-1" role="dialog"
+                              <div class="modal fade bs-example-modal-lg" id="roleModal" tabindex="-1" role="dialog"
                                    aria-hidden="true" data-backdrop="static" style="display: none">
                                   <div class="modal-dialog">
                                       <div class="modal-content">
@@ -327,18 +327,18 @@
                                                       aria-hidden="true">&times;</button>
                                               <h4 class="modal-title" id="modalTitle">新增</h4>
                                           </div>
-                                          <div class="modal-body" id="account_content">
-                                              <form class="form-horizontal" id="accountForm">
+                                          <div class="modal-body" id="role_content">
+                                              <form class="form-horizontal" id="roleForm">
                                                   <div class="form-group">
-                                                      <label class="control-label col-md-3" for="username">用户名</label>
+                                                      <label class="control-label col-md-3" for="rolename">角色名</label>
                                                       <div class="col-md-8 col-xs-11">
-                                                          <input type="text" min="0" id="username" class="form-control" required>
+                                                          <input type="text" min="0" id="rolename" class="form-control" required>
                                                       </div>
                                                   </div>
                                                   <div class="form-group">
-                                                      <label class="control-label col-md-3" for="password">密码</label>
+                                                      <label class="control-label col-md-3" for="description">描述</label>
                                                       <div class="col-md-8 col-xs-11">
-                                                          <input type="password" id="password" class="form-control" required>
+                                                          <textarea id="description" required="required" class="form-control" name="description"></textarea>
                                                       </div>
                                                   </div>
                                                   <div class="form-group">
@@ -428,8 +428,8 @@
         // 初始化页面加载表格数据
         $(function () {
             $('#enabled_type').val("")
-            $('#search_username').val("")
-            $('#search_username').bind('keyup', function (event) {
+            $('#search_rolename').val("")
+            $('#search_rolename').bind('keyup', function (event) {
                 if (event.keyCode == "13") {
                     //回车执行查询
                     searchData();
@@ -441,13 +441,13 @@
         });
         function resetData() {
             $('#enabled_type').val("")
-            $('#search_username').val("")
+            $('#search_rolename').val("")
             searchData()
         }
         // 点击查询按钮
         function searchData() {
-            $('#account_table').bootstrapTable('refreshOptions', {pageNumber: 1, offset: 0});
-            //$('#account_table').bootstrapTable('refresh');
+            $('#role_table').bootstrapTable('refreshOptions', {pageNumber: 1, offset: 0});
+            //$('#role_table').bootstrapTable('refresh');
         }
         var responseHandler = function (e) {
             if (e.data && e.data.length > 0) {
@@ -464,7 +464,7 @@
                 offset: params.offset,
                 order: params.order,
                 ordername: params.sort,
-                username: $("#search_username").val(),
+                rolename: $("#search_rolename").val(),
                 enabled: $("#enabled_type").val()
             };
             //$.each(params, function (index, value) {
@@ -475,8 +475,8 @@
         var TableInit = function () {
             var oTableInit = new Object();
             oTableInit.Init = function () {
-                $('#account_table').bootstrapTable({
-                    url: '/api/account/pageInfo',                      //请求后台的URL（*）
+                $('#role_table').bootstrapTable({
+                    url: '/api/role/pageInfo',                      //请求后台的URL（*）
                     method: 'GET',                      //请求方式（*）
                     dataType: "json",
                     contentType: 'application/json,charset=utf-8',
@@ -514,7 +514,7 @@
                     onLoadError: function (data) {
                         layer.msg("加载数据失败", {time : 1500, icon : 2});
                         //console.log(data);
-                        //$('#account_table').boostrapTable('load', savedData);
+                        //$('#role_table').boostrapTable('load', savedData);
                     },
                     formatLoadingMessage: function () {
                         return "请稍等，正在加载中...";
@@ -529,12 +529,12 @@
                             title: 'ID',
                             sortable: true
                         }, {
-                            field: 'username',
-                            title: '用户名',
+                            field: 'name',
+                            title: '角色名',
                             sortable: true
                         }, {
-                            field: 'password',
-                            title: '密码',
+                            field: 'description',
+                            title: '描述',
                             sortable: true
                         }, {
                             field: 'enabled',
@@ -569,6 +569,7 @@
             var edit_permit = row.editPermit;
             var remove_permit = row.removePermit;
             ret_butns.push('<a class="edit" href="javascript:void(0)" title="edit"><i class="fa fa-edit"></i></a> ');
+            ret_butns.push('<a class="grant" href="javascript:void(0)" title="grant"><i class="fa fa-truck"></i></a> ');
             ret_butns.push('<a class="remove" href="javascript:void(0)" title="delete"><i class="fa fa-trash-o"></i></a> ');
             if (ret_butns.length > 0) {
                 return ret_butns.join('');
@@ -592,6 +593,9 @@
         window.optEvents = {
             'click .edit': function (e, value, row) {
                 editData(row);
+            },
+            'click .grant': function (e, value, row) {
+                alert(row.name);
             },
             'click .remove': function (e, value, row) {
                 //var message = "确定要删除项目：" + row.asset_title + "?";
@@ -632,36 +636,36 @@
         // 添加项目
         function addData() {
             // 设置标题
-            $("#modalTitle").text("新增项目");
-            var accountModal = $('#accountModal');
+            $("#modalTitle").text("新增角色");
+            var roleModal = $('#roleModal');
             // 初始化form表单内容
-            accountModal.find('.modal-body #opt_type').val("add");
-            accountModal.find('.modal-body #id').val("");
-            accountModal.find('.modal-body #username').val("");
-            accountModal.find('.modal-body #password').val("");
-            accountModal.find('.modal-body #enabled').selectpicker('val',1);
-            accountModal.modal("show");
+            roleModal.find('.modal-body #opt_type').val("add");
+            roleModal.find('.modal-body #id').val("");
+            roleModal.find('.modal-body #rolename').val("");
+            roleModal.find('.modal-body #description').val("");
+            roleModal.find('.modal-body #enabled').selectpicker('val',1);
+            roleModal.modal("show");
         }
         function editData(row) {
-            $('#modalTitle').text('修改项目');
-            var accountModal = $('#accountModal');
-            accountModal.find('.modal-body #opt_type').val("edit");
-            accountModal.find('.modal-body #id').val(row.id);
-            accountModal.find('.modal-body #username').val(row.username);
-            accountModal.find('.modal-body #password').val(row.password);
-            accountModal.find('.modal-body #enabled').selectpicker('val',row.enabled);
-            accountModal.find('.modal-body #enabled').val(row.enabled);
-            accountModal.modal('show');
+            $('#modalTitle').text('修改角色');
+            var roleModal = $('#roleModal');
+            roleModal.find('.modal-body #opt_type').val("edit");
+            roleModal.find('.modal-body #id').val(row.id);
+            roleModal.find('.modal-body #rolename').val(row.name);
+            roleModal.find('.modal-body #description').val(row.description);
+            roleModal.find('.modal-body #enabled').selectpicker('val',row.enabled);
+            roleModal.find('.modal-body #enabled').val(row.enabled);
+            roleModal.modal('show');
         }
         // 新增或编辑form表单内容
         function get_form_data() {
             var data = {};
-            var accountModal = $('#accountModal');
+            var roleModal = $('#roleModal');
             // 获取表单内容
-            data.opt_type = accountModal.find('.modal-body #opt_type').val();
-            data.id = accountModal.find('.modal-body #id').val();
-            data.username = accountModal.find('.modal-body #username').val();
-            data.password = accountModal.find('.modal-body #password').val();
+            data.opt_type = roleModal.find('.modal-body #opt_type').val();
+            data.id = roleModal.find('.modal-body #id').val();
+            data.rolename = roleModal.find('.modal-body #rolename').val();
+            data.description = roleModal.find('.modal-body #description').val();
             if ("edit" == data.opt_type) {
                 data.change_flag = true;
             } else {
@@ -674,35 +678,35 @@
             // 获取数据
             var data = get_form_data();
             //var change_flag = data.change_flag;
-            opt_account(data);
+            opt_role(data);
         }
-        function opt_account(data) {
+        function opt_role(data) {
             var change_flag = data.change_flag;
             var req_type;
             var id = $('#id').val();
-            var username = $('#username').val();
-            var password = $('#password').val();
+            var rolename = $('#rolename').val();
+            var description = $('#description').val();
             var enabled = $('#enabled').val();
             var data;
             if (change_flag){
                 req_type="put";
                 data = {
                     id:id,
-                    username:username,
-                    password:password,
+                    name:rolename,
+                    description:description,
                     enabled:enabled
                 };
             } else {
                 req_type="post";
                 data = {
-                    username:username,
-                    password:password,
+                    name:rolename,
+                    description:description,
                     enabled:enabled
                 };
             }
             // ajax新增项目数据
             $.ajax({
-                url: encodeURI("/api/account"),
+                url: encodeURI("/api/role"),
                 type: req_type,
                 contentType:"application/json; charset=utf-8",
                 dataType: 'json',
@@ -716,8 +720,8 @@
                     // 新增成功
                     if (ret.code == 201 || ret.code == 200) {
                         // 隐藏modal框
-                        $('#accountModal').modal('hide');
-                        $('#account_table').bootstrapTable('refresh');
+                        $('#roleModal').modal('hide');
+                        $('#role_table').bootstrapTable('refresh');
                         swal({
                             position: 'top-end',
                             type: 'success',
@@ -755,14 +759,14 @@
             //data.id = id;
             // ajax删除数据
             $.ajax({
-                url: "/api/account/"+id,
+                url: "/api/role/"+id,
                 type: 'delete',
                 dataType: 'json',
                 success: function (ret) {
                     if (ret.code != "200") {
                         swal("Delete Failed!")
                     } else {
-                        $('#account_table').bootstrapTable('refresh');
+                        $('#role_table').bootstrapTable('refresh');
                         swal("Deleted!", "Your imaginary file has been deleted.", "success");
                     }
                 },
@@ -779,7 +783,7 @@
             })
         }
         function delDatabatch() {
-            var $table = $('#account_table')
+            var $table = $('#role_table')
             alert('getSelections: ' + JSON.stringify($table.bootstrapTable('getSelections')));
         }
     </script>

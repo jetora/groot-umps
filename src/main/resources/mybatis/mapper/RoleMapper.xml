@@ -14,20 +14,17 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="org.flow.entity.Role" >
-    insert into role (id, name, description, 
-      enabled, create_time, update_time
+    insert into role (id, name, description, enabled
       )
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{enabled,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      #{enabled,jdbcType=TINYINT}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="org.flow.entity.Role" >
     update role
     set name = #{name,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
-      enabled = #{enabled,jdbcType=TINYINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      enabled = #{enabled,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -38,5 +35,63 @@
   <select id="selectAll" resultMap="BaseResultMap" >
     select id, name, description, enabled, create_time, update_time
     from role
+  </select>
+  <select id="selectCount" resultType="java.lang.Integer" >
+    select count(id)
+    from role
+  </select>
+  <select id="selectByPager" resultMap="BaseResultMap">
+    SELECT t1.id, t1.name, t1.description, t1.enabled, t1.create_time, t1.update_time FROM role AS t1
+    JOIN
+    ( SELECT id FROM role where 1=1
+    <if test="rolename != null and rolename !=''" >
+      and name = #{rolename}
+    </if>
+    <if test="enabled != -1">
+      and enabled = #{enabled}
+    </if>
+    <choose>
+      <when test="ordername=='createTime'">
+        ORDER BY create_time
+      </when>
+      <when test="ordername=='updateTime'">
+        ORDER BY update_time
+      </when>
+      <otherwise>
+        ORDER BY ${ordername}
+      </otherwise>
+    </choose>
+    ${order} LIMIT #{offSet} , #{pageSize}) AS t2
+    WHERE t1.id = t2.id
+    <if test="rolename != null and rolename !=''" >
+      and name = #{rolename}
+    </if>
+    <if test="enabled != -1">
+      and enabled = #{enabled}
+    </if>
+    <choose>
+      <when test="ordername=='createTime'">
+        ORDER BY create_time
+      </when>
+      <when test="ordername=='updateTime'">
+        ORDER BY update_time
+      </when>
+      <otherwise>
+        ORDER BY ${ordername}
+      </otherwise>
+    </choose>
+    ${order}  LIMIT #{pageSize}
+  </select>
+  <select id="selectByWhereCount" resultType="java.lang.Integer">
+    select count(id)
+    from role
+    where 1=1
+    <if test="rolename != null and rolename !=''" >
+      and name = #{rolename}
+    </if>
+    <if test="enabled != -1">
+      and enabled = #{enabled}
+    </if>
+    ORDER BY #{ordername} #{order}
   </select>
 </mapper>

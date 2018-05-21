@@ -23,6 +23,21 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public List<Role> findAccountAll(int offset, int pageSize, String ordername, String order, String rolename, int enabled) {
+        return roleMapper.selectByPager(offset,pageSize,ordername,order,rolename,enabled);
+    }
+
+    @Override
+    public int findWhereTotal(String ordername, String order, String rolename, int enabled) {
+        return roleMapper.selectByWhereCount(ordername,order,rolename,enabled);
+    }
+
+    @Override
+    public int findTotal() {
+        return roleMapper.selectCount();
+    }
+
+    @Override
     public Role findRoleById(Long id) {
         return roleMapper.selectByPrimaryKey(id);
     }

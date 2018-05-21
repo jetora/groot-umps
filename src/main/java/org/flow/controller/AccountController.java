@@ -36,7 +36,7 @@ public class AccountController extends BaseController{
         }
     }
     //条件查询
-    @GetMapping(value = "/pageInfo",produces = { "application/json;charset=UTF-8" })
+    @GetMapping(value = "/account/pageInfo",produces = { "application/json;charset=UTF-8" })
     public BootStrapResult<List<Account>> pageInfo(HttpServletRequest request){
         Map params = HttpUtil.getParams(request);
         //List<Account> accounts =accountService.findAccountAll();
