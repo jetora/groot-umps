@@ -15,5 +15,7 @@ public interface ResourceMapper {
 
     List<Resource> selectAll();
 
+    List<Resource> selectMenuAll();
+
     int updateByPrimaryKey(Resource record);
 }

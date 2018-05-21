@@ -39,6 +39,12 @@ public class ResourceController extends BaseController{
         resourceTrees = resourceService.selecteResourceTree(new Long((long)0));
         return ResultUtil.buildResult(ErrorCode.OK.getCode(),ErrorCode.OK.getMessage(),resourceTrees);
     }
+    @GetMapping(value = "/menutree",produces = { "application/json;charset=UTF-8" })
+    public ResponseResult<List<ResourceTree>> findMuneTree() {
+        List<ResourceTree> resourceTrees = new ArrayList<>();
+        resourceTrees = resourceService.selecteMenuTree(new Long((long)0));
+        return ResultUtil.buildResult(ErrorCode.OK.getCode(),ErrorCode.OK.getMessage(),resourceTrees);
+    }
     //根据id查询
     @GetMapping(value = "/resource/{id}", produces = { "application/json;charset=UTF-8" })
     public ResponseResult<org.flow.entity.Resource> findOne(@PathVariable Long id){

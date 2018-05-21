@@ -59,4 +59,9 @@
     type, enabled, create_time, update_time
     from resource
   </select>
+  <select id="selectMenuAll" resultMap="BaseResultMap" >
+    select id, name, url, method, parent_id, parent_ids, permission, icon, component,
+    type, enabled, create_time, update_time
+    from resource where type=1 or type is null
+  </select>
 </mapper>

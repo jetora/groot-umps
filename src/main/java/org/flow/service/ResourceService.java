@@ -12,4 +12,5 @@ public interface ResourceService {
     int updateResourceById(Resource resource);
     int deleteResourceById(Long id);
     List<ResourceTree> selecteResourceTree(Long id);
+    List<ResourceTree> selecteMenuTree(Long id);
 }

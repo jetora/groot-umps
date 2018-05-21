@@ -50,6 +50,12 @@ public class ResourceServiceImpl implements ResourceService {
         return this.getOraganizationTree(resources,id);
     }
 
+    @Override
+    public List<ResourceTree> selecteMenuTree(Long id) {
+        List<Resource> resources = resourceMapper.selectMenuAll();
+        return this.getOraganizationTree(resources,id);
+    }
+
     /**
      * 构建资源树
      *
