@@ -8,12 +8,6 @@
   <body class="nav-md footer_fixed">
   <div class="container body">
       <div class="main_container">
-          <!-- sidebar menu -->
-          <div th:replace="fragments/sidebar :: sidebar"></div>
-          <!-- /sidebar menu -->
-          <!-- top navigation -->
-          <div th:replace="fragments/top_nav :: top_nav"></div>
-          <!-- /top navigation -->
           <!-- page content -->
           <div layout:fragment="content">
               <div class="animated zoomInUp right_col" role="main">
@@ -186,31 +180,31 @@
                   </div>
               </div>
               <!-- jQuery -->
-              <script src="../static/js/jquery.min.js"></script>
+              <script src="../static/js/jquery.min.js" th:src="@{/static/js/jquery.min.js}"></script>
               <!-- Bootstrap -->
-              <script src="../static/js/bootstrap.min.js"></script>
+              <script src="../static/js/bootstrap.min.js" th:src="@{/static/js/bootstrap.min.js}"></script>
               <!-- FastClick -->
-              <script src="../static/js/plugins/fastclick/fastclick.js"></script>
+              <script src="../static/js/plugins/fastclick/fastclick.js" th:src="@{/static/js/plugins/fastclick/fastclick.js}"></script>
               <!-- NProgress -->
-              <script src="../static/js/plugins/nprogress/nprogress.js"></script>
+              <script src="../static/js/plugins/nprogress/nprogress.js" th:src="@{/static/js/plugins/nprogress/nprogress.js}"></script>
               <!-- jQuery custom content scroller -->
-              <script src="../static/js/plugins/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+              <script src="../static/js/plugins/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js" th:src="@{/static/js/plugins/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
               <!-- bootstrap table -->
-              <script src="../static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
-              <script src="../static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+              <script src="../static/js/plugins/bootstrap-table/bootstrap-table.min.js" th:src="@{/static/js/plugins/bootstrap-table/bootstrap-table.min.js}"></script>
+              <script src="../static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" th:src="@{/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
               <!-- Custom Theme Scripts -->
-              <script src="../static/js/custom.min.js"></script>
+              <script src="../static/js/custom.min.js" th:src="@{/static/js/custom.min.js}"></script>
               <!-- sweatalert -->
-              <script src="../static/js/plugins/sweetalert2/7.20.4/sweetalert2.all.js"></script>
+              <script src="../static/js/plugins/sweetalert2/7.20.4/sweetalert2.all.js" th:src="@{/static/js/plugins/sweetalert2/7.20.4/sweetalert2.all.js}"></script>
               <!-- bootstrap select -->
-              <script src="../static/js/plugins/bootstrap-select/1.12.4/bootstrap-select.min.js"></script>
-              <script src="../static/js/plugins/bootstrap-select/1.12.4/i18n/defaults-zh_CN.min.js"></script>
+              <script src="../static/js/plugins/bootstrap-select/1.12.4/bootstrap-select.min.js" th:src="@{/static/js/plugins/bootstrap-select/1.12.4/bootstrap-select.min.js}"></script>
+              <script src="../static/js/plugins/bootstrap-select/1.12.4/i18n/defaults-zh_CN.min.js" th:src="@{/static/js/plugins/bootstrap-select/1.12.4/i18n/defaults-zh_CN.min.js}"></script>
               <!-- bootstrap-daterangepicker -->
-              <script src="../static/js/plugins/moment/min/moment.min.js"></script>
-              <script src="../static/js/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+              <script src="../static/js/plugins/moment/min/moment.min.js" th:src="@{/static/js/plugins/moment/min/moment.min.js}"></script>
+              <script src="../static/js/plugins/bootstrap-daterangepicker/daterangepicker.js" th:src="@{/static/js/plugins/bootstrap-daterangepicker/daterangepicker.js}"></script>
               <!-- layer-->
-              <script src="../static/js/plugins/layer/v3.1.1/layer.js"></script>
-              <script type="text/javascript">
+              <script src="../static/js/plugins/layer/v3.1.1/layer.js" th:src="@{/static/js/plugins/layer/v3.1.1/layer.js}"></script>
+              <script type="text/javascript" >
                   //折叠
                   $('.collapse').collapse({
                       toggle: true,parent:'#accordion'
@@ -592,7 +586,6 @@
               </script>
           </div>
           <!-- /page content -->
-          <div th:replace="fragments/footer :: footer"></div>
       </div>
   </div>
 
