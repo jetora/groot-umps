@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2018-05-11 17:47:04
+Date: 2018-05-23 17:20:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,20 +28,62 @@ CREATE TABLE `account` (
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`),
   KEY `idx_username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of account
 -- ----------------------------
-INSERT INTO `account` VALUES ('1', 'admin', '$2a$10$MTFVrdqbHOi.CCUhkrkZnOBdrZEfk3gzIUyZBdQvLWvdF/0pnkEO2', '1', '2018-05-10 14:42:17', '2018-05-10 14:42:17');
-INSERT INTO `account` VALUES ('2', 'user', '$2a$10$6KDklkImZgGANWR8pDAwSexf6Bt4Z9I0nDiwdih9Q38HI4eAkWk0u', '1', '2018-05-10 14:42:17', '2018-05-10 14:42:17');
-INSERT INTO `account` VALUES ('3', 'anonymous', '$2a$10$58UG9Udx7RhCL1.356NyAu0Rp936vbo1vHahj8v0O0XOTSkKY0XyG', '1', '2018-05-10 14:42:17', '2018-05-10 14:42:17');
-INSERT INTO `account` VALUES ('15', 'john', '$2a$10$SpSCzJ1OU91PBOezF1YMG.P2MJnsLrpAVZGB9xmT3qagvoQ9QP.fa', '1', '2018-05-11 17:37:42', '2018-05-11 17:37:42');
-INSERT INTO `account` VALUES ('16', 'hulk', '$2a$10$VqLkXeGdFDGvV.d0mtrdD.nYLyGmgkprBpWQ7R4e5XSxCIteMogIO', '1', '2018-05-11 17:37:42', '2018-05-11 17:37:42');
-INSERT INTO `account` VALUES ('17', 'stark', '$2a$10$l/2bk8MqaVFcBHT4kB5mIudDEr2AUFCKbvur4BzUEZuHK2HwUdQvG', '1', '2018-05-11 17:37:42', '2018-05-11 17:37:42');
-INSERT INTO `account` VALUES ('18', 'tom', '$2a$10$SpSCzJ1OU91PBOezF1YMG.P2MJnsLrpAVZGB9xmT3qagvoQ9QP.fa', '1', '2018-05-11 17:37:42', '2018-05-11 17:37:42');
-INSERT INTO `account` VALUES ('19', 'jerry', '$2a$10$cPfk/j38MLeQUlFUG7L7Mew9z59DvqDaqTnLb509UUAPRIY7wme8e', '1', '2018-05-11 17:37:43', '2018-05-11 17:37:43');
-INSERT INTO `account` VALUES ('20', 'boss', '$2a$10$pN2LjyxIbtp0WHtqBwHRI.BZT43/hsyUbKibzIxS9NodWA/uFgI4u', '1', '2018-05-11 17:37:43', '2018-05-11 17:37:43');
+INSERT INTO `account` VALUES ('1', 'admin', 'admin', '1', '2018-05-10 14:42:17', '2018-05-13 12:30:21');
+INSERT INTO `account` VALUES ('2', 'user', 'user', '1', '2018-05-10 14:42:17', '2018-05-13 12:30:28');
+INSERT INTO `account` VALUES ('3', 'anonymous', 'anonymous', '1', '2018-05-10 14:42:17', '2018-05-13 12:30:34');
+INSERT INTO `account` VALUES ('15', 'john', 'john', '1', '2018-05-11 17:37:42', '2018-05-13 12:30:40');
+INSERT INTO `account` VALUES ('16', 'hulk', 'hulk', '1', '2018-05-11 17:37:42', '2018-05-13 12:30:44');
+INSERT INTO `account` VALUES ('17', 'stark', 'stark', '1', '2018-05-11 17:37:42', '2018-05-13 12:30:49');
+INSERT INTO `account` VALUES ('18', 'tom', 'tom', '1', '2018-05-11 17:37:42', '2018-05-13 12:30:53');
+INSERT INTO `account` VALUES ('19', 'jerry', 'jerry', '2', '2018-05-11 17:37:43', '2018-05-16 14:04:35');
+INSERT INTO `account` VALUES ('20', 'boss', 'boss', '1', '2018-05-11 17:37:43', '2018-05-13 12:31:01');
+INSERT INTO `account` VALUES ('21', 'johnsnow', 'johnsnow', '1', '2018-05-16 17:47:05', '2018-05-16 17:47:05');
+INSERT INTO `account` VALUES ('22', 'ronstark', 'ronstark', '1', '2018-05-16 19:24:40', '2018-05-16 19:24:40');
+INSERT INTO `account` VALUES ('23', 'ronstark', 'ronstark', '1', '2018-05-16 19:27:21', '2018-05-16 19:27:21');
+INSERT INTO `account` VALUES ('24', 'addDatastark', 'addDatastark', '1', '2018-05-16 19:29:34', '2018-05-16 19:29:34');
+INSERT INTO `account` VALUES ('25', 'button', 'button', '1', '2018-05-16 19:32:28', '2018-05-16 19:32:28');
+INSERT INTO `account` VALUES ('26', 'farmmer', 'farmmer', '1', '2018-05-16 19:37:01', '2018-05-16 19:37:01');
+INSERT INTO `account` VALUES ('27', 'thunder', 'thunder', '1', '2018-05-16 19:38:28', '2018-05-16 19:38:28');
+INSERT INTO `account` VALUES ('28', 'bora', 'bora', '1', '2018-05-16 19:49:34', '2018-05-16 19:49:34');
+INSERT INTO `account` VALUES ('29', 'dudu', 'dudu', '1', '2018-05-16 21:35:04', '2018-05-16 21:35:04');
+INSERT INTO `account` VALUES ('30', 'dudu', 'dudu', '1', '2018-05-16 21:38:55', '2018-05-16 21:38:55');
+INSERT INTO `account` VALUES ('31', 'dudu', 'dudu', '2', '2018-05-16 21:42:55', '2018-05-16 21:42:55');
+INSERT INTO `account` VALUES ('32', 'dudu', 'dudu', '2', '2018-05-16 21:43:12', '2018-05-16 21:43:12');
+INSERT INTO `account` VALUES ('33', '123123', '123123', '1', '2018-05-16 21:58:44', '2018-05-16 21:58:44');
+INSERT INTO `account` VALUES ('34', '111', '111', '2', '2018-05-16 22:00:06', '2018-05-19 16:04:01');
+
+-- ----------------------------
+-- Table structure for `account_copy`
+-- ----------------------------
+DROP TABLE IF EXISTS `account_copy`;
+CREATE TABLE `account_copy` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `username` varchar(50) NOT NULL COMMENT '用户名',
+  `password` varchar(255) NOT NULL COMMENT '密码',
+  `enabled` tinyint(4) NOT NULL COMMENT '是否可用',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='用户表';
+
+-- ----------------------------
+-- Records of account_copy
+-- ----------------------------
+INSERT INTO `account_copy` VALUES ('1', 'admin', '$2a$10$MTFVrdqbHOi.CCUhkrkZnOBdrZEfk3gzIUyZBdQvLWvdF/0pnkEO2', '1', '2018-05-10 14:42:17', '2018-05-10 14:42:17');
+INSERT INTO `account_copy` VALUES ('2', 'user', '$2a$10$6KDklkImZgGANWR8pDAwSexf6Bt4Z9I0nDiwdih9Q38HI4eAkWk0u', '1', '2018-05-10 14:42:17', '2018-05-10 14:42:17');
+INSERT INTO `account_copy` VALUES ('3', 'anonymous', '$2a$10$58UG9Udx7RhCL1.356NyAu0Rp936vbo1vHahj8v0O0XOTSkKY0XyG', '1', '2018-05-10 14:42:17', '2018-05-10 14:42:17');
+INSERT INTO `account_copy` VALUES ('15', 'john', '$2a$10$SpSCzJ1OU91PBOezF1YMG.P2MJnsLrpAVZGB9xmT3qagvoQ9QP.fa', '1', '2018-05-11 17:37:42', '2018-05-11 17:37:42');
+INSERT INTO `account_copy` VALUES ('16', 'hulk', '$2a$10$VqLkXeGdFDGvV.d0mtrdD.nYLyGmgkprBpWQ7R4e5XSxCIteMogIO', '1', '2018-05-11 17:37:42', '2018-05-11 17:37:42');
+INSERT INTO `account_copy` VALUES ('17', 'stark', '$2a$10$l/2bk8MqaVFcBHT4kB5mIudDEr2AUFCKbvur4BzUEZuHK2HwUdQvG', '1', '2018-05-11 17:37:42', '2018-05-11 17:37:42');
+INSERT INTO `account_copy` VALUES ('18', 'tom', '$2a$10$SpSCzJ1OU91PBOezF1YMG.P2MJnsLrpAVZGB9xmT3qagvoQ9QP.fa', '1', '2018-05-11 17:37:42', '2018-05-11 17:37:42');
+INSERT INTO `account_copy` VALUES ('19', 'jerry', '$2a$10$cPfk/j38MLeQUlFUG7L7Mew9z59DvqDaqTnLb509UUAPRIY7wme8e', '1', '2018-05-11 17:37:43', '2018-05-11 17:37:43');
+INSERT INTO `account_copy` VALUES ('20', 'boss', '$2a$10$pN2LjyxIbtp0WHtqBwHRI.BZT43/hsyUbKibzIxS9NodWA/uFgI4u', '1', '2018-05-11 17:37:43', '2018-05-11 17:37:43');
 
 -- ----------------------------
 -- Table structure for `account_group_relationship`
@@ -95,12 +137,11 @@ CREATE TABLE `organization` (
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`id`),
   KEY `idx_parent_id` (`parent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='组织机构表';
+) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8 COMMENT='组织机构表';
 
 -- ----------------------------
 -- Records of organization
 -- ----------------------------
-INSERT INTO `organization` VALUES ('1', '总部', '0', '1', '2018-05-11 11:34:27', '2018-05-11 11:34:27');
 INSERT INTO `organization` VALUES ('2', '北京分公司', '1', '1', '2018-05-11 11:34:27', '2018-05-11 11:34:27');
 INSERT INTO `organization` VALUES ('3', '北京分公司-海淀支行', '2', '1', '2018-05-11 11:34:27', '2018-05-11 11:34:27');
 INSERT INTO `organization` VALUES ('4', '北京分公司-海淀支行-知春路店', '3', '1', '2018-05-11 11:34:27', '2018-05-11 11:34:27');
@@ -132,6 +173,7 @@ INSERT INTO `organization` VALUES ('29', '河北分公司-石家庄支行', '24'
 INSERT INTO `organization` VALUES ('30', '河北分公司-石家庄支行-机场路支行', '29', '1', '2018-05-11 11:34:28', '2018-05-11 11:34:28');
 INSERT INTO `organization` VALUES ('31', '河北分公司-石家庄支行-机场路支行1点', '30', '1', '2018-05-11 11:34:28', '2018-05-11 11:34:28');
 INSERT INTO `organization` VALUES ('32', '河北分公司-石家庄支行-机场路支行2店', '30', '1', '2018-05-11 11:34:28', '2018-05-11 11:34:28');
+INSERT INTO `organization` VALUES ('10000', '总部', '0', '1', '2018-05-11 11:34:27', '2018-05-21 14:53:19');
 
 -- ----------------------------
 -- Table structure for `privilege`
@@ -187,6 +229,7 @@ CREATE TABLE `resource` (
   `parent_id` bigint(20) DEFAULT NULL COMMENT '父资源',
   `parent_ids` varchar(100) DEFAULT NULL COMMENT '父资源列表',
   `permission` varchar(100) DEFAULT NULL COMMENT '资源权限标识',
+  `data_target` varchar(12) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT '_self' COMMENT '菜单打开方式：_self,_blank',
   `icon` varchar(50) DEFAULT NULL COMMENT '图标',
   `component` varchar(100) DEFAULT NULL COMMENT '前端页面',
   `type` tinyint(4) DEFAULT NULL COMMENT '资源类型，1-menu 2-button',
@@ -196,37 +239,40 @@ CREATE TABLE `resource` (
   PRIMARY KEY (`id`),
   KEY `idx_parent_id` (`parent_id`),
   KEY `idx_type` (`type`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COMMENT='资源表';
+) ENGINE=InnoDB AUTO_INCREMENT=42005 DEFAULT CHARSET=utf8 COMMENT='资源表';
 
 -- ----------------------------
 -- Records of resource
 -- ----------------------------
-INSERT INTO `resource` VALUES ('1', '资源', null, null, '0', null, null, null, null, null, '1', '2018-05-11 16:04:49', '2018-05-11 16:04:49');
-INSERT INTO `resource` VALUES ('11', '用户管理', '/account', null, '1', null, 'account:*', null, null, '1', '1', '2018-05-11 16:07:49', '2018-05-11 16:12:47');
-INSERT INTO `resource` VALUES ('12', '用户增加', '', null, '11', null, 'account:create', null, null, '2', '1', '2018-05-11 16:12:20', '2018-05-11 16:12:56');
-INSERT INTO `resource` VALUES ('13', '用户修改', '', null, '11', null, 'account:update', null, null, '2', '1', '2018-05-11 16:12:20', '2018-05-11 16:12:58');
-INSERT INTO `resource` VALUES ('14', '用户删除', '', null, '11', null, 'account:delete', null, null, '2', '1', '2018-05-11 16:12:20', '2018-05-11 16:13:02');
-INSERT INTO `resource` VALUES ('15', '用户查看', '', null, '11', null, 'account:view', null, null, '2', '1', '2018-05-11 16:20:48', '2018-05-11 16:20:48');
-INSERT INTO `resource` VALUES ('21', '角色管理', '/role', null, '1', null, 'role:*', null, null, '1', '1', '2018-05-11 16:16:15', '2018-05-11 16:16:55');
-INSERT INTO `resource` VALUES ('22', '角色增加', '', null, '21', null, 'role:create', null, null, '2', '1', '2018-05-11 16:16:29', '2018-05-11 16:16:29');
-INSERT INTO `resource` VALUES ('23', '角色修改', '', null, '21', null, 'role:update', null, null, '2', '1', '2018-05-11 16:16:29', '2018-05-11 16:16:29');
-INSERT INTO `resource` VALUES ('24', '角色删除', '', null, '21', null, 'role:delete', null, null, '2', '1', '2018-05-11 16:16:29', '2018-05-11 16:16:29');
-INSERT INTO `resource` VALUES ('25', '角色查看', '', null, '21', null, 'role:view', null, null, '2', '1', '2018-05-11 16:21:03', '2018-05-11 16:21:03');
-INSERT INTO `resource` VALUES ('31', '组织机构管理', '/organization', null, '1', null, 'organization:*', null, null, '1', '1', '2018-05-11 16:18:44', '2018-05-11 16:18:44');
-INSERT INTO `resource` VALUES ('32', '组织机构增加', '', null, '31', null, 'organization:create', null, null, '2', '1', '2018-05-11 16:18:44', '2018-05-11 16:19:15');
-INSERT INTO `resource` VALUES ('33', '组织机构修改', '', null, '31', null, 'organization:update', null, null, '2', '1', '2018-05-11 16:18:44', '2018-05-11 16:19:17');
-INSERT INTO `resource` VALUES ('34', '组织机构删除', '', null, '31', null, 'organization:delete', null, null, '2', '1', '2018-05-11 16:18:44', '2018-05-11 16:19:20');
-INSERT INTO `resource` VALUES ('35', '组织机构查看', '', null, '31', null, 'organization:view', null, null, '2', '1', '2018-05-11 16:21:04', '2018-05-11 16:21:04');
-INSERT INTO `resource` VALUES ('41', '资源管理', '/resource', null, '1', null, 'resource:*', null, null, '1', '1', '2018-05-11 16:22:18', '2018-05-11 16:22:18');
-INSERT INTO `resource` VALUES ('42', '资源增加', '', null, '41', null, 'resource:create', null, null, '2', '1', '2018-05-11 16:22:19', '2018-05-11 16:22:19');
-INSERT INTO `resource` VALUES ('43', '资源修改', '', null, '41', null, 'resource:update', null, null, '2', '1', '2018-05-11 16:22:19', '2018-05-11 16:22:19');
-INSERT INTO `resource` VALUES ('44', '资源删除', '', null, '41', null, 'resource:delete', null, null, '2', '1', '2018-05-11 16:22:19', '2018-05-11 16:22:19');
-INSERT INTO `resource` VALUES ('45', '资源查看', '', null, '41', null, 'resource:view', null, null, '2', '1', '2018-05-11 16:22:19', '2018-05-11 16:22:19');
-INSERT INTO `resource` VALUES ('51', '权限管理', '/privilege', null, '1', null, 'privilege:*', null, null, '1', '1', '2018-05-11 16:42:41', '2018-05-11 16:42:41');
-INSERT INTO `resource` VALUES ('52', '权限增加', '', null, '51', null, 'privilege:create', null, null, '2', '1', '2018-05-11 16:42:41', '2018-05-11 16:42:41');
-INSERT INTO `resource` VALUES ('53', '权限修改', '', null, '51', null, 'privilege:update', null, null, '2', '1', '2018-05-11 16:42:41', '2018-05-11 16:42:41');
-INSERT INTO `resource` VALUES ('54', '权限删除', '', null, '51', null, 'privilege:delete', null, null, '2', '1', '2018-05-11 16:42:41', '2018-05-11 16:42:41');
-INSERT INTO `resource` VALUES ('55', '权限查看', '', null, '51', null, 'privilege:view', null, null, '2', '1', '2018-05-11 16:42:41', '2018-05-11 16:42:41');
+INSERT INTO `resource` VALUES ('10000', '资源', null, null, '0', null, null, '', null, null, null, '1', '2018-05-11 16:04:49', '2018-05-21 16:05:25');
+INSERT INTO `resource` VALUES ('20000', '系统组织管理', '#', null, '10000', null, null, '_self', null, null, '1', '1', '2018-05-21 14:31:04', '2018-05-22 13:26:02');
+INSERT INTO `resource` VALUES ('21000', '组织机构管理', '/organization', null, '20000', null, 'organization:*', '_self', null, null, '1', '1', '2018-05-11 16:18:44', '2018-05-23 12:02:26');
+INSERT INTO `resource` VALUES ('21001', '组织机构增加', '#', null, '21000', null, 'organization:create', '_self', null, null, '2', '1', '2018-05-11 16:18:44', '2018-05-23 13:07:14');
+INSERT INTO `resource` VALUES ('21002', '组织机构修改', '#', null, '21000', null, 'organization:update', '_self', null, null, '2', '1', '2018-05-11 16:18:44', '2018-05-23 13:07:16');
+INSERT INTO `resource` VALUES ('21003', '组织机构删除', '#', null, '21000', null, 'organization:delete', '_self', null, null, '2', '1', '2018-05-11 16:18:44', '2018-05-23 13:07:18');
+INSERT INTO `resource` VALUES ('21004', '组织机构查看', '#', null, '21000', null, 'organization:view', '_self', null, null, '2', '1', '2018-05-11 16:21:04', '2018-05-23 13:07:20');
+INSERT INTO `resource` VALUES ('30000', '用户角色管理', '#', null, '10000', null, null, '_self', null, null, '1', '1', '2018-05-21 14:31:25', '2018-05-22 13:26:06');
+INSERT INTO `resource` VALUES ('31000', '用户管理', '/account', null, '30000', null, 'account:*', '_self', null, null, '1', '1', '2018-05-11 16:07:49', '2018-05-23 11:50:52');
+INSERT INTO `resource` VALUES ('31001', '用户增加', '#', null, '31000', null, 'account:create', '_self', null, null, '2', '1', '2018-05-11 16:12:20', '2018-05-22 13:26:07');
+INSERT INTO `resource` VALUES ('31002', '用户修改', '#', null, '31000', null, 'account:update', '_self', null, null, '2', '1', '2018-05-11 16:12:20', '2018-05-22 13:26:08');
+INSERT INTO `resource` VALUES ('31003', '用户删除', '#', null, '31000', null, 'account:delete', '_self', null, null, '2', '1', '2018-05-11 16:12:20', '2018-05-22 13:26:09');
+INSERT INTO `resource` VALUES ('31004', '用户查看', '#', null, '31000', null, 'account:view', '_self', null, null, '2', '1', '2018-05-11 16:20:48', '2018-05-22 13:26:09');
+INSERT INTO `resource` VALUES ('32000', '角色管理', '/role', null, '30000', null, 'role:*', '_self', null, null, '1', '1', '2018-05-11 16:16:15', '2018-05-23 11:50:54');
+INSERT INTO `resource` VALUES ('32001', '角色增加', '#', null, '32000', null, 'role:create', '_self', null, null, '2', '1', '2018-05-11 16:16:29', '2018-05-22 13:26:10');
+INSERT INTO `resource` VALUES ('32002', '角色修改', '#', null, '32000', null, 'role:update', '_self', null, null, '2', '1', '2018-05-11 16:16:29', '2018-05-22 13:26:10');
+INSERT INTO `resource` VALUES ('32003', '角色删除', '#', null, '32000', null, 'role:delete', '_self', null, null, '2', '1', '2018-05-11 16:16:29', '2018-05-22 13:26:11');
+INSERT INTO `resource` VALUES ('32004', '角色查看', '#', null, '32000', null, 'role:view', '_self', null, null, '2', '1', '2018-05-11 16:21:03', '2018-05-22 13:26:11');
+INSERT INTO `resource` VALUES ('40000', '权限资源管理', '#', null, '10000', null, null, '_self', null, null, '1', '1', '2018-05-21 14:31:43', '2018-05-22 13:26:12');
+INSERT INTO `resource` VALUES ('41000', '资源管理', '/resource', null, '40000', null, 'resource:*', '_self', null, null, '1', '1', '2018-05-11 16:22:18', '2018-05-23 11:50:56');
+INSERT INTO `resource` VALUES ('41001', '资源增加', '#', null, '41000', null, 'resource:create', '_self', null, null, '2', '1', '2018-05-11 16:22:19', '2018-05-22 13:26:13');
+INSERT INTO `resource` VALUES ('41002', '资源修改', '#', null, '41000', null, 'resource:update', '_self', null, null, '2', '1', '2018-05-11 16:22:19', '2018-05-22 13:26:14');
+INSERT INTO `resource` VALUES ('41003', '资源删除', '#', null, '41000', null, 'resource:delete', '_self', null, null, '2', '1', '2018-05-11 16:22:19', '2018-05-22 13:26:14');
+INSERT INTO `resource` VALUES ('41004', '资源查看', '#', null, '41000', null, 'resource:view', '_self', null, null, '2', '1', '2018-05-11 16:22:19', '2018-05-22 13:26:15');
+INSERT INTO `resource` VALUES ('42000', '权限管理', '/privilege', null, '40000', null, 'privilege:*', '_self', null, null, '1', '1', '2018-05-11 16:42:41', '2018-05-23 11:50:58');
+INSERT INTO `resource` VALUES ('42001', '权限增加', '#', null, '42000', null, 'privilege:create', '_self', null, null, '2', '1', '2018-05-11 16:42:41', '2018-05-22 13:26:16');
+INSERT INTO `resource` VALUES ('42002', '权限修改', '#', null, '42000', null, 'privilege:update', '_self', null, null, '2', '1', '2018-05-11 16:42:41', '2018-05-22 13:26:23');
+INSERT INTO `resource` VALUES ('42003', '权限删除', '#', null, '42000', null, 'privilege:delete', '_self', null, null, '2', '1', '2018-05-11 16:42:41', '2018-05-22 13:26:23');
+INSERT INTO `resource` VALUES ('42004', '权限查看', '#', null, '42000', null, 'privilege:view', '_self', null, null, '2', '1', '2018-05-11 16:42:41', '2018-05-22 13:26:28');
 
 -- ----------------------------
 -- Table structure for `role`
