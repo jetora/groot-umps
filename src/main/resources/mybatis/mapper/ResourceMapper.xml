@@ -9,6 +9,7 @@
     <result column="parent_id" property="parentId" jdbcType="BIGINT" />
     <result column="parent_ids" property="parentIds" jdbcType="VARCHAR" />
     <result column="permission" property="permission" jdbcType="VARCHAR" />
+    <result column="data_target" property="dataTarget" jdbcType="VARCHAR" />
     <result column="icon" property="icon" jdbcType="VARCHAR" />
     <result column="component" property="component" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="TINYINT" />
@@ -21,16 +22,16 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="org.flow.entity.Resource" >
-    insert into resource (id, name, url, 
-      method, parent_id, parent_ids, 
-      permission, icon, component, 
-      type, enabled, create_time, 
-      update_time)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{method,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, #{parentIds,jdbcType=VARCHAR}, 
-      #{permission,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{component,jdbcType=VARCHAR}, 
-      #{type,jdbcType=TINYINT}, #{enabled,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+    insert into resource (id, name, url,
+      method, parent_id, parent_ids,
+      permission, data_target, icon,
+      component, type, enabled,
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
+      #{method,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, #{parentIds,jdbcType=VARCHAR},
+      #{permission,jdbcType=VARCHAR}, #{dataTarget,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR},
+      #{component,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{enabled,jdbcType=TINYINT},
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <update id="updateByPrimaryKey" parameterType="org.flow.entity.Resource" >
     update resource
@@ -40,6 +41,7 @@
       parent_id = #{parentId,jdbcType=BIGINT},
       parent_ids = #{parentIds,jdbcType=VARCHAR},
       permission = #{permission,jdbcType=VARCHAR},
+      data_target = #{dataTarget,jdbcType=VARCHAR},
       icon = #{icon,jdbcType=VARCHAR},
       component = #{component,jdbcType=VARCHAR},
       type = #{type,jdbcType=TINYINT},
@@ -49,18 +51,18 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select id, name, url, method, parent_id, parent_ids, permission, icon, component, 
-    type, enabled, create_time, update_time
+    select id, name, url, method, parent_id, parent_ids, permission, data_target, icon,
+    component, type, enabled, create_time, update_time
     from resource
     where id = #{id,jdbcType=BIGINT}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select id, name, url, method, parent_id, parent_ids, permission, icon, component, 
-    type, enabled, create_time, update_time
+    select id, name, url, method, parent_id, parent_ids, permission, data_target, icon,
+    component, type, enabled, create_time, update_time
     from resource
   </select>
   <select id="selectMenuAll" resultMap="BaseResultMap" >
-    select id, name, url, method, parent_id, parent_ids, permission, icon, component,
+    select id, name, url ,method, parent_id, parent_ids, permission,data_target, icon, component,
     type, enabled, create_time, update_time
     from resource where type=1 or type is null
   </select>

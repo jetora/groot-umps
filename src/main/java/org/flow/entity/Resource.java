@@ -17,6 +17,8 @@ public class Resource {
 
     private String permission;
 
+    private String dataTarget;
+
     private String icon;
 
     private String component;
@@ -85,6 +87,14 @@ public class Resource {
         this.permission = permission == null ? null : permission.trim();
     }
 
+    public String getDataTarget() {
+        return dataTarget;
+    }
+
+    public void setDataTarget(String dataTarget) {
+        this.dataTarget = dataTarget == null ? null : dataTarget.trim();
+    }
+
     public String getIcon() {
         return icon;
     }
@@ -146,6 +156,7 @@ public class Resource {
         sb.append(", parentId=").append(parentId);
         sb.append(", parentIds=").append(parentIds);
         sb.append(", permission=").append(permission);
+        sb.append(", dataTarget=").append(dataTarget);
         sb.append(", icon=").append(icon);
         sb.append(", component=").append(component);
         sb.append(", type=").append(type);

@@ -77,6 +77,8 @@ public class ResourceServiceImpl implements ResourceService {
             node.setName(res.getName());
             node.setPermission(res.getPermission());
             node.setType(res.getType());
+            node.setData_url(res.getUrl());
+            node.setData_target(res.getDataTarget());
             trees.add(node);
         }
         return TreeUtil.buildByRecursive(trees,root);

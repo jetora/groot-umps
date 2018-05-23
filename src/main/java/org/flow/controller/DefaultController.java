@@ -26,4 +26,9 @@ public class DefaultController extends BaseController {
         return "role";
     }
 
+    @GetMapping("/demo")
+    public String demo(){
+        return "demo";
+    }
+
 }

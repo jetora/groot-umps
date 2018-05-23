@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head th:fragment="htmlhead">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../static/img/logo.ico" type="img/x-ico" />
+    <title></title>
+    <!-- Bootstrap -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../static/css/plugins/font-awesome/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../static/css/plugins/nprogress/nprogress.css" rel="stylesheet">
+    <!-- jQuery custom content scroller -->
+    <link href="../static/css/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+    <!-- bootstrap table -->
+    <link href="../static/css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+    <!-- bootstrap select-->
+    <link href="../static/css/plugins/bootstrap-select/1.12.4/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+    <!-- Custom Theme Style -->
+    <link href="../static/css/custom.min.css" rel="stylesheet" />
+    <!--animate-->
+    <link href="../static/css/plugins/animate/3.6.0/animate.css">
+    <!-- bootstrap-daterangepicker -->
+    <link href="../static/css/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="../static/js/plugins/html5shiv/3.7.3/html5shiv.js"></script>
+    <script type="text/javascript" src="../static/js/plugins/respond/1.4.2/respond.js"></script>
+    <![endif]-->
+</head>
+<body class="nav-md footer_fixed">
+    <div class="container body">
+        <div class="main_container">
+            <!-- sidebar menu -->
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+            <!-- /sidebar menu -->
+            <!-- top navigation -->
+            <div th:replace="fragments/top_nav :: top_nav"></div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div layout:fragment="content"></div>
+            <!-- /page content -->
+            <div th:replace="fragments/footer :: footer"></div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="../static/js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../static/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../static/js/plugins/fastclick/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../static/js/plugins/nprogress/nprogress.js"></script>
+    <!-- jQuery custom content scroller -->
+    <script src="../static/js/plugins/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- bootstrap table -->
+    <script src="../static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="../static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="../static/js/custom.min.js"></script>
+    <!-- sweatalert -->
+    <script src="../static/js/plugins/sweetalert2/7.20.4/sweetalert2.all.js"></script>
+    <!-- bootstrap select -->
+    <script src="../static/js/plugins/bootstrap-select/1.12.4/bootstrap-select.min.js"></script>
+    <script src="../static/js/plugins/bootstrap-select/1.12.4/i18n/defaults-zh_CN.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="../static/js/plugins/moment/min/moment.min.js"></script>
+    <script src="../static/js/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- layer-->
+    <script src="../static/js/plugins/layer/v3.1.1/layer.js"></script>
+
+</body>
+</html>
