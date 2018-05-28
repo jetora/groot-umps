@@ -32,7 +32,12 @@ public class DefaultController extends BaseController {
     }
 
     @GetMapping("/")
+    public String index(){
+        return "index";
+    }
+
+    @GetMapping("/home")
     public String home(){
-        return "home";
+        return "home/home";
     }
 }

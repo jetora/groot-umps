@@ -10,9 +10,8 @@ $(document).ready(function() {
             if (ret.code == 200) {
                 var result = $('<ul class="nav side-menu"></ul>')
                 showall(ret.data[0].children,result);
-                console.log(1111111111111)
-                console.log(result[0])
                 //$("#side-menu").metisMenu('dispose');
+                console.log(result[0])
                 $("#side-menu").append(result);
                 $('#side-menu').metisMenu();
                 f()
