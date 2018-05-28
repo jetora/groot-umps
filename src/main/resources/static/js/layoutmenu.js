@@ -1,3 +1,4 @@
+var mainActiveId='home';
 $(document).ready(function() {
     $.ajax({
         url : '/api/menutree',
@@ -9,6 +10,8 @@ $(document).ready(function() {
             if (ret.code == 200) {
                 var result = $('<ul class="nav side-menu"></ul>')
                 showall(ret.data[0].children,result);
+                console.log(1111111111111)
+                console.log(result[0])
                 //$("#side-menu").metisMenu('dispose');
                 $("#side-menu").append(result);
                 $('#side-menu').metisMenu();
@@ -24,7 +27,13 @@ $(document).ready(function() {
         }
     })
 })
-
+function activeUrl(activeId){
+    if(mainActiveId != null && mainActiveId != "" && activeId != null && activeId != "") {
+        $("#" + mainActiveId).parent().removeClass('active');
+        $("#" + activeId).parent().addClass('active');
+        mainActiveId = activeId;
+    }
+}
 function f() {
     $("div#side-menu [data-url]").each(function () {
         $(this).on('click', function(event){
@@ -32,6 +41,8 @@ function f() {
             var $this = $(this);
             var url = $this.attr('data-url');
             var activeId = $this.attr('id');
+            //$("#"+activeId).parent().addClass('active');
+            activeUrl(activeId);
             if (typeof url !== "undefined") {
                 var target = $(this).attr('data-target') + '';
                 if (url === '#') return false;
@@ -69,7 +80,7 @@ function showall(menu_list, parent) {
             //创建一个子节点li
             var li = $("<li></li>");
             //将li的文本设置好，并马上添加一个空白的ul子节点，并且将这个li添加到父亲节点中
-            $(li).append('<a href="javascript:void(0);" data-url="'+menu_list[menu].data_url+'" data-target="'+menu_list[menu].data_target+'" ><i class="fa fa-home"></i>'+menu_list[menu].name+'<span class="fa arrow"></span></a>').append('<ul class="nav side-menu"></ul>').appendTo(parent);
+            $(li).append('<a href="javascript:void(0);" data-url="'+menu_list[menu].data_url+'" data-target="'+menu_list[menu].data_target+'" ><i class="fa fa-home"></i>'+menu_list[menu].name+'<span class="fa fa-chevron-down"></span></a>').append('<ul class="nav side-menu"></ul>').appendTo(parent);
             //将空白的ul作为下一个递归遍历的父亲节点传)
             showall(menu_list[menu].children, $(li).children().eq(1));
         }
