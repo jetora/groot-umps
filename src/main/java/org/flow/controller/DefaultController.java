@@ -18,12 +18,12 @@ public class DefaultController extends BaseController {
 
     @GetMapping("/account")
     public String AccountManage(){
-        return "account";
+        return "account/account";
     }
 
     @GetMapping("/role")
     public String RoleManage(){
-        return "role";
+        return "role/role";
     }
 
     @GetMapping("/demo")
@@ -31,4 +31,8 @@ public class DefaultController extends BaseController {
         return "demo";
     }
 
+    @GetMapping("/home")
+    public String home(){
+        return "home";
+    }
 }

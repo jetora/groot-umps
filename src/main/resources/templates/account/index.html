@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="htmlhead">
+    <meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="renderer" content="webkit" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"></meta>
+    <link rel="icon" href="../../static/img/logo.ico" type="image/x-icon" />
+    <title>Account</title>
+    <!-- Bootstrap -->
+    <link href="../../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}" />
+    <!-- Font Awesome -->
+    <link href="../../static/css/plugins/font-awesome/font-awesome.min.css" rel="stylesheet" th:href="@{/static/css/plugins/font-awesome/font-awesome.min.css}" />
+    <!-- NProgress -->
+    <link href="../../static/css/plugins/nprogress/nprogress.css" rel="stylesheet" th:href="@{/static/css/plugins/nprogress/nprogress.css}" />
+    <!-- jQuery custom content scroller -->
+    <link href="../../static/css/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet" th:href="@{/static/css/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.css}"/>
+    <!-- bootstrap table -->
+    <link href="../../static/css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" th:href="@{/static/css/plugins/bootstrap-table/bootstrap-table.css}" />
+    <!-- bootstrap select-->
+    <link href="../../static/css/plugins/bootstrap-select/1.12.4/bootstrap-select.min.css" rel="stylesheet" type="text/css" th:href="@{/static/css/plugins/bootstrap-select/1.12.4/bootstrap-select.min.css}" />
+    <!-- Custom Theme Style -->
+    <link href="../../static/css/custom.min.css" rel="stylesheet" th:href="@{/static/css/custom.min.css}" />
+    <!--animate-->
+    <link href="../../static/css/plugins/animate/3.6.0/animate.css" th:href="@{/static/css/plugins/animate/3.6.0/animate.css}" />
+    <!-- bootstrap-daterangepicker -->
+    <link href="../../static/css/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" th:href="@{/static/css/plugins/bootstrap-daterangepicker/daterangepicker.css}" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="../../static/js/plugins/html5shiv/3.7.3/html5shiv.js"
+            th:src="@{/static/js/plugins/html5shiv/3.7.3/html5shiv.js}"></script>
+    <script type="text/javascript" src="../../static/js/plugins/respond/1.4.2/respond.js"
+            th:src="@{/static/js/plugins/respond/1.4.2/respond.js}"></script>
+    <![endif]-->
+</head>
+
+<body class="nav-md gray-bg">
+<div class="container body">
+    <div class="main_container">
+        <div th:fragment="navbar"  class="wrapper"  role="navigation">
+            <div layout:fragment="content" id="ifcontent" ></div>
+        </div>
+    </div>
+</div>
+<!-- jQuery -->
+<script src="../../static/js/jquery.min.js" th:src="@{/static/js/jquery.min.js}"></script>
+<!-- Bootstrap -->
+<script src="../../static/js/bootstrap.min.js" th:src="@{/static/js/bootstrap.min.js}"></script>
+<!-- FastClick -->
+<script src="../../static/js/plugins/fastclick/fastclick.js" th:src="@{/static/js/plugins/fastclick/fastclick.js}"></script>
+<!-- NProgress -->
+<script src="../../static/js/plugins/nprogress/nprogress.js" th:src="@{/static/js/plugins/nprogress/nprogress.js}"></script>
+<!-- jQuery custom content scroller -->
+<script src="../../static/js/plugins/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js" th:src="@{/static/js/plugins/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+<!-- bootstrap table -->
+<script src="../../static/js/plugins/bootstrap-table/bootstrap-table.min.js" th:src="@{/static/js/plugins/bootstrap-table/bootstrap-table.min.js}"></script>
+<script src="../../static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" th:src="@{/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../static/js/custom.min.js" th:src="@{/static/js/custom.min.js}"></script>
+<!-- sweatalert -->
+<script src="../../static/js/plugins/sweetalert2/7.20.4/sweetalert2.all.js" th:src="@{/static/js/plugins/sweetalert2/7.20.4/sweetalert2.all.js}"></script>
+<!-- bootstrap select -->
+<script src="../../static/js/plugins/bootstrap-select/1.12.4/bootstrap-select.min.js" th:src="@{/static/js/plugins/bootstrap-select/1.12.4/bootstrap-select.min.js}"></script>
+<script src="../../static/js/plugins/bootstrap-select/1.12.4/i18n/defaults-zh_CN.min.js" th:src="@{/static/js/plugins/bootstrap-select/1.12.4/i18n/defaults-zh_CN.min.js}"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="../../static/js/plugins/moment/min/moment.min.js" th:src="@{/static/js/plugins/moment/min/moment.min.js}"></script>
+<script src="../../static/js/plugins/bootstrap-daterangepicker/daterangepicker.js" th:src="@{/static/js/plugins/bootstrap-daterangepicker/daterangepicker.js}"></script>
+<!-- layer-->
+<script src="../../static/js/plugins/layer/v3.1.1/layer.js" th:src="@{/static/js/plugins/layer/v3.1.1/layer.js}"></script>
+<script src="../../static/js/plugins/metismenu/metisMenu.js" th:src="@{/static/js/plugins/metismenu/metisMenu.js}"></script>
+<script src="../../static/js/layoutmenu.js" th:src="@{/static/js/layoutmenu.js}"></script>
+<script src="../../static/js/account.js" th:src="@{/static/js/account.js}"></script>
+</body>
+</html>
