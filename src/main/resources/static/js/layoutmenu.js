@@ -85,8 +85,12 @@ function showall(menu_list, parent) {
         }
         //如果该节点没有子节点，则直接将该节点li以及文本创建好直接添加到父亲节点中
         else {
-            var liid = menu_list[menu].data_url.split('/')[1];
-            $("<li></li>").append('<a href="javascript:void(0);" data-url="'+menu_list[menu].data_url+'" data-target="'+menu_list[menu].data_target+'" id="'+liid+'">'+menu_list[menu].name+'</a>').appendTo(parent);
+            if (menu_list[menu].data_url == '/home'){
+                $("<li></li>").append('<a href="javascript:void(0);" data-url="'+menu_list[menu].data_url+'" data-target="'+menu_list[menu].data_target+'" id="'+liid+'"><i class="fa fa-home"></i>'+menu_list[menu].name+'</a>').appendTo(parent);
+            } else {
+                var liid = menu_list[menu].data_url.split('/')[1];
+                $("<li></li>").append('<a href="javascript:void(0);" data-url="'+menu_list[menu].data_url+'" data-target="'+menu_list[menu].data_target+'" id="'+liid+'">'+menu_list[menu].name+'</a>').appendTo(parent);
+            }
         }
     }
 }
