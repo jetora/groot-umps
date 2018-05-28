@@ -1,9 +1,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="account/index">
-<head th:include="account/index :: htmlhead" th:with="title='favorites'"></head>
 <body class="nav-md  footer_fixed">
-<section layout:fragment="content">
+<div layout:fragment="content" class="wrapper wrapper-content animated zoomInUp">
         <!-- page content -->
-            <div class="animated zoomInUp right_col" role="main">
+            <div class="wrapper wrapper-content animated zoomInUp right_col" role="main">
                 <div class="row">
                     <ol class="breadcrumb">
                         <li><a href="#">Home</a></li>
@@ -11,7 +10,7 @@
                         <li class="active">用户管理</li>
                     </ol>
                 </div>
-                <div class="animated zoomInUp">
+                <div class="wrapper wrapper-content animated zoomInUp">
                     <div class="clearfix"></div>
                     <div class="animated flipInY row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -173,7 +172,6 @@
                 </div>
             </div>
         <!-- /page content -->
-
-</section>
+</div>
 </body>
 </html>

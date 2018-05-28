@@ -31,7 +31,7 @@ public class DefaultController extends BaseController {
         return "demo";
     }
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home(){
         return "home";
     }

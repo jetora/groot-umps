@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="common_header(title,links)">
+        <!-- Common styles and scripts -->
+        <meta charset="utf-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="renderer" content="webkit" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <meta name="description" content=""></meta>
+        <meta name="author" content=""></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"></meta>
+        <link rel="icon" href="../../static/img/logo.ico" type="image/x-icon" />
+        <title th:replace="${title}">The awesome application</title>
+        <!-- Bootstrap -->
+        <link href="../../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}" />
+        <!-- Font Awesome -->
+        <link href="../../static/css/plugins/font-awesome/font-awesome.min.css" rel="stylesheet" th:href="@{/static/css/plugins/font-awesome/font-awesome.min.css}" />
+        <!-- NProgress -->
+        <link href="../../static/css/plugins/nprogress/nprogress.css" rel="stylesheet" th:href="@{/static/css/plugins/nprogress/nprogress.css}" />
+        <!-- jQuery custom content scroller -->
+        <link href="../../static/css/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet" th:href="@{/static/css/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.css}"/>
+
+        <!-- bootstrap select-->
+        <link href="../../static/css/plugins/bootstrap-select/1.12.4/bootstrap-select.min.css" rel="stylesheet" type="text/css" th:href="@{/static/css/plugins/bootstrap-select/1.12.4/bootstrap-select.min.css}" />
+        <!-- Custom Theme Style -->
+        <link href="../../static/css/custom.min.css" rel="stylesheet" th:href="@{/static/css/custom.min.css}" />
+        <!--animate-->
+        <link href="../../static/css/plugins/animate/3.6.0/animate.css" th:href="@{/static/css/plugins/animate/3.6.0/animate.css}" />
+        <!-- bootstrap-daterangepicker -->
+        <link href="../../static/css/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" th:href="@{/static/css/plugins/bootstrap-daterangepicker/daterangepicker.css}" />
+
+        <th:block th:replace="${links}" />
+    </head>
+</html>
