@@ -147,10 +147,6 @@ var TableInit = function () {
                     title: '权限',
                     sortable: true
                 },{
-                    field: 'dataTarget',
-                    title: 'TARGET',
-                    sortable: true
-                },{
                     field: 'icon',
                     title: '图标',
                     sortable: true
@@ -268,35 +264,51 @@ window.optEvents = {
 function addData() {
     // 设置标题
     $("#modalTitle").text("新增项目");
-    var accountModal = $('#accountModal');
+    var resourceModal = $('#resourceModal');
     // 初始化form表单内容
-    accountModal.find('.modal-body #opt_type').val("add");
-    accountModal.find('.modal-body #id').val("");
-    accountModal.find('.modal-body #username').val("");
-    accountModal.find('.modal-body #password').val("");
-    accountModal.find('.modal-body #enabled').selectpicker('val',1);
-    accountModal.modal("show");
+    resourceModal.find('.modal-body #opt_type').val("add");
+    resourceModal.find('.modal-body #id').val("");
+    resourceModal.find('.modal-body #resourceid').val("");
+    resourceModal.find('.modal-body #resourcename').val("");
+    resourceModal.find('.modal-body #resourceurl').val("");
+    resourceModal.find('.modal-body #resourceparent').val("");
+    resourceModal.find('.modal-body #permission').val("");
+    resourceModal.find('.modal-body #resourceicon').val("");
+    resourceModal.find('.modal-body #resourcetype').selectpicker('val',2);
+    resourceModal.find('.modal-body #enabled').selectpicker('val',1);
+    resourceModal.modal("show");
 }
 function editData(row) {
     $('#modalTitle').text('修改项目');
-    var accountModal = $('#accountModal');
-    accountModal.find('.modal-body #opt_type').val("edit");
-    accountModal.find('.modal-body #id').val(row.id);
-    accountModal.find('.modal-body #username').val(row.username);
-    accountModal.find('.modal-body #password').val(row.password);
-    accountModal.find('.modal-body #enabled').selectpicker('val',row.enabled);
-    accountModal.find('.modal-body #enabled').val(row.enabled);
-    accountModal.modal('show');
+    var resourceModal = $('#resourceModal');
+    resourceModal.find('.modal-body #opt_type').val("edit");
+    resourceModal.find('.modal-body #id').val(row.id);
+    resourceModal.find('.modal-body #resourceid').val(row.resourceId);
+    resourceModal.find('.modal-body #resourcename').val(row.name);
+    resourceModal.find('.modal-body #resourceurl').val(row.url);
+    resourceModal.find('.modal-body #resourceparent').val(row.parentId);
+    resourceModal.find('.modal-body #permission').val(row.permission);
+    resourceModal.find('.modal-body #resourceicon').val(row.icon);
+    resourceModal.find('.modal-body #resourcetype').selectpicker('val',row.type);
+    resourceModal.find('.modal-body #enabled').selectpicker('val',row.enabled);
+    resourceModal.modal('show');
 }
 // 新增或编辑form表单内容
 function get_form_data() {
     var data = {};
-    var accountModal = $('#accountModal');
+    var resourceModal = $('#resourceModal');
     // 获取表单内容
-    data.opt_type = accountModal.find('.modal-body #opt_type').val();
-    data.id = accountModal.find('.modal-body #id').val();
-    data.username = accountModal.find('.modal-body #username').val();
-    data.password = accountModal.find('.modal-body #password').val();
+    data.opt_type = resourceModal.find('.modal-body #opt_type').val();
+    data.id = resourceModal.find('.modal-body #id').val();
+    //data.resourceid = resourceModal.find('.modal-body #resourceid').val();
+    //data.resourcename = resourceModal.find('.modal-body #resourcename').val();
+    //data.resourceurl = resourceModal.find('.modal-body #resourceurl').val();
+    //data.resourceparent = resourceModal.find('.modal-body #resourceparent').val();
+    //data.permission = resourceModal.find('.modal-body #permission').val();
+    //data.resourceicon = resourceModal.find('.modal-body #resourceicon').val();
+    //data.resourcetype = resourceModal.find('.modal-body #resourcetype').val();
+    //data.enabled = resourceModal.find('.modal-body #enabled').val();
+
     if ("edit" == data.opt_type) {
         data.change_flag = true;
     } else {
@@ -311,33 +323,48 @@ function optData() {
     //var change_flag = data.change_flag;
     opt_account(data);
 }
-function opt_account(data) {
-    var change_flag = data.change_flag;
+function opt_account(args) {
+    var change_flag = args.change_flag;
     var req_type;
     var id = $('#id').val();
-    var username = $('#username').val();
-    var password = $('#password').val();
+    var resourceid = $('#resourceid').val();
+    var resourcename = $('#resourcename').val();
+    var resourceurl = $('#resourceurl').val();
+    var resourceparent = $('#resourceparent').val();
+    var permission = $('#permission').val();
+    var resourceicon = $('#resourceicon').val();
+    var resourcetype = $('#resourcetype').val();
     var enabled = $('#enabled').val();
     var data;
     if (change_flag){
         req_type="put";
         data = {
             id:id,
-            username:username,
-            password:password,
+            resourceId:resourceid,
+            name:resourcename,
+            url:resourceurl,
+            parentId:resourceparent,
+            permission:permission,
+            icon:resourceicon,
+            type:resourcetype,
             enabled:enabled
         };
     } else {
         req_type="post";
         data = {
-            username:username,
-            password:password,
+            resourceId:resourceid,
+            name:resourcename,
+            url:resourceurl,
+            parentId:resourceparent,
+            permission:permission,
+            icon:resourceicon,
+            type:resourcetype,
             enabled:enabled
         };
     }
     // ajax新增项目数据
     $.ajax({
-        url: encodeURI("/api/account"),
+        url: encodeURI("/api/resource"),
         type: req_type,
         contentType:"application/json; charset=utf-8",
         dataType: 'json',
@@ -351,7 +378,7 @@ function opt_account(data) {
             // 新增成功
             if (ret.code == 201 || ret.code == 200) {
                 // 隐藏modal框
-                $('#accountModal').modal('hide');
+                $('#resourceModal').modal('hide');
                 $('#resource_table').bootstrapTable('refresh');
                 swal({
                     position: 'top-end',
@@ -390,7 +417,7 @@ function delete_Data(id) {
     //data.id = id;
     // ajax删除数据
     $.ajax({
-        url: "/api/account/"+id,
+        url: "/api/resource/"+id,
         type: 'delete',
         dataType: 'json',
         success: function (ret) {
