@@ -26,6 +26,11 @@ public class DefaultController extends BaseController {
         return "role/role";
     }
 
+    @GetMapping("/resource")
+    public String ResourceManage(){
+        return "resource/resource";
+    }
+
     @GetMapping("/demo")
     public String demo(){
         return "demo";

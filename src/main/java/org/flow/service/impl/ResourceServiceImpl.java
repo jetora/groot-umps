@@ -25,6 +25,21 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     @Override
+    public List<Resource> findResourceAll(int offset, int pageSize, String ordername, String order, String resource_name,int resource_type, int enabled) {
+        return resourceMapper.selectByPager(offset,pageSize,ordername,order,resource_name,resource_type,enabled);
+    }
+
+    @Override
+    public int findWhereTotal(String ordername, String order, String resource_name,int resource_type, int enabled) {
+        return resourceMapper.selectByWhereCount(ordername,order,resource_name,resource_type,enabled);
+    }
+
+    @Override
+    public int findTotal() {
+        return resourceMapper.selectCount();
+    }
+
+    @Override
     public Resource findResourceById(Long id) {
         return resourceMapper.selectByPrimaryKey(id);
     }
@@ -72,7 +87,7 @@ public class ResourceServiceImpl implements ResourceService {
             //    continue;
             //}
             node = new ResourceTree();
-            node.setId(res.getId());
+            node.setId(res.getResourceId());
             node.setParentId(res.getParentId());
             node.setName(res.getName());
             node.setPermission(res.getPermission());

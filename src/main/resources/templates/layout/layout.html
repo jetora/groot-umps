@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="common/htmlHead :: common_header(~{::title},~{::link})">
-    <title>Account</title>
+    <title>UMPS</title>
     <!-- bootstrap table -->
     <link href="../../static/css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" th:href="@{/static/css/plugins/bootstrap-table/bootstrap-table.css}" />
 </head>
@@ -25,9 +25,6 @@
 <!--使用公有js-->
 <div th:replace="common/htmlJS::common_js(~{::script})">
     <!--每个页面自己的js-->
-    <!-- bootstrap table -->
-    <script src="../../static/js/plugins/bootstrap-table/bootstrap-table.min.js" th:src="@{/static/js/plugins/bootstrap-table/bootstrap-table.min.js}"></script>
-    <script src="../../static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" th:src="@{/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
     <script type="text/javascript">
         var jumpUrl = '/home';
         $('a').each(function () {

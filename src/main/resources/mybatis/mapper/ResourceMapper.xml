@@ -3,6 +3,7 @@
 <mapper namespace="org.flow.dao.mapper.ResourceMapper" >
   <resultMap id="BaseResultMap" type="org.flow.entity.Resource" >
     <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="resource_id" property="resourceId" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="method" property="method" jdbcType="VARCHAR" />
@@ -22,20 +23,23 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="org.flow.entity.Resource" >
-    insert into resource (id, name, url,
-      method, parent_id, parent_ids,
-      permission, data_target, icon,
-      component, type, enabled,
-      create_time, update_time)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
-      #{method,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, #{parentIds,jdbcType=VARCHAR},
-      #{permission,jdbcType=VARCHAR}, #{dataTarget,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR},
-      #{component,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{enabled,jdbcType=TINYINT},
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    insert into resource (id, resource_id, name, 
+      url, method, parent_id, 
+      parent_ids, permission, data_target, 
+      icon, component, type, 
+      enabled, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{resourceId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
+      #{parentIds,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR}, #{dataTarget,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{component,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, 
+      #{enabled,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <update id="updateByPrimaryKey" parameterType="org.flow.entity.Resource" >
     update resource
-    set name = #{name,jdbcType=VARCHAR},
+    set resource_id = #{resourceId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
       method = #{method,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=BIGINT},
@@ -51,19 +55,87 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select id, name, url, method, parent_id, parent_ids, permission, data_target, icon,
-    component, type, enabled, create_time, update_time
+    select id, resource_id, name, url, method, parent_id, parent_ids, permission, data_target, 
+    icon, component, type, enabled, create_time, update_time
     from resource
     where id = #{id,jdbcType=BIGINT}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select id, name, url, method, parent_id, parent_ids, permission, data_target, icon,
-    component, type, enabled, create_time, update_time
+    select id, resource_id, name, url, method, parent_id, parent_ids, permission, data_target, 
+    icon, component, type, enabled, create_time, update_time
     from resource
   </select>
   <select id="selectMenuAll" resultMap="BaseResultMap" >
-    select id, name, url ,method, parent_id, parent_ids, permission,data_target, icon, component,
+    select resource_id, name, url ,method, parent_id, parent_ids, permission,data_target, icon, component,
     type, enabled, create_time, update_time
     from resource where type=1 or type is null
+  </select>
+  <select id="selectCount" resultType="java.lang.Integer" >
+    select count(id)
+    from resource
+  </select>
+  <select id="selectByPager" resultMap="BaseResultMap">
+    select t1.id,t1.resource_id, name, url, parent_id, parent_ids, permission, data_target, icon,
+    type, enabled, create_time, update_time
+    from resource t1
+    JOIN (select id from resource where 1=1
+    <if test="resource_name !=null and resource_name !=''">
+      and name = #{resource_name}
+    </if>
+    <if test="resource_type != -1">
+      and type = #{resource_type}
+    </if>
+    <if test="enabled != -1">
+      and enabled = #{enabled}
+    </if>
+    <choose>
+      <when test="ordername=='createTime'">
+        ORDER BY create_time
+      </when>
+      <when test="ordername=='updateTime'">
+        ORDER BY update_time
+      </when>
+      <otherwise>
+        ORDER BY ${ordername}
+      </otherwise>
+    </choose>
+    ${order} limit #{offSet} , #{pageSize}) as t2
+    where t1.id=t2.id
+    <if test="resource_name !=null and resource_name !=''">
+      and name = #{resource_name}
+    </if>
+    <if test="resource_type != -1">
+      and type = #{resource_type}
+    </if>
+    <if test="enabled != -1">
+      and enabled = #{enabled}
+    </if>
+    <choose>
+      <when test="ordername=='createTime'">
+        ORDER BY create_time
+      </when>
+      <when test="ordername=='updateTime'">
+        ORDER BY update_time
+      </when>
+      <otherwise>
+        ORDER BY ${ordername}
+      </otherwise>
+    </choose>
+    ${order} LIMIT #{pageSize}
+  </select>
+  <select id="selectByWhereCount" resultType="java.lang.Integer">
+    select count(id)
+    from resource
+    where 1=1
+    <if test="resource_name != null and resource_name !=''" >
+      and name = #{resource_name}
+    </if>
+    <if test="resource_type != -1" >
+      and type = #{resource_type}
+    </if>
+    <if test="enabled != -1">
+      and enabled = #{enabled}
+    </if>
+    ORDER BY #{ordername} #{order}
   </select>
 </mapper>

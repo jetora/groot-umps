@@ -2,6 +2,8 @@ package org.flow.utils.common.utils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -16,7 +18,17 @@ public class HttpUtil {
         Iterator iter;
         Map params = new HashMap();
 
-        String queryString = request.getQueryString();
+        //String queryString = request.getQueryString();
+        //String queryString = new String(request.getQueryString().getBytes("iso-8859-1"),"UTF-8");
+        String queryString = "";
+        try {
+            queryString = URLDecoder.decode(request.getQueryString(),"utf-8");
+        } catch (UnsupportedEncodingException ex){
+            ex.printStackTrace();
+        }
+
+        System.out.println("1111111111111111111111");
+        System.out.println(queryString);
         if (StringUtils.notNull(queryString)) {
             pairs = StringUtils.split(queryString,"&");
             for (i = 0;i < pairs.length; ++i){

@@ -3,6 +3,7 @@
 <mapper namespace="org.flow.dao.mapper.OrganizationMapper" >
   <resultMap id="BaseResultMap" type="org.flow.entity.Organization" >
     <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="organization_id" property="organizationId" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="parent_id" property="parentId" jdbcType="BIGINT" />
     <result column="enabled" property="enabled" jdbcType="TINYINT" />
@@ -14,16 +15,17 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="org.flow.entity.Organization" >
-    insert into organization (id, name, parent_id, 
-      enabled, create_time, update_time
-      )
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
-      #{enabled,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+    insert into organization (id, organization_id, name, 
+      parent_id, enabled, create_time, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{organizationId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=BIGINT}, #{enabled,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <update id="updateByPrimaryKey" parameterType="org.flow.entity.Organization" >
     update organization
-    set name = #{name,jdbcType=VARCHAR},
+    set organization_id = #{organizationId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=BIGINT},
       enabled = #{enabled,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -31,12 +33,12 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select id, name, parent_id, enabled, create_time, update_time
+    select id, organization_id, name, parent_id, enabled, create_time, update_time
     from organization
     where id = #{id,jdbcType=BIGINT}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select id, name, parent_id, enabled, create_time, update_time
+    select id, organization_id, name, parent_id, enabled, create_time, update_time
     from organization
   </select>
 </mapper>

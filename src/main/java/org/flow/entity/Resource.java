@@ -5,6 +5,8 @@ import java.util.Date;
 public class Resource {
     private Long id;
 
+    private Long resourceId;
+
     private String name;
 
     private String url;
@@ -37,6 +39,14 @@ public class Resource {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(Long resourceId) {
+        this.resourceId = resourceId;
     }
 
     public String getName() {
@@ -150,6 +160,7 @@ public class Resource {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", resourceId=").append(resourceId);
         sb.append(", name=").append(name);
         sb.append(", url=").append(url);
         sb.append(", method=").append(method);

@@ -7,6 +7,9 @@ import java.util.List;
 
 public interface ResourceService {
     List<Resource> findResourceAll();
+    List<Resource> findResourceAll(int offset, int pageSize,String ordername,String order,String resource_name,int resource_type,int enabled);
+    int findWhereTotal(String ordername,String order,String resource_name,int resource_type,int enabled);
+    int findTotal();
     Resource findResourceById(Long id);
     int createResource(Resource resource);
     int updateResourceById(Resource resource);

@@ -65,7 +65,7 @@ public class OrganizationServiceImpl implements OrganizationService {
             //    continue;
             //}
             node = new OrganizationTree();
-            node.setId(ora.getId());
+            node.setId(ora.getOrganizationId());
             node.setParentId(ora.getParentId());
             node.setName(ora.getName());
             trees.add(node);

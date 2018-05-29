@@ -5,6 +5,8 @@ import java.util.Date;
 public class Organization {
     private Long id;
 
+    private Long organizationId;
+
     private String name;
 
     private Long parentId;
@@ -21,6 +23,14 @@ public class Organization {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(Long organizationId) {
+        this.organizationId = organizationId;
     }
 
     public String getName() {
@@ -70,6 +80,7 @@ public class Organization {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", organizationId=").append(organizationId);
         sb.append(", name=").append(name);
         sb.append(", parentId=").append(parentId);
         sb.append(", enabled=").append(enabled);
