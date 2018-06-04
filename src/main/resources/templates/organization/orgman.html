@@ -1,0 +1,202 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/htmlHead :: common_header(~{::title},~{::link})">
+    <title>Orgman</title>
+    <!-- bootstrap table -->
+    <link href="../../static/css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" th:href="@{/static/css/plugins/bootstrap-table/bootstrap-table.css}" />
+</head>
+<body class="nav-md  footer_fixed">
+<div class="wrapper wrapper-content animated zoomInUp">
+        <!-- page content -->
+    <div class="wrapper wrapper-content animated zoomInUp">
+        <div class="clearfix"></div>
+        <div class="animated flipInY row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h7><b>查询条件</b></h7>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div>
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">机构ID</span>
+                                            <input type="text" id="search_org_id" name="search_content"
+                                                   placeholder="" class="form-control" aria-describedby="sizing-addon3"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">名称</span>
+                                            <input type="text" id="search_org_name" name="search_content"
+                                                   placeholder="" class="form-control" aria-describedby="sizing-addon3"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">是否可用</span>
+                                            <select name="enabled_type" id="enabled_type" class="form-control" aria-describedby="sizing-addon3">
+                                                <option value="-1">全部</option>
+                                                <option value="1">可用</option>
+                                                <option value="2">不可用</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-info btn-search" type="button" onclick="searchData()">查询</button>
+                                    <button class="btn btn-danger" type="button" onclick="resetData()">重置</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="animated flipInY row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h7>查询结果</h7>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Settings 1</a>
+                                    </li>
+                                    <li><a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div id="toolbar" class="btn-group">
+                            <button id="btn_add" type="button" class="btn btn-primary" onclick="addData()">
+                                <i class="icon-plus" aria-hidden="true"></i> 新增
+                            </button>
+                            <button id="btn_upd" type="button" class="btn btn-warning" onclick="updDatabatch()" data-toggle="tooltip" data-placement="top" title="批量置为可用或不可用">
+                                <i class="icon-plus" aria-hidden="true"></i> 批量修改
+                            </button>
+                            <button id="btn_del" type="button" class="btn btn-danger" onclick="delDatabatch()">
+                                <i class="icon-plus" aria-hidden="true"></i> 批量删除
+                            </button>
+                        </div>
+                        <br/>
+                        <br/>
+                        <!--table start-->
+                        <table id="resource_table" class="col-xs-12" data-toolbar="#toolbar"></table>
+                        <!--table end-->
+                        <!-- add modal start-->
+                        <div class="modal fade bs-example-modal-lg" id="resourceModal" tabindex="-1" role="dialog"
+                             aria-hidden="true" data-backdrop="static" style="display: none">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="modalTitle">新增</h4>
+                                    </div>
+                                    <div class="modal-body" id="account_content">
+                                        <form class="form-horizontal" id="accountForm">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="resourceid">资源ID</label>
+                                                <div class="col-md-8 col-xs-11">
+                                                    <input type="text" min="0" id="resourceid" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="resourcename">资源名</label>
+                                                <div class="col-md-8 col-xs-11">
+                                                    <input type="text" min="0" id="resourcename" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="resourceurl">资源URL</label>
+                                                <div class="col-md-8 col-xs-11">
+                                                    <input type="text" min="0" id="resourceurl" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="resourceparent">父资源</label>
+                                                <div class="col-md-8 col-xs-11">
+                                                    <input type="text" min="0" id="resourceparent" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="permission">权限</label>
+                                                <div class="col-md-8 col-xs-11">
+                                                    <input type="text" min="0" id="permission" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="resourceicon">图标</label>
+                                                <div class="col-md-8 col-xs-11">
+                                                    <input type="text" min="0" id="resourceicon" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="enabled">资源种类</label>
+                                                <div class="col-md-8 col-xs-11">
+                                                    <select class="selectpicker" id="resourcetype">
+                                                        <option value="1">菜单</option>
+                                                        <option value="2">接口</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="enabled">是否可用</label>
+                                                <div class="col-md-8 col-xs-11">
+                                                    <select class="selectpicker" id="enabled">
+                                                        <option value="1">可用</option>
+                                                        <option value="2">不可用</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="id">
+                                            <input type="hidden" id="opt_type">
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" onclick="optData()">
+                                            <i class="icon-ok" aria-hidden="true"></i> 提交
+                                        </button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                                            <i class="icon-remove" aria-hidden="true"></i> 关闭
+                                        </button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+        <!-- /page content -->
+</div>
+<!--使用公有js-->
+<div th:replace="common/htmlJS::common_js(~{::script})">
+    <!--每个页面自己的js-->
+    <!-- bootstrap table -->
+    <script src="../../static/js/plugins/bootstrap-table/bootstrap-table.min.js" th:src="@{/static/js/plugins/bootstrap-table/bootstrap-table.min.js}"></script>
+    <script src="../../static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" th:src="@{/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
+    <script src="../../static/js/organization.js" th:src="@{/static/js/organization.js}"></script>
+</div>
+</body>
+</html>

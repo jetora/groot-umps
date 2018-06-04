@@ -31,6 +31,21 @@ public class DefaultController extends BaseController {
         return "resource/resource";
     }
 
+    @GetMapping("/organization")
+    public String OrganizationManage(){
+        return "organization/organization";
+    }
+
+    @GetMapping("/orgman")
+    public String OrgMan(){
+        return "organization/orgman";
+    }
+
+    @GetMapping("/orgtree")
+    public String OrgTree(){
+        return "organization/orgtree";
+    }
+
     @GetMapping("/demo")
     public String demo(){
         return "demo";

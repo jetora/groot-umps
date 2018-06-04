@@ -41,4 +41,71 @@
     select id, organization_id, name, parent_id, enabled, create_time, update_time
     from organization
   </select>
+  <select id="selectCount" resultType="java.lang.Integer" >
+    select count(id)
+    from organization
+  </select>
+  <select id="selectByPager" resultMap="BaseResultMap">
+    select t1.id,t1.organization_id, name, parent_id, enabled, create_time, update_time
+    from organization t1
+    JOIN (select id from organization where 1=1
+    <if test="search_org_name !=null and search_org_name !=''">
+      and name = #{search_org_name}
+    </if>
+    <if test="search_org_id != null and search_org_id !=''">
+      and organization_id = #{search_org_id}
+    </if>
+    <if test="enabled != -1">
+      and enabled = #{enabled}
+    </if>
+    <choose>
+      <when test="ordername=='createTime'">
+        ORDER BY create_time
+      </when>
+      <when test="ordername=='updateTime'">
+        ORDER BY update_time
+      </when>
+      <otherwise>
+        ORDER BY ${ordername}
+      </otherwise>
+    </choose>
+    ${order} limit #{offSet} , #{pageSize}) as t2
+    where t1.id=t2.id
+    <if test="search_org_name !=null and search_org_name !=''">
+      and name = #{search_org_name}
+    </if>
+    <if test="search_org_id != null and search_org_id !=''">
+      and organization_id = #{search_org_id}
+    </if>
+    <if test="enabled != -1">
+      and enabled = #{enabled}
+    </if>
+    <choose>
+      <when test="ordername=='createTime'">
+        ORDER BY create_time
+      </when>
+      <when test="ordername=='updateTime'">
+        ORDER BY update_time
+      </when>
+      <otherwise>
+        ORDER BY ${ordername}
+      </otherwise>
+    </choose>
+    ${order} LIMIT #{pageSize}
+  </select>
+  <select id="selectByWhereCount" resultType="java.lang.Integer">
+    select count(id)
+    from organization
+    where 1=1
+    <if test="search_org_name != null and search_org_name !=''" >
+      and name = #{search_org_name}
+    </if>
+    <if test="search_org_id != null and search_org_id !=''" >
+      and type = #{search_org_id}
+    </if>
+    <if test="enabled != -1">
+      and enabled = #{enabled}
+    </if>
+    ORDER BY #{ordername} #{order}
+  </select>
 </mapper>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/htmlHead :: common_header(~{::title},~{::link})">
+    <title>Organization</title>
+    <!-- bootstrap table -->
+    <link href="../../static/css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" th:href="@{/static/css/plugins/bootstrap-table/bootstrap-table.css}" />
+</head>
+
+<body class="nav-md gray-bg">
+<div class="container body">
+    <div class="main_container">
+        <div th:fragment="navbar"  class="wrapper wrapper-content animated zoomInUp"  role="navigation">
+            <div layout:fragment="content" id="ifcontent" class="wrapper wrapper-content animated zoomInUp"></div>
+        </div>
+    </div>
+</div>
+<!--使用公有js-->
+<div th:replace="common/htmlJS::common_js(~{::script})">
+    <!--每个页面自己的js-->
+    <!-- bootstrap table -->
+    <script src="../../static/js/plugins/bootstrap-table/bootstrap-table.min.js" th:src="@{/static/js/plugins/bootstrap-table/bootstrap-table.min.js}"></script>
+    <script src="../../static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" th:src="@{/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
+    <script src="../../static/js/organization.js" th:src="@{/static/js/organization.js}"></script>
+    <script type="text/javascript" th:inline="javascript">
+        $(document).ready(function () {
+            var activeTabId = '';
+            if(activeTabId){
+                $("#myTabs li").removeClass("active");
+                $("."+activeTabId).addClass("active");
+
+                $(".tab-content div").removeClass("active");
+                $("#"+activeTabId).addClass("active");
+
+                var url = $("."+activeTabId+" a ").attr("data-url");
+                console.log("url=="+url);
+                if (typeof url !== "undefined") {
+                    var pane = $("."+activeTabId).children("a"), href = pane[0].hash;
+                    $(href).load(url,null,function(result){
+                        pane.tab('show');
+                    });
+                } else {
+                    $("."+activeTabId).children("a").tab('show');
+                }
+            }else {
+                initTab();
+            }
+            $('#tabs').on('click','#myTabs a',function (e) {
+                var tabId = $(this).attr('href');
+                clearTabHtml(tabId);
+                e.preventDefault();
+                var url = $(this).attr("data-url");
+                console.log(111111111111111111111111111)
+                console.log(url)
+                if(url.indexOf("?") > 0){
+                    var urlArr =  url.split("?");
+                    url = urlArr[0];
+                }
+                if (typeof url !== "undefined") {
+                    var pane = $(this), href = this.hash;
+                    $(href).load(url,null,function(result){
+                        pane.tab('show');
+                    });
+                } else {
+                    $(this).tab('show');
+                }
+            });
+        });
+        function  initTab() {
+            $("#myTabs li").each(function () {
+                var tabActive = $(this).attr('class');
+                if (typeof tabActive !== "undefined" && tabActive.indexOf("active") >= 0 ){
+                    var url = $(this).children("a").attr("data-url");
+                    if (typeof url !== "undefined") {
+                        var pane = $(this).children("a"), href = pane[0].hash;
+                        console.log(href)
+                        // ajax load from data-url
+                        $(href).load(url,function(result){
+                            pane.tab('show');
+                        });
+                    }
+                }
+            })
+        }
+        function clearTabHtml(tabId) {
+            $('#myTabs a').each(function(){
+                var href = $(this).attr('href');
+                if(tabId != href){
+                    $(href).html('');
+                }
+            });
+        }
+    </script>
+</div>
+
+</body>
+</html>

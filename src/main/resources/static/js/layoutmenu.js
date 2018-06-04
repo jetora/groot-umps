@@ -11,7 +11,7 @@ $(document).ready(function() {
                 var result = $('<ul class="nav side-menu"></ul>')
                 showall(ret.data[0].children,result);
                 //$("#side-menu").metisMenu('dispose');
-                console.log(result[0])
+                //console.log(result[0])
                 $("#side-menu").append(result);
                 $('#side-menu').metisMenu();
                 f()

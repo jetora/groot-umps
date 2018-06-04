@@ -13,4 +13,10 @@ public interface OrganizationService {
     int updateOrganizationById(Organization organization);
     int deleteOrganizationById(Long id);
     List<OrganizationTree> selectOrganiationTree(Long id);
+
+    List<OrganizationTree> selectOrgTreeWithNoParentIds(Long id);
+
+    List<Organization> findOrganizationAll(int offset, int pageSize,String ordername,String order,String search_org_name,Long search_org_id,int enabled);
+    int findWhereTotal(String ordername,String order,String search_org_name,Long search_org_id,int enabled);
+    int findTotal();
 }

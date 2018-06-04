@@ -1,0 +1,56 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/htmlHead :: common_header(~{::title},~{::link})">
+    <title>Orgtree</title>
+    <!-- bootstrap table -->
+    <link href="../../static/css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" th:href="@{/static/css/plugins/bootstrap-table/bootstrap-table.css}" />
+</head>
+<body class="nav-md  footer_fixed">
+<div class="wrapper wrapper-content animated zoomInUp">
+    <!-- page content -->
+    <div class="wrapper wrapper-content animated zoomInUp">
+        <div class="clearfix"></div>
+        <div class="animated flipInY row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h7><b>查询条件</b></h7>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div>
+
+                                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- /page content -->
+</div>
+<!--使用公有js-->
+<div th:replace="common/htmlJS::common_js(~{::script})">
+    <!--每个页面自己的js-->
+    <!-- bootstrap table -->
+    <script src="../../static/js/plugins/bootstrap-table/bootstrap-table.min.js" th:src="@{/static/js/plugins/bootstrap-table/bootstrap-table.min.js}"></script>
+    <script src="../../static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" th:src="@{/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
+    <script src="../../static/js/plugins/echarts/4.1.0.rc2/echarts.min.js" th:src="@{/static/js/plugins/echarts/4.1.0.rc2/echarts.min.js}"></script>
+    <script src="../../static/js/plugins/echarts/4.1.0.rc2/echarts.js" th:src="@{/static/js/plugins/echarts/4.1.0.rc2/echarts.js}"></script>
+    <script src="../../static/js/treeEcharts.js" th:src="@{/static/js/treeEcharts.js}"></script>
+</div>
+</body>
+</html>
