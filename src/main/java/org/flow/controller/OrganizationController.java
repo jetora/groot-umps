@@ -1,5 +1,8 @@
 package org.flow.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.flow.entity.Organization;
 import org.flow.entity.OrganizationTree;
 import org.flow.service.OrganizationService;
@@ -93,12 +96,6 @@ public class OrganizationController extends BaseController{
     public ResponseResult<List<OrganizationTree>> findOraTree() {
         List<OrganizationTree> orgTree = new ArrayList<>();
         orgTree = organizationService.selectOrganiationTree(new Long((long)0));
-        return ResultUtil.buildResult(ErrorCode.OK.getCode(),ErrorCode.OK.getMessage(),orgTree);
-    }
-    @GetMapping(value = "/organizationnottree",produces = { "application/json;charset=UTF-8" })
-    public ResponseResult<List<OrganizationTree>> findOrgTree() {
-        List<OrganizationTree> orgTree = new ArrayList<>();
-        orgTree = organizationService.selectOrgTreeWithNoParentIds(new Long((long)0));
         return ResultUtil.buildResult(ErrorCode.OK.getCode(),ErrorCode.OK.getMessage(),orgTree);
     }
     //根据id查询

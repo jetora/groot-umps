@@ -114,54 +114,27 @@
                                     <div class="modal-body" id="account_content">
                                         <form class="form-horizontal" id="accountForm">
                                             <div class="form-group">
-                                                <label class="control-label col-md-3" for="resourceid">资源ID</label>
+                                                <label class="control-label col-md-3" for="organizationid">组织机构ID</label>
                                                 <div class="col-md-8 col-xs-11">
-                                                    <input type="text" min="0" id="resourceid" class="form-control" required>
+                                                    <input type="text" min="0" id="organizationid" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3" for="resourcename">资源名</label>
+                                                <label class="control-label col-md-3" for="organizationname">组织机构名</label>
                                                 <div class="col-md-8 col-xs-11">
-                                                    <input type="text" min="0" id="resourcename" class="form-control" required>
+                                                    <input type="text" min="0" id="organizationname" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3" for="resourceurl">资源URL</label>
+                                                <label class="control-label col-md-3" for="organizationpaid">父组织机构ID</label>
                                                 <div class="col-md-8 col-xs-11">
-                                                    <input type="text" min="0" id="resourceurl" class="form-control" required>
+                                                    <input type="text" min="0" id="organizationpaid" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3" for="resourceparent">父资源</label>
+                                                <label class="control-label col-md-3" for="orgenabled">是否可用</label>
                                                 <div class="col-md-8 col-xs-11">
-                                                    <input type="text" min="0" id="resourceparent" class="form-control" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3" for="permission">权限</label>
-                                                <div class="col-md-8 col-xs-11">
-                                                    <input type="text" min="0" id="permission" class="form-control" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3" for="resourceicon">图标</label>
-                                                <div class="col-md-8 col-xs-11">
-                                                    <input type="text" min="0" id="resourceicon" class="form-control" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3" for="enabled">资源种类</label>
-                                                <div class="col-md-8 col-xs-11">
-                                                    <select class="selectpicker" id="resourcetype">
-                                                        <option value="1">菜单</option>
-                                                        <option value="2">接口</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3" for="enabled">是否可用</label>
-                                                <div class="col-md-8 col-xs-11">
-                                                    <select class="selectpicker" id="enabled">
+                                                    <select class="selectpicker" id="orgenabled">
                                                         <option value="1">可用</option>
                                                         <option value="2">不可用</option>
                                                     </select>
@@ -196,7 +169,7 @@
     <!-- bootstrap table -->
     <script src="../../static/js/plugins/bootstrap-table/bootstrap-table.min.js" th:src="@{/static/js/plugins/bootstrap-table/bootstrap-table.min.js}"></script>
     <script src="../../static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" th:src="@{/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
-    <script src="../../static/js/organization.js" th:src="@{/static/js/organization.js}"></script>
+    <script src="../../static/js/orgman.js" th:src="@{/static/js/orgman.js}"></script>
 </div>
 </body>
 </html>

@@ -10,4 +10,14 @@ public class OrganizationTree extends TreeNode {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return getClass() +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", parentId=" + parentId +
+                ", children=" + children +
+                '}';
+    }
 }

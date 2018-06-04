@@ -50,12 +50,6 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    public List<OrganizationTree> selectOrgTreeWithNoParentIds(Long id) {
-        List<Organization> organizations = organizationMapper.selectAll();
-        return this.getOraganizationTreeNoParentIds(organizations,id);
-    }
-
-    @Override
     public List<Organization> findOrganizationAll(int offset, int pageSize, String ordername, String order, String search_org_name, Long search_org_id, int enabled) {
         return organizationMapper.selectByPager(offset,pageSize,ordername,order,search_org_name,search_org_id,enabled);
     }
@@ -94,27 +88,4 @@ public class OrganizationServiceImpl implements OrganizationService {
         return TreeUtil.buildByRecursive(trees,root);
     }
 
-    /**
-     * 构建组织机构树
-     *
-     * @param organizations 组织机构
-     * @param root  根节点
-     * @return
-     */
-    private List<OrganizationTree> getOraganizationTreeNoParentIds(List<Organization> organizations, Long root){
-        //Long newroot = new Long((long)root);
-        List<OrganizationTree> trees = new ArrayList<>();
-        OrganizationTree node;
-        for (Organization ora:organizations){
-            //if (ora.getParentId().equals(ora.getId())){
-            //    continue;
-            //}
-            node = new OrganizationTree();
-            node.setId(ora.getOrganizationId());
-            node.setParentId(ora.getParentId());
-            node.setName(ora.getName());
-            trees.add(node);
-        }
-        return TreeUtil.buildByRecursive(trees,root);
-    }
 }

@@ -20,7 +20,7 @@
     <!-- bootstrap table -->
     <script src="../../static/js/plugins/bootstrap-table/bootstrap-table.min.js" th:src="@{/static/js/plugins/bootstrap-table/bootstrap-table.min.js}"></script>
     <script src="../../static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" th:src="@{/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
-    <script src="../../static/js/organization.js" th:src="@{/static/js/organization.js}"></script>
+
     <script type="text/javascript" th:inline="javascript">
         $(document).ready(function () {
             var activeTabId = '';
@@ -57,6 +57,8 @@
                 }
                 if (typeof url !== "undefined") {
                     var pane = $(this), href = this.hash;
+                    console.log(pane[0])
+                    console.log(href)
                     $(href).load(url,null,function(result){
                         pane.tab('show');
                     });

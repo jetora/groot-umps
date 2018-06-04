@@ -178,18 +178,7 @@ function optFormatter(value, row) {
         return '<span class="label label-info">无权限</span>';
     }
 }
-// 状态
-function typeFormatter(value, row, index) {
-    var status = "";
-    if (2 == value) {
-        status = '<span class="label label-success">接口</span>';
-    } else if (1 == value) {
-        status = '<span class="label label-warning" >菜单</span>';
-    } else {
-        status = "其他";
-    }
-    return status;
-}
+
 // 状态
 function staFormatter(value, row, index) {
     var status = "";
@@ -251,14 +240,10 @@ function addData() {
     // 初始化form表单内容
     resourceModal.find('.modal-body #opt_type').val("add");
     resourceModal.find('.modal-body #id').val("");
-    resourceModal.find('.modal-body #resourceid').val("");
-    resourceModal.find('.modal-body #resourcename').val("");
-    resourceModal.find('.modal-body #resourceurl').val("");
-    resourceModal.find('.modal-body #resourceparent').val("");
-    resourceModal.find('.modal-body #permission').val("");
-    resourceModal.find('.modal-body #resourceicon').val("");
-    resourceModal.find('.modal-body #resourcetype').selectpicker('val',2);
-    resourceModal.find('.modal-body #enabled').selectpicker('val',1);
+    resourceModal.find('.modal-body #organizationid').val("");
+    resourceModal.find('.modal-body #organizationname').val("");
+    resourceModal.find('.modal-body #organizationpaid').val("");
+    resourceModal.find('.modal-body #orgenabled').selectpicker('val',1);
     resourceModal.modal("show");
 }
 function editData(row) {
@@ -266,14 +251,10 @@ function editData(row) {
     var resourceModal = $('#resourceModal');
     resourceModal.find('.modal-body #opt_type').val("edit");
     resourceModal.find('.modal-body #id').val(row.id);
-    resourceModal.find('.modal-body #resourceid').val(row.resourceId);
-    resourceModal.find('.modal-body #resourcename').val(row.name);
-    resourceModal.find('.modal-body #resourceurl').val(row.url);
-    resourceModal.find('.modal-body #resourceparent').val(row.parentId);
-    resourceModal.find('.modal-body #permission').val(row.permission);
-    resourceModal.find('.modal-body #resourceicon').val(row.icon);
-    resourceModal.find('.modal-body #resourcetype').selectpicker('val',row.type);
-    resourceModal.find('.modal-body #enabled').selectpicker('val',row.enabled);
+    resourceModal.find('.modal-body #organizationid').val(row.organizationId);
+    resourceModal.find('.modal-body #organizationname').val(row.name);
+    resourceModal.find('.modal-body #organizationpaid').val(row.parentId);
+    resourceModal.find('.modal-body #orgenabled').selectpicker('val',row.enabled);
     resourceModal.modal('show');
 }
 // 新增或编辑form表单内容
@@ -283,14 +264,6 @@ function get_form_data() {
     // 获取表单内容
     data.opt_type = resourceModal.find('.modal-body #opt_type').val();
     data.id = resourceModal.find('.modal-body #id').val();
-    //data.resourceid = resourceModal.find('.modal-body #resourceid').val();
-    //data.resourcename = resourceModal.find('.modal-body #resourcename').val();
-    //data.resourceurl = resourceModal.find('.modal-body #resourceurl').val();
-    //data.resourceparent = resourceModal.find('.modal-body #resourceparent').val();
-    //data.permission = resourceModal.find('.modal-body #permission').val();
-    //data.resourceicon = resourceModal.find('.modal-body #resourceicon').val();
-    //data.resourcetype = resourceModal.find('.modal-body #resourcetype').val();
-    //data.enabled = resourceModal.find('.modal-body #enabled').val();
 
     if ("edit" == data.opt_type) {
         data.change_flag = true;
@@ -310,44 +283,32 @@ function opt_account(args) {
     var change_flag = args.change_flag;
     var req_type;
     var id = $('#id').val();
-    var resourceid = $('#resourceid').val();
-    var resourcename = $('#resourcename').val();
-    var resourceurl = $('#resourceurl').val();
-    var resourceparent = $('#resourceparent').val();
-    var permission = $('#permission').val();
-    var resourceicon = $('#resourceicon').val();
-    var resourcetype = $('#resourcetype').val();
-    var enabled = $('#enabled').val();
+    var organizationid = $('#organizationid').val();
+    var organizationname = $('#organizationname').val();
+    var organizationpaid = $('#organizationpaid').val();
+    var enabled = $('#orgenabled').val();
     var data;
     if (change_flag){
         req_type="put";
         data = {
             id:id,
-            resourceId:resourceid,
-            name:resourcename,
-            url:resourceurl,
-            parentId:resourceparent,
-            permission:permission,
-            icon:resourceicon,
-            type:resourcetype,
+            organizationId:organizationid,
+            name:organizationname,
+            parentId:organizationpaid,
             enabled:enabled
         };
     } else {
         req_type="post";
         data = {
-            resourceId:resourceid,
-            name:resourcename,
-            url:resourceurl,
-            parentId:resourceparent,
-            permission:permission,
-            icon:resourceicon,
-            type:resourcetype,
+            organizationId:organizationid,
+            name:organizationname,
+            parentId:organizationpaid,
             enabled:enabled
         };
     }
     // ajax新增项目数据
     $.ajax({
-        url: encodeURI("/api/resource"),
+        url: encodeURI("/api/organization"),
         type: req_type,
         contentType:"application/json; charset=utf-8",
         dataType: 'json',
@@ -400,7 +361,7 @@ function delete_Data(id) {
     //data.id = id;
     // ajax删除数据
     $.ajax({
-        url: "/api/resource/"+id,
+        url: "/api/organization/"+id,
         type: 'delete',
         dataType: 'json',
         success: function (ret) {

@@ -16,20 +16,16 @@
   </delete>
   <insert id="insert" parameterType="org.flow.entity.Organization" >
     insert into organization (id, organization_id, name, 
-      parent_id, enabled, create_time, 
-      update_time)
+      parent_id, enabled)
     values (#{id,jdbcType=BIGINT}, #{organizationId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{parentId,jdbcType=BIGINT}, #{enabled,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{parentId,jdbcType=BIGINT}, #{enabled,jdbcType=TINYINT})
   </insert>
   <update id="updateByPrimaryKey" parameterType="org.flow.entity.Organization" >
     update organization
     set organization_id = #{organizationId,jdbcType=BIGINT},
       name = #{name,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=BIGINT},
-      enabled = #{enabled,jdbcType=TINYINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      enabled = #{enabled,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
