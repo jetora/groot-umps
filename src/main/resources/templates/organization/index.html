@@ -49,8 +49,6 @@
                 clearTabHtml(tabId);
                 e.preventDefault();
                 var url = $(this).attr("data-url");
-                console.log(111111111111111111111111111)
-                console.log(url)
                 if(url.indexOf("?") > 0){
                     var urlArr =  url.split("?");
                     url = urlArr[0];
