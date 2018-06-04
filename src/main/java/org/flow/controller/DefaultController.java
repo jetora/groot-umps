@@ -46,6 +46,11 @@ public class DefaultController extends BaseController {
         return "organization/orgtree";
     }
 
+    @GetMapping("/orgztree")
+    public String OrgZTree(){
+        return "organization/orgztree";
+    }
+
     @GetMapping("/demo")
     public String demo(){
         return "demo";
