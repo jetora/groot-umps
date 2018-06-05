@@ -33,6 +33,27 @@ $(function () {
     var oTable = new TableInit();
     oTable.Init();
 });
+
+//获得全部角色数据
+function getAllRoles() {
+    $.ajax({
+        type: 'get',
+        url: '/api/role',
+        dataType: "json",
+        success: function (ret) {
+            if (ret.code==200) {
+                var opstr = "";
+                $.each(ret.data, function (i, n) {
+                    opstr += " <option value=\"" + n.id + "\">" + n.name + "</option>";
+                })
+                $("#sel_role").append(opstr);
+                $("#sel_role").selectpicker('refresh');
+
+            }
+        }
+    })
+
+}
 function resetData() {
     $('#enabled_type').val("")
     $('#search_username').val("")
@@ -233,6 +254,7 @@ function addData() {
     accountModal.find('.modal-body #id').val("");
     accountModal.find('.modal-body #username').val("");
     accountModal.find('.modal-body #password').val("");
+    getAllRoles();
     accountModal.find('.modal-body #enabled').selectpicker('val',1);
     accountModal.modal("show");
 }

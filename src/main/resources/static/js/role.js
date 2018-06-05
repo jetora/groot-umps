@@ -189,7 +189,8 @@ window.optEvents = {
         editData(row);
     },
     'click .grant': function (e, value, row) {
-        alert(row.name);
+        //alert(row.name);
+        grantRole(row);
     },
     'click .remove': function (e, value, row) {
         //var message = "确定要删除项目：" + row.asset_title + "?";
@@ -250,6 +251,12 @@ function editData(row) {
     roleModal.find('.modal-body #enabled').selectpicker('val',row.enabled);
     roleModal.find('.modal-body #enabled').val(row.enabled);
     roleModal.modal('show');
+}
+function grantRole(row) {
+    $('#grantmodalTitle').text('授权');
+    var grantModal = $('#grantModal');
+
+    grantModal.modal('show');
 }
 // 新增或编辑form表单内容
 function get_form_data() {
