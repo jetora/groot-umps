@@ -60,4 +60,15 @@ public class AccountServiceImpl implements AccountService {
     public int deleteAccountById(Long id) {
         return accountMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public int updateAccountEnabledById(Account account) {
+        int result = 0;
+        if (account.getEnabled()==1){
+            result = accountMapper.updateDisabledByPrimaryKey(account);
+        }else if (account.getEnabled()==2){
+            result = accountMapper.updateEnabledByPrimaryKey(account);
+        }
+        return result;
+    }
 }

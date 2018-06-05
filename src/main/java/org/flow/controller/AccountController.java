@@ -112,6 +112,7 @@ public class AccountController extends BaseController{
         }
     }
     //修改Account
+
     @PutMapping(value = "/account", produces = { "application/json;charset=UTF-8" })
     public ResponseResult<Account> updateAccount(@RequestBody Account account){
         ResponseResult<Account> result = new ResponseResult<>();
@@ -125,6 +126,28 @@ public class AccountController extends BaseController{
             logger.info("Account not created...",ex);
             return ResultUtil.buildResult(ErrorCode.INTERNAL_SERVER_ERROR.getCode(),ErrorCode.INTERNAL_SERVER_ERROR.getMessage());
         }
+    }
+
+    @PutMapping(value = "/accountbatch", produces = { "application/json;charset=UTF-8" })
+    public ResponseResult<Account> updateAccountBatch(@RequestBody List<Account> accountList){
+        ResponseResult<Account> result = new ResponseResult<>();
+        int success_size = accountList.size();
+        int count_size = 0;
+        for (Account account : accountList){
+            try {
+                accountService.updateAccountEnabledById(account);
+                count_size += 1;
+            } catch (Exception ex){
+                logger.info("update batch error... ",ex);
+                break;
+            }
+        }
+        if (count_size == success_size){
+            result = ResultUtil.buildResult(ErrorCode.OK.getCode(),ErrorCode.OK.getMessage());
+        } else {
+            result = ResultUtil.buildResult(ErrorCode.INTERNAL_SERVER_ERROR.getCode(),ErrorCode.INTERNAL_SERVER_ERROR.getMessage());
+        }
+        return result;
     }
     //修改Account
     @PatchMapping(value = "/account", produces = { "application/json;charset=UTF-8" })

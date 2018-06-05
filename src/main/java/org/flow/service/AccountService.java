@@ -14,4 +14,5 @@ public interface AccountService {
     int createAccount(Account account);
     int updateAccountById(Account account);
     int deleteAccountById(Long id);
+    int updateAccountEnabledById(Account account);
 }

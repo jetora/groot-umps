@@ -376,3 +376,45 @@ function delDatabatch() {
     var $table = $('#account_table')
     alert('getSelections: ' + JSON.stringify($table.bootstrapTable('getSelections')));
 }
+function updDatabatch() {
+    var $table = $('#account_table')
+    //alert('getSelections: ' + JSON.stringify($table.bootstrapTable('getSelections')));
+
+    if ($table.bootstrapTable('getSelections').length == 0){
+        alert("you must select one row...")
+    } else {
+        var data =  $table.bootstrapTable('getSelections');
+        $.ajax({
+            url: "/api/accountbatch",
+            type: 'put',
+            contentType:"application/json; charset=utf-8",
+            dataType: 'json',
+            cache: false,
+            async: true,
+            //beforeSend: function(request) {
+            //    request.setRequestHeader("Authorization", "Bearer xxxxxxxxxx");
+            //},
+            data: JSON.stringify(data),
+            success: function (ret) {
+                if (ret.code != "200") {
+                    swal("Update Failed!")
+                } else {
+                    $('#account_table').bootstrapTable('refresh');
+                    swal("Updated!", "Your imaginary file has been updated.", "success");
+                }
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                switch(XMLHttpRequest.status){
+                    case 401:
+                        break;
+                    case 404:
+                        break;
+                    case 500:
+                        break;
+                }
+            }
+        })
+    }
+
+
+}

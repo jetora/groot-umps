@@ -28,6 +28,16 @@
       enabled = #{enabled,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <update id="updateEnabledByPrimaryKey" parameterType="org.flow.entity.Account" >
+    update account
+    set enabled = 1
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateDisabledByPrimaryKey" parameterType="org.flow.entity.Account" >
+    update account
+    set enabled = 2
+    where id = #{id,jdbcType=BIGINT}
+  </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select id, username, password, enabled, create_time, update_time
     from account

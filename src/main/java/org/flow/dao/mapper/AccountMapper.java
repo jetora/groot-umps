@@ -27,4 +27,7 @@ public interface AccountMapper {
     int updateByPrimaryKey(Account record);
 
     int selectCount();
+
+    int updateEnabledByPrimaryKey(Account record);
+    int updateDisabledByPrimaryKey(Account record);
 }
