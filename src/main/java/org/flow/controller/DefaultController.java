@@ -51,6 +51,11 @@ public class DefaultController extends BaseController {
         return "organization/orgztree";
     }
 
+    @GetMapping("/privilege")
+    public String Privilege(){
+        return "privilege/privilege";
+    }
+
     @GetMapping("/demo")
     public String demo(){
         return "demo";

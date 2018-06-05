@@ -27,8 +27,6 @@ public class HttpUtil {
             ex.printStackTrace();
         }
 
-        System.out.println("1111111111111111111111");
-        System.out.println(queryString);
         if (StringUtils.notNull(queryString)) {
             pairs = StringUtils.split(queryString,"&");
             for (i = 0;i < pairs.length; ++i){

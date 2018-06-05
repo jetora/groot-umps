@@ -1,1 +1,1 @@
-若子页面中单独引入js文件，如这里的mainframe.js, 需将引用的其他js文件全部写到此js前面，即使是用到了layout.html中已经引用的jquery.js文件，也需要将其重新再引入一遍，并且必须将js文件写进<div layout:fragment = "content"> 元素内，否则会出错。
+其实我也不知道这么用theymeleaf layout对不对，但页面确实是做起来了。。
