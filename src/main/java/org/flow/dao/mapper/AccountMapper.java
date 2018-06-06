@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.flow.entity.Account;
+import org.flow.pojo.Account;
 
 @Mapper
 public interface AccountMapper {

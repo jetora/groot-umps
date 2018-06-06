@@ -11,7 +11,7 @@
             return 'Molimo pričekajte ...';
         },
         formatRecordsPerPage: function (pageNumber) {
-            return pageNumber + ' broj zapisa po stranici';
+            return pageNumber + ' broj zapisa pojo stranici';
         },
         formatShowingRows: function (pageFrom, pageTo, totalRows) {
             return 'Prikazujem ' + pageFrom + '. - ' + pageTo + '. od ukupnog broja zapisa ' + totalRows;

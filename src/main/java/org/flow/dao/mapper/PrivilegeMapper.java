@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import org.flow.entity.Privilege;
+import org.flow.pojo.Privilege;
 @Mapper
 public interface PrivilegeMapper {
     int deleteByPrimaryKey(Long id);

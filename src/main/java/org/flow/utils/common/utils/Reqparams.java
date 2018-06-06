@@ -1,7 +1,10 @@
 package org.flow.utils.common.utils;
 
-public class Reqparams {
-    private static final long serialVersionUID = -3371934618173052904L;
+import java.io.Serializable;
+
+public class Reqparams implements Serializable {
+
+    private static final long serialVersionUID = 7697888997987779020L;
     private String appId;
     private String appSecret;
     public Reqparams() {

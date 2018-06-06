@@ -1,15 +1,15 @@
-package org.flow.entity;
+package org.flow.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Role {
+public class AccountRoleRelationship implements Serializable {
+    private static final long serialVersionUID = -5208493699331767391L;
     private Long id;
 
-    private String name;
+    private Long accountId;
 
-    private String description;
-
-    private Byte enabled;
+    private Long roleId;
 
     private Date createTime;
 
@@ -23,28 +23,20 @@ public class Role {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Long getAccountId() {
+        return accountId;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 
-    public String getDescription() {
-        return description;
+    public Long getRoleId() {
+        return roleId;
     }
 
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
-    }
-
-    public Byte getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Byte enabled) {
-        this.enabled = enabled;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     public Date getCreateTime() {
@@ -70,9 +62,8 @@ public class Role {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", description=").append(description);
-        sb.append(", enabled=").append(enabled);
+        sb.append(", accountId=").append(accountId);
+        sb.append(", roleId=").append(roleId);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append("]");

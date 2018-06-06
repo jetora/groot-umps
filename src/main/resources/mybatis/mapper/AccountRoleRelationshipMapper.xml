@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.flow.dao.mapper.AccountRoleRelationshipMapper" >
-  <resultMap id="BaseResultMap" type="org.flow.entity.AccountRoleRelationship" >
+  <resultMap id="BaseResultMap" type="org.flow.pojo.AccountRoleRelationship" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="account_id" property="accountId" jdbcType="BIGINT" />
     <result column="role_id" property="roleId" jdbcType="BIGINT" />
@@ -12,13 +12,13 @@
     delete from account_role_relationship
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="org.flow.entity.AccountRoleRelationship" >
+  <insert id="insert" parameterType="org.flow.pojo.AccountRoleRelationship" >
     insert into account_role_relationship (id, account_id, role_id, 
       create_time, update_time)
     values (#{id,jdbcType=BIGINT}, #{accountId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="org.flow.entity.AccountRoleRelationship" >
+  <update id="updateByPrimaryKey" parameterType="org.flow.pojo.AccountRoleRelationship" >
     update account_role_relationship
     set account_id = #{accountId,jdbcType=BIGINT},
       role_id = #{roleId,jdbcType=BIGINT},
@@ -30,6 +30,16 @@
     select id, account_id, role_id, create_time, update_time
     from account_role_relationship
     where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByAccountId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, account_id, role_id, create_time, update_time
+    from account_role_relationship
+    where account_id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByRoleId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, account_id, role_id, create_time, update_time
+    from account_role_relationship
+    where role_id = #{id,jdbcType=BIGINT}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select id, account_id, role_id, create_time, update_time

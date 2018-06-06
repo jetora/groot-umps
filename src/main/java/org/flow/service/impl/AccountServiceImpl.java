@@ -1,12 +1,19 @@
 package org.flow.service.impl;
 
 import org.flow.dao.mapper.AccountMapper;
-import org.flow.entity.Account;
+import org.flow.dao.mapper.AccountRoleRelationshipMapper;
+import org.flow.dao.mapper.RoleMapper;
+import org.flow.pojo.Account;
+import org.flow.pojo.AccountRoleRelationship;
+import org.flow.pojo.Role;
 import org.flow.service.AccountService;
+import org.flow.utils.common.utils.BeanUtils;
+import org.flow.vo.AccountVO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("accountService")
@@ -15,6 +22,10 @@ public class AccountServiceImpl implements AccountService {
 
     @Resource
     private AccountMapper accountMapper;
+    @Resource
+    private RoleMapper roleMapper;
+    @Resource
+    private AccountRoleRelationshipMapper accountRoleRelationshipMapper;
 
     @Override
     public List<Account> findAccountAll() {
@@ -23,7 +34,26 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<Account> findAccountAll(int offset, int pageSize,String ordername,String order,String username,int enabled) {
-        return accountMapper.selectByPager(offset,pageSize,ordername,order,username,enabled);
+        //return accountMapper.selectByPager(offset,pageSize,ordername,order,username,enabled);
+        List<Account> accountList = accountMapper.selectByPager(offset,pageSize,ordername,order,username,enabled);
+        List<AccountVO> accountVOS=BeanUtils.copyList(accountList,AccountVO.class);
+
+
+        for (AccountVO accountVO : accountVOS){
+            List<AccountRoleRelationship> accountRoleRelationshipList = null;
+            Role role = null;
+            List<Role> roles = new ArrayList<>();
+            accountRoleRelationshipList = accountRoleRelationshipMapper.selectByAccountId(accountVO.getId());
+            for (AccountRoleRelationship accountRoleRelationship : accountRoleRelationshipList){
+                role = roleMapper.selectByPrimaryKey(accountRoleRelationship.getRoleId());
+                if (null!=role){
+                    roles.add(role);
+                }
+            }
+            accountVO.setRoles(roles);
+        }
+
+        return accountList;
     }
 
     @Override

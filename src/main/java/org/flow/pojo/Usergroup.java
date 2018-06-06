@@ -1,8 +1,10 @@
-package org.flow.entity;
+package org.flow.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Usergroup {
+public class Usergroup implements Serializable {
+    private static final long serialVersionUID = 8418859785058887450L;
     private Long id;
 
     private String name;

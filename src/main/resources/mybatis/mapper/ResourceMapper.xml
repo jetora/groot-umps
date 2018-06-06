@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.flow.dao.mapper.ResourceMapper" >
-  <resultMap id="BaseResultMap" type="org.flow.entity.Resource" >
+  <resultMap id="BaseResultMap" type="org.flow.pojo.Resource" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="resource_id" property="resourceId" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -22,7 +22,7 @@
     delete from resource
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="org.flow.entity.Resource" >
+  <insert id="insert" parameterType="org.flow.pojo.Resource" >
     insert into resource (id, resource_id, name, 
       url, method, parent_id, 
       parent_ids, permission, data_target, 
@@ -36,7 +36,7 @@
       #{enabled,jdbcType=TINYINT}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="org.flow.entity.Resource" >
+  <update id="updateByPrimaryKey" parameterType="org.flow.pojo.Resource" >
     update resource
     set resource_id = #{resourceId,jdbcType=BIGINT},
       name = #{name,jdbcType=VARCHAR},

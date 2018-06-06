@@ -1,7 +1,7 @@
 package org.flow.service.impl;
 
 import org.flow.dao.mapper.PrivilegeMapper;
-import org.flow.entity.Privilege;
+import org.flow.pojo.Privilege;
 import org.flow.service.PrivilegeService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

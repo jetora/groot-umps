@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.flow.dao.mapper.OrganizationMapper" >
-  <resultMap id="BaseResultMap" type="org.flow.entity.Organization" >
+  <resultMap id="BaseResultMap" type="org.flow.pojo.Organization" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="organization_id" property="organizationId" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -14,13 +14,13 @@
     delete from organization
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="org.flow.entity.Organization" >
+  <insert id="insert" parameterType="org.flow.pojo.Organization" >
     insert into organization (id, organization_id, name, 
       parent_id, enabled)
     values (#{id,jdbcType=BIGINT}, #{organizationId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
       #{parentId,jdbcType=BIGINT}, #{enabled,jdbcType=TINYINT})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="org.flow.entity.Organization" >
+  <update id="updateByPrimaryKey" parameterType="org.flow.pojo.Organization" >
     update organization
     set organization_id = #{organizationId,jdbcType=BIGINT},
       name = #{name,jdbcType=VARCHAR},

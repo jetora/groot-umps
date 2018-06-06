@@ -1,10 +1,11 @@
 package org.flow.controller;
 
-import org.flow.entity.Privilege;
+import org.flow.pojo.Privilege;
 import org.flow.service.PrivilegeService;
 import org.flow.utils.common.enums.ErrorCode;
 import org.flow.utils.common.exception.ResourceNotFoundException;
 import org.flow.utils.common.utils.*;
+import org.flow.vo.PrivilegeVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +35,7 @@ public class PrivilegeController extends BaseController{
         }
     }
     //条件查询
+    /*
     @GetMapping(value = "/privilege/pageInfo",produces = { "application/json;charset=UTF-8" })
     public BootStrapResult<List<Privilege>> pageInfo(HttpServletRequest request){
         Map params = HttpUtil.getParams(request);
@@ -48,7 +50,7 @@ public class PrivilegeController extends BaseController{
 
         try {
             if (StringUtils.notNull(params.get("privilegename"))){
-                privilegename = String.valueOf(params.get("privilegename"));
+                privilegename = String.valueOf(params.get("name"));
             }
             if (StringUtils.notNull(params.get("enabled"))){
                 enabled = Integer.parseInt((String)params.get("enabled"));
@@ -64,6 +66,53 @@ public class PrivilegeController extends BaseController{
 
             privilegeList = privilegeService.findPrivilegeAll(offset,pageSize,ordername,order,privilegename,enabled);
             if (StringUtils.notNull(params.get("username")) || StringUtils.notNull(params.get("enabled"))){
+                //total = accountList.size();
+                total = privilegeService.findWhereTotal(ordername,order,privilegename,enabled);
+            } else {
+                total = privilegeService.findTotal();
+            }
+            result.setCode(HttpStatus.OK.toString());
+            result.setMsg("success");
+            result.setData(privilegeList);
+            result.setTotal(total);
+        }catch (Exception ex){
+            result.setCode(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+            result.setMsg("failed");
+            result.setData(privilegeList);
+            result.setTotal(total);
+        }
+
+        return result;
+    }*/
+    @GetMapping(value = "/privilege/pageInfo",produces = { "application/json;charset=UTF-8" })
+    public BootStrapResult<List<Privilege>> pageInfo(PrivilegeVO privilegeVO){
+        int total = 0;
+        String privilegename = "";
+        int enabled = -1;
+        String  ordername= "id";
+        String order = "asc";
+
+        List<Privilege> privilegeList = new ArrayList<>();
+        BootStrapResult<List<Privilege>> result= new BootStrapResult<>();
+
+        try {
+            if (StringUtils.notNull(privilegeVO.getName())){
+                privilegename = String.valueOf(privilegeVO.getName());
+            }
+            if (privilegeVO.getEnabled()!=null){
+                enabled = privilegeVO.getEnabled().intValue();
+            }
+            if (StringUtils.notNull(privilegeVO.getOrder())){
+                order = String.valueOf(privilegeVO.getOrder());
+            }
+            if (StringUtils.notNull(privilegeVO.getOrdername())){
+                ordername = String.valueOf(privilegeVO.getOrdername());
+            }
+            int pageSize = privilegeVO.getPageSize();
+            int offset = privilegeVO.getOffset();
+
+            privilegeList = privilegeService.findPrivilegeAll(offset,pageSize,ordername,order,privilegename,enabled);
+            if (StringUtils.notNull(privilegeVO.getName()) || privilegeVO.getEnabled()!=null){
                 //total = accountList.size();
                 total = privilegeService.findWhereTotal(ordername,order,privilegename,enabled);
             } else {

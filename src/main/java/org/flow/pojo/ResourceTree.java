@@ -1,4 +1,4 @@
-package org.flow.entity;
+package org.flow.pojo;
 
 public class ResourceTree extends TreeNode {
     private String name;

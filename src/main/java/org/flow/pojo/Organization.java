@@ -1,8 +1,10 @@
-package org.flow.entity;
+package org.flow.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Organization {
+public class Organization implements Serializable {
+    private static final long serialVersionUID = -3781711198069132468L;
     private Long id;
 
     private Long organizationId;

@@ -1,6 +1,6 @@
 package org.flow.utils.common.utils;
 
-import org.flow.entity.TreeNode;
+import org.flow.pojo.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;

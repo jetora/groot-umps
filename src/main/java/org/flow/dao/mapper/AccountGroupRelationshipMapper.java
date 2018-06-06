@@ -3,7 +3,7 @@ package org.flow.dao.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.flow.entity.AccountGroupRelationship;
+import org.flow.pojo.AccountGroupRelationship;
 
 @Mapper
 public interface AccountGroupRelationshipMapper {

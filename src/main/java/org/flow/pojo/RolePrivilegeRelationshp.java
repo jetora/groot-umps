@@ -1,15 +1,15 @@
-package org.flow.entity;
+package org.flow.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Privilege {
+public class RolePrivilegeRelationshp implements Serializable {
+    private static final long serialVersionUID = 8363354109978970292L;
     private Long id;
 
-    private String name;
+    private Long roleId;
 
-    private String description;
-
-    private Byte enabled;
+    private Long privilegeId;
 
     private Date createTime;
 
@@ -23,28 +23,20 @@ public class Privilege {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Long getRoleId() {
+        return roleId;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
-    public String getDescription() {
-        return description;
+    public Long getPrivilegeId() {
+        return privilegeId;
     }
 
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
-    }
-
-    public Byte getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Byte enabled) {
-        this.enabled = enabled;
+    public void setPrivilegeId(Long privilegeId) {
+        this.privilegeId = privilegeId;
     }
 
     public Date getCreateTime() {
@@ -70,9 +62,8 @@ public class Privilege {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", description=").append(description);
-        sb.append(", enabled=").append(enabled);
+        sb.append(", roleId=").append(roleId);
+        sb.append(", privilegeId=").append(privilegeId);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append("]");

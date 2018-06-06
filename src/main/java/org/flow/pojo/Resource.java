@@ -1,8 +1,10 @@
-package org.flow.entity;
+package org.flow.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Resource {
+public class Resource implements Serializable {
+    private static final long serialVersionUID = 945884462887672211L;
     private Long id;
 
     private Long resourceId;

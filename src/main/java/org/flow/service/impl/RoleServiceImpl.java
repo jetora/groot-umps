@@ -1,7 +1,7 @@
 package org.flow.service.impl;
 
 import org.flow.dao.mapper.RoleMapper;
-import org.flow.entity.Role;
+import org.flow.pojo.Role;
 import org.flow.service.RoleService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

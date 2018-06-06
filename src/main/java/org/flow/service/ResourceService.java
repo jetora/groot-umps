@@ -1,7 +1,7 @@
 package org.flow.service;
 
-import org.flow.entity.Resource;
-import org.flow.entity.ResourceTree;
+import org.flow.pojo.Resource;
+import org.flow.pojo.ResourceTree;
 
 import java.util.List;
 

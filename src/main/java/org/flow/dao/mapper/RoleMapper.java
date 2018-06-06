@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.flow.entity.Role;
+import org.flow.pojo.Role;
 @Mapper
 public interface RoleMapper {
     int deleteByPrimaryKey(Long id);

@@ -1,7 +1,7 @@
 package org.flow.service;
 
 
-import org.flow.entity.Privilege;
+import org.flow.pojo.Privilege;
 
 import java.util.List;
 

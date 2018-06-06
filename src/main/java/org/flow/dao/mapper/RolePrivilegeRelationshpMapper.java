@@ -3,7 +3,7 @@ package org.flow.dao.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.flow.entity.RolePrivilegeRelationshp;
+import org.flow.pojo.RolePrivilegeRelationshp;
 @Mapper
 public interface RolePrivilegeRelationshpMapper {
     int deleteByPrimaryKey(Long id);

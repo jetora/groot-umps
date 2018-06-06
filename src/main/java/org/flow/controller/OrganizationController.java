@@ -1,14 +1,12 @@
 package org.flow.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import org.flow.entity.Organization;
-import org.flow.entity.OrganizationTree;
+import org.flow.pojo.Organization;
+import org.flow.pojo.OrganizationTree;
 import org.flow.service.OrganizationService;
 import org.flow.utils.common.enums.ErrorCode;
 import org.flow.utils.common.exception.ResourceNotFoundException;
 import org.flow.utils.common.utils.*;
+import org.flow.vo.OrganizationVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +36,7 @@ public class OrganizationController extends BaseController{
         }
     }
     //条件查询
+    /*
     @GetMapping(value = "/organization/pageInfo",produces = { "application/json;charset=UTF-8" })
     public BootStrapResult<List<Organization>> pageInfo(HttpServletRequest request){
         Map params = HttpUtil.getParams(request);
@@ -55,10 +54,10 @@ public class OrganizationController extends BaseController{
 
         try {
             if (StringUtils.notNull(params.get("search_org_name"))){
-                search_org_name = String.valueOf(params.get("search_org_name"));
+                search_org_name = String.valueOf(params.get("name"));
             }
             if (StringUtils.notNull(params.get("search_org_id"))){
-                search_org_id = Long.parseLong((String)params.get("search_org_id"));
+                search_org_id = Long.parseLong((String)params.get("organizationId"));
             }
             if (StringUtils.notNull(params.get("enabled"))){
                 enabled = Integer.parseInt((String)params.get("enabled"));
@@ -74,6 +73,57 @@ public class OrganizationController extends BaseController{
 
             organizationList = organizationService.findOrganizationAll(offset,pageSize,ordername,order,search_org_name,search_org_id,enabled);
             if (StringUtils.notNull(params.get("username")) || StringUtils.notNull(params.get("enabled"))){
+                //total = accountList.size();
+                total = organizationService.findWhereTotal(ordername,order,search_org_name,search_org_id,enabled);
+            } else {
+                total = organizationService.findTotal();
+            }
+            result.setCode(HttpStatus.OK.toString());
+            result.setMsg("success");
+            result.setData(organizationList);
+            result.setTotal(total);
+        }catch (Exception ex){
+            result.setCode(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+            result.setMsg("failed");
+            result.setData(organizationList);
+            result.setTotal(total);
+        }
+
+        return result;
+    }*/
+    @GetMapping(value = "/organization/pageInfo",produces = { "application/json;charset=UTF-8" })
+    public BootStrapResult<List<Organization>> pageInfo(OrganizationVO organizationVO){
+        int total = 0;
+        String search_org_name = "";
+        Long search_org_id = 0L;
+        int enabled = -1;
+        String  ordername= "id";
+        String order = "asc";
+
+        List<Organization> organizationList = new ArrayList<>();
+        BootStrapResult<List<Organization>> result= new BootStrapResult<>();
+
+        try {
+            if (StringUtils.notNull(organizationVO.getName())){
+                search_org_name = String.valueOf(organizationVO.getName());
+            }
+            if (organizationVO.getOrganizationId()!=null){
+                search_org_id = organizationVO.getOrganizationId();
+            }
+            if (organizationVO.getEnabled()!=null){
+                enabled = organizationVO.getEnabled().intValue();
+            }
+            if (StringUtils.notNull(organizationVO.getOrder())){
+                order = String.valueOf(organizationVO.getOrder());
+            }
+            if (StringUtils.notNull(organizationVO.getOrdername())){
+                ordername = String.valueOf(organizationVO.getOrdername());
+            }
+            int pageSize = organizationVO.getPageSize();
+            int offset = organizationVO.getOffset();
+
+            organizationList = organizationService.findOrganizationAll(offset,pageSize,ordername,order,search_org_name,search_org_id,enabled);
+            if (StringUtils.notNull(organizationVO.getName()) || organizationVO.getOrganizationId()!=null ||organizationVO.getEnabled()!=null){
                 //total = accountList.size();
                 total = organizationService.findWhereTotal(ordername,order,search_org_name,search_org_id,enabled);
             } else {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.flow.dao.mapper.AccountGroupRelationshipMapper" >
-  <resultMap id="BaseResultMap" type="org.flow.entity.AccountGroupRelationship" >
+  <resultMap id="BaseResultMap" type="org.flow.pojo.AccountGroupRelationship" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="group_id" property="groupId" jdbcType="BIGINT" />
     <result column="account_id" property="accountId" jdbcType="BIGINT" />
@@ -13,7 +13,7 @@
     delete from account_group_relationship
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="org.flow.entity.AccountGroupRelationship" >
+  <insert id="insert" parameterType="org.flow.pojo.AccountGroupRelationship" >
     insert into account_group_relationship (id, group_id, account_id, 
       enabled, create_time, update_time
       )
@@ -21,7 +21,7 @@
       #{enabled,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="org.flow.entity.AccountGroupRelationship" >
+  <update id="updateByPrimaryKey" parameterType="org.flow.pojo.AccountGroupRelationship" >
     update account_group_relationship
     set group_id = #{groupId,jdbcType=BIGINT},
       account_id = #{accountId,jdbcType=BIGINT},

@@ -1,11 +1,10 @@
 package org.flow.controller;
 
-import org.flow.dao.mapper.RoleMapper;
-import org.flow.entity.Role;
+import org.flow.pojo.Role;
 import org.flow.service.RoleService;
 import org.flow.utils.common.enums.ErrorCode;
-import org.flow.utils.common.exception.ResourceNotFoundException;
 import org.flow.utils.common.utils.*;
+import org.flow.vo.RoleVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +34,7 @@ public class RoleController extends BaseController{
         }
     }
     //条件查询
+    /*
     @GetMapping(value = "/role/pageInfo",produces = { "application/json;charset=UTF-8" })
     public BootStrapResult<List<Role>> pageInfo(HttpServletRequest request){
         Map params = HttpUtil.getParams(request);
@@ -67,6 +67,53 @@ public class RoleController extends BaseController{
 
             roleList = roleService.findAccountAll(offset,pageSize,ordername,order,rolename,enabled);
             if (StringUtils.notNull(params.get("rolename")) || StringUtils.notNull(params.get("enabled"))){
+                //total = accountList.size();
+                total = roleService.findWhereTotal(ordername,order,rolename,enabled);
+            } else {
+                total = roleService.findTotal();
+            }
+            result.setCode(HttpStatus.OK.toString());
+            result.setMsg("success");
+            result.setData(roleList);
+            result.setTotal(total);
+        }catch (Exception ex){
+            result.setCode(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+            result.setMsg("failed");
+            result.setData(roleList);
+            result.setTotal(total);
+        }
+
+        return result;
+    }*/
+    @GetMapping(value = "/role/pageInfo",produces = { "application/json;charset=UTF-8" })
+    public BootStrapResult<List<Role>> pageInfo(RoleVO roleVO){
+        int total = 0;
+        String rolename = "";
+        int enabled = -1;
+        String  ordername= "id";
+        String order = "asc";
+
+        List<Role> roleList = new ArrayList<>();
+        BootStrapResult<List<Role>> result= new BootStrapResult<>();
+
+        try {
+            if (StringUtils.notNull(roleVO.getName())){
+                rolename = String.valueOf(roleVO.getName());
+            }
+            if (roleVO.getEnabled()!=null){
+                enabled = roleVO.getEnabled().intValue();
+            }
+            if (StringUtils.notNull(roleVO.getOrder())){
+                order = String.valueOf(roleVO.getOrder());
+            }
+            if (StringUtils.notNull(roleVO.getOrdername())){
+                ordername = String.valueOf(roleVO.getOrdername());
+            }
+            int pageSize = roleVO.getPageSize();
+            int offset = roleVO.getOffset();
+
+            roleList = roleService.findAccountAll(offset,pageSize,ordername,order,rolename,enabled);
+            if (StringUtils.notNull(roleVO.getName()) || roleVO.getEnabled()!=null){
                 //total = accountList.size();
                 total = roleService.findWhereTotal(ordername,order,rolename,enabled);
             } else {

@@ -1,13 +1,15 @@
-package org.flow.entity;
+package org.flow.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Account {
+public class Privilege implements Serializable {
+    private static final long serialVersionUID = -5935982599967947925L;
     private Long id;
 
-    private String username;
+    private String name;
 
-    private String password;
+    private String description;
 
     private Byte enabled;
 
@@ -23,20 +25,20 @@ public class Account {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
-    public String getPassword() {
-        return password;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
     public Byte getEnabled() {
@@ -70,8 +72,8 @@ public class Account {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", username=").append(username);
-        sb.append(", password=").append(password);
+        sb.append(", name=").append(name);
+        sb.append(", description=").append(description);
         sb.append(", enabled=").append(enabled);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);

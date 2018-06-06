@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.flow.entity.Resource;
+import org.flow.pojo.Resource;
 
 @Mapper
 public interface ResourceMapper {

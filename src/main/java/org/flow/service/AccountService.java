@@ -1,6 +1,6 @@
 package org.flow.service;
 
-import org.flow.entity.Account;
+import org.flow.pojo.Account;
 
 import java.util.List;
 

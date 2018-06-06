@@ -1,9 +1,11 @@
-package org.flow.entity;
+package org.flow.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-public class AccountRoleEntity {
+public class Account implements Serializable {
+
+    private static final long serialVersionUID = 5219194055022962509L;
     private Long id;
 
     private String username;
@@ -15,8 +17,6 @@ public class AccountRoleEntity {
     private Date createTime;
 
     private Date updateTime;
-
-    private List<Role> roles;
 
     public Long getId() {
         return id;
@@ -31,7 +31,7 @@ public class AccountRoleEntity {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username == null ? null : username.trim();
     }
 
     public String getPassword() {
@@ -39,7 +39,7 @@ public class AccountRoleEntity {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 
     public Byte getEnabled() {
@@ -66,11 +66,19 @@ public class AccountRoleEntity {
         this.updateTime = updateTime;
     }
 
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", username=").append(username);
+        sb.append(", password=").append(password);
+        sb.append(", enabled=").append(enabled);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", updateTime=").append(updateTime);
+        sb.append("]");
+        return sb.toString();
     }
 }

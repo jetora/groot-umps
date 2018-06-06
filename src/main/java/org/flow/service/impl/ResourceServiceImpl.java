@@ -1,11 +1,10 @@
 package org.flow.service.impl;
 
 import org.flow.dao.mapper.ResourceMapper;
-import org.flow.entity.Resource;
-import org.flow.entity.ResourceTree;
+import org.flow.pojo.Resource;
+import org.flow.pojo.ResourceTree;
 import org.flow.service.ResourceService;
 import org.flow.utils.common.utils.TreeUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

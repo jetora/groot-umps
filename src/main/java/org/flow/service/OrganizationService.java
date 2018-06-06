@@ -1,8 +1,8 @@
 package org.flow.service;
 
 
-import org.flow.entity.Organization;
-import org.flow.entity.OrganizationTree;
+import org.flow.pojo.Organization;
+import org.flow.pojo.OrganizationTree;
 
 import java.util.List;
 

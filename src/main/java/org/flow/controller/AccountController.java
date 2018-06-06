@@ -1,11 +1,11 @@
 package org.flow.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import org.flow.entity.Account;
+import org.flow.pojo.Account;
 import org.flow.service.AccountService;
 import org.flow.utils.common.enums.ErrorCode;
 import org.flow.utils.common.exception.ResourceNotFoundException;
 import org.flow.utils.common.utils.*;
+import org.flow.vo.AccountVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +36,7 @@ public class AccountController extends BaseController{
         }
     }
     //条件查询
+    /*
     @GetMapping(value = "/account/pageInfo",produces = { "application/json;charset=UTF-8" })
     public BootStrapResult<List<Account>> pageInfo(HttpServletRequest request){
         Map params = HttpUtil.getParams(request);
@@ -85,7 +86,54 @@ public class AccountController extends BaseController{
         }
 
         return result;
+    }*/
+    @GetMapping(value = "/account/pageInfo",produces = { "application/json;charset=UTF-8" })
+    public BootStrapResult<List<Account>> pageInfo(AccountVO accountVO){
+        int total = 0;
+        String username = "";
+        int enabled = -1;
+        String  ordername= "id";
+        String order = "asc";
+
+        List<Account> accountList = new ArrayList<>();
+        BootStrapResult<List<Account>> result= new BootStrapResult<>();
+
+        try {
+            if (StringUtils.notNull(accountVO.getUsername())){
+                username = String.valueOf(accountVO.getUsername());
+            }
+            if (accountVO.getEnabled()!=null){
+                enabled = accountVO.getEnabled().intValue();
+            }
+            if (StringUtils.notNull(accountVO.getOrder())){
+                order = String.valueOf(accountVO.getOrder());
+            }
+            if (StringUtils.notNull(accountVO.getOrdername())){
+                ordername = String.valueOf(accountVO.getOrdername());
+            }
+            int pageSize = accountVO.getPageSize();
+            int offset = accountVO.getOffset();
+
+            accountList = accountService.findAccountAll(offset,pageSize,ordername,order,username,enabled);
+            if (StringUtils.notNull(accountVO.getUsername()) || accountVO.getEnabled()!=null){
+                //total = accountList.size();
+                total = accountService.findWhereTotal(ordername,order,username,enabled);
+            } else {
+                total = accountService.findTotal();
+            }
+            result.setCode(HttpStatus.OK.toString());
+            result.setMsg("success");
+            result.setData(accountList);
+            result.setTotal(total);
+        }catch (Exception ex){
+            result.setCode(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+            result.setMsg("failed");
+            result.setData(accountList);
+            result.setTotal(total);
+        }
+        return result;
     }
+
     //根据id查询
     @GetMapping(value = "/account/{id}", produces = { "application/json;charset=UTF-8" })
     public ResponseResult<Account> findOne(@PathVariable Long id){

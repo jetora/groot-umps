@@ -1,11 +1,11 @@
 package org.flow.controller;
 
-import org.flow.entity.Account;
-import org.flow.entity.ResourceTree;
+import org.flow.pojo.ResourceTree;
 import org.flow.service.ResourceService;
 import org.flow.utils.common.enums.ErrorCode;
 import org.flow.utils.common.exception.ResourceNotFoundException;
 import org.flow.utils.common.utils.*;
+import org.flow.vo.ResourceVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,9 +24,9 @@ public class ResourceController extends BaseController{
 
     //查询所有
     @GetMapping(value = "/resource",produces = { "application/json;charset=UTF-8" })
-    public ResponseResult<List<org.flow.entity.Resource>> findAll() {
-        List<org.flow.entity.Resource> resourceList = new ArrayList<>();
-        ResponseResult<List<org.flow.entity.Resource>> result= new ResponseResult<>();
+    public ResponseResult<List<org.flow.pojo.Resource>> findAll() {
+        List<org.flow.pojo.Resource> resourceList = new ArrayList<>();
+        ResponseResult<List<org.flow.pojo.Resource>> result= new ResponseResult<>();
         try {
             resourceList = resourceService.findResourceAll();
             return ResultUtil.buildResult(ErrorCode.OK.getCode(),ErrorCode.OK.getMessage(),resourceList);
@@ -36,8 +36,9 @@ public class ResourceController extends BaseController{
         }
     }
     //条件查询
+    /*
     @GetMapping(value = "/resource/pageInfo",produces = { "application/json;charset=UTF-8" })
-    public BootStrapResult<List<org.flow.entity.Resource>> pageInfo(HttpServletRequest request){
+    public BootStrapResult<List<org.flow.pojo.Resource>> pageInfo(HttpServletRequest request){
         Map params = HttpUtil.getParams(request);
         //List<Account> accounts =accountService.findAccountAll();
         //int total = accounts.size();
@@ -48,15 +49,15 @@ public class ResourceController extends BaseController{
         String  ordername = "id";
         String order = "asc";
 
-        List<org.flow.entity.Resource> resourceList = new ArrayList<>();
-        BootStrapResult<List<org.flow.entity.Resource>> result= new BootStrapResult<>();
+        List<org.flow.pojo.Resource> resourceList = new ArrayList<>();
+        BootStrapResult<List<org.flow.pojo.Resource>> result= new BootStrapResult<>();
 
         try {
-            if (StringUtils.notNull(params.get("resource_name"))){
-                resource_name = String.valueOf(params.get("resource_name"));
+            if (StringUtils.notNull(params.get("name"))){
+                resource_name = String.valueOf(params.get("name"));
             }
-            if (StringUtils.notNull(params.get("resource_type"))){
-                resource_type = Integer.parseInt((String)params.get("resource_type"));
+            if (StringUtils.notNull(params.get("type"))){
+                resource_type = Integer.parseInt((String)params.get("type"));
             }
             if (StringUtils.notNull(params.get("enabled"))){
                 enabled = Integer.parseInt((String)params.get("enabled"));
@@ -88,6 +89,56 @@ public class ResourceController extends BaseController{
             result.setTotal(total);
         }
         return result;
+    }*/
+    @GetMapping(value = "/resource/pageInfo",produces = { "application/json;charset=UTF-8" })
+    public BootStrapResult<List<org.flow.pojo.Resource>> pageInfo(ResourceVO resourceVO){
+        int total = 0;
+        String resource_name = "";
+        int resource_type = -1;
+        int enabled = -1;
+        String  ordername = "id";
+        String order = "asc";
+
+        List<org.flow.pojo.Resource> resourceList = new ArrayList<>();
+        BootStrapResult<List<org.flow.pojo.Resource>> result= new BootStrapResult<>();
+
+        try {
+            if (StringUtils.notNull(resourceVO.getName())){
+                resource_name = String.valueOf(resourceVO.getName());
+            }
+            if (resourceVO.getType()!=null){
+                resource_type = resourceVO.getType().intValue();
+            }
+            if (resourceVO.getEnabled()!=null){
+                enabled = resourceVO.getEnabled().intValue();
+            }
+            if (StringUtils.notNull(resourceVO.getOrder())){
+                order = String.valueOf(resourceVO.getOrder());
+            }
+            if (StringUtils.notNull(resourceVO.getOrdername())){
+                ordername = String.valueOf(resourceVO.getOrdername());
+            }
+            int pageSize = resourceVO.getPageSize();
+            int offset = resourceVO.getOffset();
+
+            resourceList = resourceService.findResourceAll(offset,pageSize,ordername,order,resource_name,resource_type,enabled);
+            if (StringUtils.notNull(resourceVO.getName()) || resourceVO.getType()!=null|| resourceVO.getEnabled()!=null){
+                //total = accountList.size();
+                total = resourceService.findWhereTotal(ordername,order,resource_name,resource_type,enabled);
+            } else {
+                total = resourceService.findTotal();
+            }
+            result.setCode(HttpStatus.OK.toString());
+            result.setMsg("success");
+            result.setData(resourceList);
+            result.setTotal(total);
+        }catch (Exception ex){
+            result.setCode(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+            result.setMsg("failed");
+            result.setData(resourceList);
+            result.setTotal(total);
+        }
+        return result;
     }
     @GetMapping(value = "/resourcetree",produces = { "application/json;charset=UTF-8" })
     public ResponseResult<List<ResourceTree>> findOraTree() {
@@ -103,9 +154,9 @@ public class ResourceController extends BaseController{
     }
     //根据id查询
     @GetMapping(value = "/resource/{id}", produces = { "application/json;charset=UTF-8" })
-    public ResponseResult<org.flow.entity.Resource> findOne(@PathVariable Long id){
-        ResponseResult<org.flow.entity.Resource> result = new ResponseResult<>();
-        org.flow.entity.Resource resource;
+    public ResponseResult<org.flow.pojo.Resource> findOne(@PathVariable Long id){
+        ResponseResult<org.flow.pojo.Resource> result = new ResponseResult<>();
+        org.flow.pojo.Resource resource;
         try {
             resource = resourceService.findResourceById(id);
             return ResultUtil.buildResult(ErrorCode.OK.getCode(),ErrorCode.OK.getMessage(),resource);
@@ -116,8 +167,8 @@ public class ResourceController extends BaseController{
     }
     //创建Account
     @PostMapping(value = "/resource", produces = { "application/json;charset=UTF-8" })
-    public ResponseResult<org.flow.entity.Resource> createAccount(@RequestBody org.flow.entity.Resource resource){
-        ResponseResult<org.flow.entity.Resource> result = new ResponseResult<>();
+    public ResponseResult<org.flow.pojo.Resource> createAccount(@RequestBody org.flow.pojo.Resource resource){
+        ResponseResult<org.flow.pojo.Resource> result = new ResponseResult<>();
         try {
             resourceService.createResource(resource);
             return ResultUtil.buildResult(ErrorCode.CREATED.getCode(),ErrorCode.CREATED.getMessage());
@@ -128,8 +179,8 @@ public class ResourceController extends BaseController{
     }
     //修改Account
     @PutMapping(value = "/resource", produces = { "application/json;charset=UTF-8" })
-    public ResponseResult<org.flow.entity.Resource> updateAccount(@RequestBody org.flow.entity.Resource resource){
-        ResponseResult<org.flow.entity.Resource> result = new ResponseResult<>();
+    public ResponseResult<org.flow.pojo.Resource> updateAccount(@RequestBody org.flow.pojo.Resource resource){
+        ResponseResult<org.flow.pojo.Resource> result = new ResponseResult<>();
         if (resource.getId()==null){
             return ResultUtil.buildResult(ErrorCode.NOT_ACCEPTABLE.getCode(),ErrorCode.NOT_ACCEPTABLE.getMessage());
         }
@@ -143,8 +194,8 @@ public class ResourceController extends BaseController{
     }
     //修改Account
     @PatchMapping(value = "/resource", produces = { "application/json;charset=UTF-8" })
-    public ResponseResult<org.flow.entity.Resource> updatePartAccount(@RequestBody org.flow.entity.Resource resource){
-        ResponseResult<org.flow.entity.Resource> result = new ResponseResult<>();
+    public ResponseResult<org.flow.pojo.Resource> updatePartAccount(@RequestBody org.flow.pojo.Resource resource){
+        ResponseResult<org.flow.pojo.Resource> result = new ResponseResult<>();
         if (resource.getId()==null){
             return ResultUtil.buildResult(ErrorCode.NOT_ACCEPTABLE.getCode(),ErrorCode.NOT_ACCEPTABLE.getMessage());
         }
@@ -158,8 +209,8 @@ public class ResourceController extends BaseController{
     }
     //删除Account
     @DeleteMapping(value = "/resource/{id}", produces = { "application/json;charset=UTF-8" })
-    public ResponseResult<org.flow.entity.Resource> deleteAccount(@PathVariable Long id){
-        ResponseResult<org.flow.entity.Resource> result = new ResponseResult<>();
+    public ResponseResult<org.flow.pojo.Resource> deleteAccount(@PathVariable Long id){
+        ResponseResult<org.flow.pojo.Resource> result = new ResponseResult<>();
         try {
             resourceService.deleteResourceById(id);
             return ResultUtil.buildResult(ErrorCode.OK.getCode(),ErrorCode.OK.getMessage());

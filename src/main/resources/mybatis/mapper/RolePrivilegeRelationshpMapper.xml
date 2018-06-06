@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.flow.dao.mapper.RolePrivilegeRelationshpMapper" >
-  <resultMap id="BaseResultMap" type="org.flow.entity.RolePrivilegeRelationshp" >
+  <resultMap id="BaseResultMap" type="org.flow.pojo.RolePrivilegeRelationshp" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="role_id" property="roleId" jdbcType="BIGINT" />
     <result column="privilege_id" property="privilegeId" jdbcType="BIGINT" />
@@ -12,13 +12,13 @@
     delete from role_privilege_relationshp
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="org.flow.entity.RolePrivilegeRelationshp" >
+  <insert id="insert" parameterType="org.flow.pojo.RolePrivilegeRelationshp" >
     insert into role_privilege_relationshp (id, role_id, privilege_id, 
       create_time, update_time)
     values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{privilegeId,jdbcType=BIGINT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="org.flow.entity.RolePrivilegeRelationshp" >
+  <update id="updateByPrimaryKey" parameterType="org.flow.pojo.RolePrivilegeRelationshp" >
     update role_privilege_relationshp
     set role_id = #{roleId,jdbcType=BIGINT},
       privilege_id = #{privilegeId,jdbcType=BIGINT},

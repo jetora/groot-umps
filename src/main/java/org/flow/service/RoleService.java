@@ -1,6 +1,6 @@
 package org.flow.service;
 
-import org.flow.entity.Role;
+import org.flow.pojo.Role;
 
 import java.util.List;
 

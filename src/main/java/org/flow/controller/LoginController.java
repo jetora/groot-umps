@@ -1,12 +1,11 @@
 package org.flow.controller;
 
-import org.flow.entity.Account;
+import org.flow.pojo.Account;
 import org.flow.service.AccountService;
 import org.flow.utils.common.enums.ErrorCode;
 import org.flow.utils.common.exception.ResourceNotFoundException;
 import org.flow.utils.common.utils.ResponseResult;
 import org.flow.utils.common.utils.ResultUtil;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 

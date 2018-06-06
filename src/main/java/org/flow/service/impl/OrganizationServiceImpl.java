@@ -1,8 +1,8 @@
 package org.flow.service.impl;
 
 import org.flow.dao.mapper.OrganizationMapper;
-import org.flow.entity.OrganizationTree;
-import org.flow.entity.Organization;
+import org.flow.pojo.OrganizationTree;
+import org.flow.pojo.Organization;
 import org.flow.service.OrganizationService;
 import org.flow.utils.common.utils.TreeUtil;
 import org.springframework.stereotype.Service;

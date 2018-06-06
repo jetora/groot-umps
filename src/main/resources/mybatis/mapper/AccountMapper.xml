@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.flow.dao.mapper.AccountMapper" >
-  <resultMap id="BaseResultMap" type="org.flow.entity.Account" >
+  <resultMap id="BaseResultMap" type="org.flow.pojo.Account" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
@@ -9,12 +9,11 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from account
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="org.flow.entity.Account" >
+  <insert id="insert" parameterType="org.flow.pojo.Account" >
     insert into account (username, password,
       enabled
       )
@@ -22,19 +21,19 @@
       #{enabled,jdbcType=TINYINT}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="org.flow.entity.Account" >
+  <update id="updateByPrimaryKey" parameterType="org.flow.pojo.Account" >
     update account
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       enabled = #{enabled,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateEnabledByPrimaryKey" parameterType="org.flow.entity.Account" >
+  <update id="updateEnabledByPrimaryKey" parameterType="org.flow.pojo.Account" >
     update account
     set enabled = 1
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateDisabledByPrimaryKey" parameterType="org.flow.entity.Account" >
+  <update id="updateDisabledByPrimaryKey" parameterType="org.flow.pojo.Account" >
     update account
     set enabled = 2
     where id = #{id,jdbcType=BIGINT}

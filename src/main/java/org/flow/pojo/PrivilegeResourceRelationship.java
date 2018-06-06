@@ -1,13 +1,17 @@
-package org.flow.entity;
+package org.flow.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class RolePrivilegeRelationshp {
+public class PrivilegeResourceRelationship implements Serializable {
+    private static final long serialVersionUID = 5434155251007586997L;
     private Long id;
 
-    private Long roleId;
-
     private Long privilegeId;
+
+    private Long resourceId;
+
+    private Byte enabled;
 
     private Date createTime;
 
@@ -21,20 +25,28 @@ public class RolePrivilegeRelationshp {
         this.id = id;
     }
 
-    public Long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
-
     public Long getPrivilegeId() {
         return privilegeId;
     }
 
     public void setPrivilegeId(Long privilegeId) {
         this.privilegeId = privilegeId;
+    }
+
+    public Long getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(Long resourceId) {
+        this.resourceId = resourceId;
+    }
+
+    public Byte getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Byte enabled) {
+        this.enabled = enabled;
     }
 
     public Date getCreateTime() {
@@ -60,8 +72,9 @@ public class RolePrivilegeRelationshp {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", roleId=").append(roleId);
         sb.append(", privilegeId=").append(privilegeId);
+        sb.append(", resourceId=").append(resourceId);
+        sb.append(", enabled=").append(enabled);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append("]");

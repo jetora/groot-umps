@@ -58,7 +58,7 @@ var queryParams = function (params) {
         offset: params.offset,
         order: params.order,
         ordername: params.sort,
-        rolename: $("#search_rolename").val(),
+        name: $("#search_rolename").val(),
         enabled: $("#enabled_type").val()
     };
     //$.each(params, function (index, value) {

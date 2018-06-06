@@ -60,8 +60,8 @@ var queryParams = function (params) {
         offset: params.offset,
         order: params.order,
         ordername: params.sort,
-        search_org_name: $("#search_org_name").val(),
-        search_org_id: $("#search_org_id").val(),
+        name: $("#search_org_name").val(),
+        organizationId: $("#search_org_id").val(),
         enabled: $("#enabled_type").val()
     };
     //$.each(params, function (index, value) {

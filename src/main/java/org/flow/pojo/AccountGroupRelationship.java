@@ -1,13 +1,15 @@
-package org.flow.entity;
+package org.flow.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class RoleGroupRelationship {
+public class AccountGroupRelationship implements Serializable {
+    private static final long serialVersionUID = 5535782221548790828L;
     private Long id;
 
     private Long groupId;
 
-    private Long roleId;
+    private Long accountId;
 
     private Byte enabled;
 
@@ -31,12 +33,12 @@ public class RoleGroupRelationship {
         this.groupId = groupId;
     }
 
-    public Long getRoleId() {
-        return roleId;
+    public Long getAccountId() {
+        return accountId;
     }
 
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 
     public Byte getEnabled() {
@@ -71,7 +73,7 @@ public class RoleGroupRelationship {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", groupId=").append(groupId);
-        sb.append(", roleId=").append(roleId);
+        sb.append(", accountId=").append(accountId);
         sb.append(", enabled=").append(enabled);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
