@@ -36,6 +36,14 @@
     from account_role_relationship
     where account_id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectByAccountIds" resultType="java.lang.Long" >
+    select distinct role_id
+    from account_role_relationship
+    where 1=1 and account_id in
+      <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+          #{item}
+      </foreach>
+  </select>
   <select id="selectByRoleId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select id, account_id, role_id, create_time, update_time
     from account_role_relationship

@@ -12,8 +12,11 @@ public interface RoleMapper {
     int insert(Role record);
 
     Role selectByPrimaryKey(Long id);
+    List<Role> selectByRoleIds(List<Long> roleids);
 
     List<Role> selectAll();
+
+    List<Role> selectByRelAccountId(Long id);
 
     int updateByPrimaryKey(Role record);
 

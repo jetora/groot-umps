@@ -184,6 +184,7 @@ function optFormatter(value, row) {
     var edit_permit = row.editPermit;
     var remove_permit = row.removePermit;
     ret_butns.push('<a class="edit" href="javascript:void(0)" title="edit"><i class="fa fa-edit"></i></a> ');
+    ret_butns.push('<a class="roles" href="javascript:void(0)" title="roles"><i class="fa fa-book"></i></a> ');
     ret_butns.push('<a class="remove" href="javascript:void(0)" title="delete"><i class="fa fa-trash-o"></i></a> ');
     if (ret_butns.length > 0) {
         return ret_butns.join('');
@@ -207,6 +208,10 @@ function staFormatter(value, row, index) {
 window.optEvents = {
     'click .edit': function (e, value, row) {
         editData(row);
+    },
+    'click .roles': function (e, value, row) {
+        //alert(row)
+        relData(row);
     },
     'click .remove': function (e, value, row) {
         //var message = "确定要删除项目：" + row.asset_title + "?";
@@ -437,6 +442,22 @@ function updDatabatch() {
             }
         })
     }
+}
+//
+function relData(row) {
+    //$('#modalTitle').text('用户角色关系');
+    //var accountroleModal = $('#accountroleModal');
 
+    //accountroleModal.modal('show');
+    //iframe层-多媒体
 
+    layer.open({
+        type: 2,
+        title: false,
+        area: ['630px', '360px'],
+        shade: 0.8,
+        closeBtn: 0,
+        shadeClose: true,
+        content: '//player.youku.com/embed/XMjY3MzgzODg0'
+    });
 }

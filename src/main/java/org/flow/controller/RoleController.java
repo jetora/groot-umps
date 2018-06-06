@@ -112,7 +112,7 @@ public class RoleController extends BaseController{
             int pageSize = roleVO.getPageSize();
             int offset = roleVO.getOffset();
 
-            roleList = roleService.findAccountAll(offset,pageSize,ordername,order,rolename,enabled);
+            roleList = roleService.findRoleAll(offset,pageSize,ordername,order,rolename,enabled);
             if (StringUtils.notNull(roleVO.getName()) || roleVO.getEnabled()!=null){
                 //total = accountList.size();
                 total = roleService.findWhereTotal(ordername,order,rolename,enabled);
@@ -140,6 +140,19 @@ public class RoleController extends BaseController{
         try {
             role = roleService.findRoleById(id);
             return ResultUtil.buildResult(ErrorCode.OK.getCode(),ErrorCode.OK.getMessage(),role);
+        }catch (Exception ex){
+            logger.info("Account not founded...",ex);
+            return ResultUtil.buildErrorResult(ErrorCode.NOT_FOUND.getCode(),ErrorCode.NOT_FOUND.getMessage());
+        }
+    }
+    //根据id查询关系表
+    @GetMapping(value = "/accountrole/{id}", produces = { "application/json;charset=UTF-8" })
+    public ResponseResult<List<Role>> findRoleRel(@PathVariable Long id){
+        ResponseResult<List<Role>> result = new ResponseResult<>();
+        List<Role> roles;
+        try {
+            roles = roleService.findRelByAccountId(id);
+            return ResultUtil.buildResult(ErrorCode.OK.getCode(),ErrorCode.OK.getMessage(),roles);
         }catch (Exception ex){
             logger.info("Account not founded...",ex);
             return ResultUtil.buildErrorResult(ErrorCode.NOT_FOUND.getCode(),ErrorCode.NOT_FOUND.getMessage());

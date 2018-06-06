@@ -9,6 +9,7 @@ import org.flow.pojo.Role;
 import org.flow.service.AccountService;
 import org.flow.utils.common.utils.BeanUtils;
 import org.flow.vo.AccountVO;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +33,7 @@ public class AccountServiceImpl implements AccountService {
         return accountMapper.selectAll();
     }
 
+    /*
     @Override
     public List<Account> findAccountAll(int offset, int pageSize,String ordername,String order,String username,int enabled) {
         //return accountMapper.selectByPager(offset,pageSize,ordername,order,username,enabled);
@@ -40,11 +42,11 @@ public class AccountServiceImpl implements AccountService {
 
 
         for (AccountVO accountVO : accountVOS){
-            List<AccountRoleRelationship> accountRoleRelationshipList = null;
+            List<AccountRoleRelService> accountRoleRelationshipList = null;
             Role role = null;
             List<Role> roles = new ArrayList<>();
             accountRoleRelationshipList = accountRoleRelationshipMapper.selectByAccountId(accountVO.getId());
-            for (AccountRoleRelationship accountRoleRelationship : accountRoleRelationshipList){
+            for (AccountRoleRelService accountRoleRelationship : accountRoleRelationshipList){
                 role = roleMapper.selectByPrimaryKey(accountRoleRelationship.getRoleId());
                 if (null!=role){
                     roles.add(role);
@@ -53,6 +55,26 @@ public class AccountServiceImpl implements AccountService {
             accountVO.setRoles(roles);
         }
 
+        return accountList;
+    }
+    */
+    @Override
+    public List<Account> findAccountAll(int offset, int pageSize,String ordername,String order,String username,int enabled) {
+        //return accountMapper.selectByPager(offset,pageSize,ordername,order,username,enabled);
+        List<Account> accountList = accountMapper.selectByPager(offset,pageSize,ordername,order,username,enabled);
+        /*
+        List<AccountVO> accountVOS=BeanUtils.copyList(accountList,AccountVO.class);
+        for (AccountVO accountVO : accountVOS){
+            List<Long> accountids = new ArrayList<>();
+            accountids.add(accountVO.getId());
+            List<Long> roleids = new ArrayList<>();
+            roleids = accountRoleRelationshipMapper.selectByAccountIds(accountids);
+            List<Role> roleList = new ArrayList<>();
+            if (roleids.size()!=0){
+                roleList = roleMapper.selectByRoleIds(roleids);
+            }
+            accountVO.setRoles(roleList);
+        }*/
         return accountList;
     }
 

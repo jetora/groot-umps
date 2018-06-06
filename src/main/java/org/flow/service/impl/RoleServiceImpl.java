@@ -23,7 +23,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<Role> findAccountAll(int offset, int pageSize, String ordername, String order, String rolename, int enabled) {
+    public List<Role> findRoleAll(int offset, int pageSize, String ordername, String order, String rolename, int enabled) {
         return roleMapper.selectByPager(offset,pageSize,ordername,order,rolename,enabled);
     }
 
@@ -55,5 +55,10 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public int deleteRoleById(Long id) {
         return roleMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Role> findRelByAccountId(Long id) {
+        return roleMapper.selectByRelAccountId(id);
     }
 }

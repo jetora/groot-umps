@@ -13,6 +13,7 @@ public interface AccountRoleRelationshipMapper {
     AccountRoleRelationship selectByPrimaryKey(Long id);
 
     List<AccountRoleRelationship> selectByAccountId(Long id);
+    List<Long> selectByAccountIds(List<Long> accountids);
 
     List<AccountRoleRelationship> selectByRoleId(Long id);
 

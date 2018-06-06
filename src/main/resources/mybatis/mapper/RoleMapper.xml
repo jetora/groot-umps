@@ -32,6 +32,12 @@
     from role
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectByRelAccountId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select t2.id,name,description,t2.create_time,t2.update_time
+    from account_role_relationship t1,role t2
+    where t1.role_id =t2.id
+    and account_id=#{id,jdbcType=BIGINT}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select id, name, description, enabled, create_time, update_time
     from role
@@ -39,6 +45,14 @@
   <select id="selectCount" resultType="java.lang.Integer" >
     select count(id)
     from role
+  </select>
+  <select id="selectByRoleIds" resultMap="BaseResultMap" >
+    select id, name, description, enabled, create_time, update_time
+    from role
+    where 1=1 and id in
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+      #{item}
+    </foreach>
   </select>
   <select id="selectByPager" resultMap="BaseResultMap">
     SELECT t1.id, t1.name, t1.description, t1.enabled, t1.create_time, t1.update_time FROM role AS t1
