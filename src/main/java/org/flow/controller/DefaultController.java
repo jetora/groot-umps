@@ -26,6 +26,11 @@ public class DefaultController extends BaseController {
         return "role/role";
     }
 
+    @GetMapping("/accrole")
+    public String AccRoleManage(){
+        return "accrole/accrole";
+    }
+
     @GetMapping("/resource")
     public String ResourceManage(){
         return "resource/resource";

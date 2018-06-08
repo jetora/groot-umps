@@ -1,0 +1,248 @@
+18-06-07.03:40:46.130 [restartedMain   ] INFO  SpringbootApplication   - Starting SpringbootApplication on Inspiron-dw with PID 18584 (/export/workspace/jcode/groot-umps/target/classes started by root in /export/workspace/jcode/groot-umps)
+18-06-07.03:40:46.132 [restartedMain   ] INFO  SpringbootApplication   - The following profiles are active: dev
+18-06-07.03:40:46.401 [restartedMain   ] INFO  AnnotationConfigServletWebServerApplicationContext  - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@479dbd3d: startup date [Thu Jun 07 03:40:46 CST 2018]; root of context hierarchy
+18-06-07.03:40:46.847 [restartedMain   ] INFO  RepositoryConfigurationDelegate  - Multiple Spring Data modules found, entering strict repository configuration mode!
+18-06-07.03:40:46.861 [restartedMain   ] INFO  RepositoryConfigurationDelegate  - Multiple Spring Data modules found, entering strict repository configuration mode!
+18-06-07.03:40:47.064 [restartedMain   ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker  - Bean 'org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration' of type [org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration$$EnhancerBySpringCGLIB$$6a617af6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+18-06-07.03:40:47.108 [restartedMain   ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker  - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a3f5bcc8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+18-06-07.03:40:47.362 [restartedMain   ] INFO  TomcatWebServer         - Tomcat initialized with port(s): 8080 (http)
+18-06-07.03:40:47.369 [restartedMain   ] INFO  Http11NioProtocol       - Initializing ProtocolHandler ["http-nio-8080"]
+18-06-07.03:40:47.374 [restartedMain   ] INFO  StandardService         - Starting service [Tomcat]
+18-06-07.03:40:47.374 [restartedMain   ] INFO  StandardEngine          - Starting Servlet Engine: Apache Tomcat/8.5.29
+18-06-07.03:40:47.376 [localhost-startStop-1] INFO  AprLifecycleListener    - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib]
+18-06-07.03:40:47.420 [localhost-startStop-1] INFO  [/]                     - Initializing Spring embedded WebApplicationContext
+18-06-07.03:40:47.420 [localhost-startStop-1] INFO  ContextLoader           - Root WebApplicationContext: initialization completed in 1019 ms
+18-06-07.03:40:47.506 [localhost-startStop-1] INFO  ServletRegistrationBean  - Servlet statViewServlet mapped to [/druid/*]
+18-06-07.03:40:47.507 [localhost-startStop-1] INFO  ServletRegistrationBean  - Servlet dispatcherServlet mapped to [/]
+18-06-07.03:40:47.508 [localhost-startStop-1] INFO  FilterRegistrationBean  - Mapping filter: 'characterEncodingFilter' to: [/*]
+18-06-07.03:40:47.508 [localhost-startStop-1] INFO  FilterRegistrationBean  - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+18-06-07.03:40:47.508 [localhost-startStop-1] INFO  FilterRegistrationBean  - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+18-06-07.03:40:47.508 [localhost-startStop-1] INFO  FilterRegistrationBean  - Mapping filter: 'requestContextFilter' to: [/*]
+18-06-07.03:40:47.509 [localhost-startStop-1] INFO  FilterRegistrationBean  - Mapping filter: 'webStatFilter' to urls: [/*]
+18-06-07.03:40:47.509 [localhost-startStop-1] INFO  RegistrationBean        - Filter characterEncodingFilter was not registered (possibly already registered?)
+18-06-07.03:40:47.509 [localhost-startStop-1] INFO  FilterRegistrationBean  - Mapping filter: 'corsFilter' to: [/*]
+18-06-07.03:40:47.657 [restartedMain   ] INFO  DruidDataSource         - {dataSource-1} inited
+18-06-07.03:40:47.732 [restartedMain   ] INFO  LocalContainerEntityManagerFactoryBean  - Building JPA container EntityManagerFactory for persistence unit 'default'
+18-06-07.03:40:47.740 [restartedMain   ] INFO  LogHelper               - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+18-06-07.03:40:47.787 [restartedMain   ] INFO  Version                 - HHH000412: Hibernate Core {5.2.16.Final}
+18-06-07.03:40:47.787 [restartedMain   ] INFO  Environment             - HHH000206: hibernate.properties not found
+18-06-07.03:40:47.810 [restartedMain   ] INFO  Version                 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+18-06-07.03:40:47.880 [restartedMain   ] INFO  Dialect                 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+18-06-07.03:40:47.985 [restartedMain   ] INFO  LocalContainerEntityManagerFactoryBean  - Initialized JPA EntityManagerFactory for persistence unit 'default'
+18-06-07.03:40:48.454 [restartedMain   ] INFO  SimpleUrlHandlerMapping  - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-06-07.03:40:48.540 [restartedMain   ] INFO  RequestMappingHandlerAdapter  - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@479dbd3d: startup date [Thu Jun 07 03:40:46 CST 2018]; root of context hierarchy
+18-06-07.03:40:48.563 [restartedMain   ] WARN  JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration  - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+18-06-07.03:40:48.587 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/account/{id}],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Account> org.flow.controller.AccountController.findOne(java.lang.Long)
+18-06-07.03:40:48.588 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/account],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<java.util.List<org.flow.pojo.Account>> org.flow.controller.AccountController.findAll()
+18-06-07.03:40:48.588 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/account/pageInfo],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.BootStrapResult<java.util.List<org.flow.pojo.Account>> org.flow.controller.AccountController.pageInfo(org.flow.vo.AccountVO)
+18-06-07.03:40:48.588 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/account],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Account> org.flow.controller.AccountController.createAccount(org.flow.pojo.Account)
+18-06-07.03:40:48.589 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/account],methods=[PUT],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Account> org.flow.controller.AccountController.updateAccount(org.flow.pojo.Account)
+18-06-07.03:40:48.589 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/accountbatch],methods=[PUT],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Account> org.flow.controller.AccountController.updateAccountBatch(java.util.List<org.flow.pojo.Account>)
+18-06-07.03:40:48.589 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/account],methods=[PATCH],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Account> org.flow.controller.AccountController.updatePartAccount(org.flow.pojo.Account)
+18-06-07.03:40:48.589 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/account/{id}],methods=[DELETE],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Account> org.flow.controller.AccountController.deleteAccount(java.lang.Long)
+18-06-07.03:40:48.590 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/accountrolerel/{id}],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<java.util.List<org.flow.pojo.AccountRoleRelationship>> org.flow.controller.AccountRoleRelController.findOne(java.lang.Long)
+18-06-07.03:40:48.592 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/home],methods=[GET]}" onto public java.lang.String org.flow.controller.DefaultController.home()
+18-06-07.03:40:48.593 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/fixed_footer],methods=[GET]}" onto public java.lang.String org.flow.controller.DefaultController.plainPage()
+18-06-07.03:40:48.593 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/account],methods=[GET]}" onto public java.lang.String org.flow.controller.DefaultController.AccountManage()
+18-06-07.03:40:48.593 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/role],methods=[GET]}" onto public java.lang.String org.flow.controller.DefaultController.RoleManage()
+18-06-07.03:40:48.593 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/resource],methods=[GET]}" onto public java.lang.String org.flow.controller.DefaultController.ResourceManage()
+18-06-07.03:40:48.593 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/organization],methods=[GET]}" onto public java.lang.String org.flow.controller.DefaultController.OrganizationManage()
+18-06-07.03:40:48.593 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/orgman],methods=[GET]}" onto public java.lang.String org.flow.controller.DefaultController.OrgMan()
+18-06-07.03:40:48.593 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/orgtree],methods=[GET]}" onto public java.lang.String org.flow.controller.DefaultController.OrgTree()
+18-06-07.03:40:48.593 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/orgztree],methods=[GET]}" onto public java.lang.String org.flow.controller.DefaultController.OrgZTree()
+18-06-07.03:40:48.594 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/privilege],methods=[GET]}" onto public java.lang.String org.flow.controller.DefaultController.Privilege()
+18-06-07.03:40:48.594 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/demo],methods=[GET]}" onto public java.lang.String org.flow.controller.DefaultController.demo()
+18-06-07.03:40:48.594 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/login],methods=[GET]}" onto public java.lang.String org.flow.controller.DefaultController.login()
+18-06-07.03:40:48.594 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/],methods=[GET]}" onto public java.lang.String org.flow.controller.DefaultController.index()
+18-06-07.03:40:48.594 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/logincheck],methods=[POST]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Account> org.flow.controller.LoginController.findOneByName(org.flow.pojo.Account,org.springframework.ui.Model)
+18-06-07.03:40:48.596 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/organization/{id}],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Organization> org.flow.controller.OrganizationController.findOne(java.lang.Long)
+18-06-07.03:40:48.596 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/organization],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<java.util.List<org.flow.pojo.Organization>> org.flow.controller.OrganizationController.findAll()
+18-06-07.03:40:48.596 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/organization/pageInfo],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.BootStrapResult<java.util.List<org.flow.pojo.Organization>> org.flow.controller.OrganizationController.pageInfo(org.flow.vo.OrganizationVO)
+18-06-07.03:40:48.596 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/organizationtree],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<java.util.List<org.flow.pojo.OrganizationTree>> org.flow.controller.OrganizationController.findOraTree()
+18-06-07.03:40:48.596 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/organization],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Organization> org.flow.controller.OrganizationController.createAccount(org.flow.pojo.Organization)
+18-06-07.03:40:48.597 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/organization],methods=[PUT],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Organization> org.flow.controller.OrganizationController.updateAccount(org.flow.pojo.Organization)
+18-06-07.03:40:48.597 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/organization],methods=[PATCH],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Organization> org.flow.controller.OrganizationController.updatePartAccount(org.flow.pojo.Organization)
+18-06-07.03:40:48.597 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/organization/{id}],methods=[DELETE],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Organization> org.flow.controller.OrganizationController.deleteAccount(java.lang.Long)
+18-06-07.03:40:48.598 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/privilege/{id}],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Privilege> org.flow.controller.PrivilegeController.findOne(java.lang.Long)
+18-06-07.03:40:48.599 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/privilege],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<java.util.List<org.flow.pojo.Privilege>> org.flow.controller.PrivilegeController.findAll()
+18-06-07.03:40:48.599 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/privilege/pageInfo],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.BootStrapResult<java.util.List<org.flow.pojo.Privilege>> org.flow.controller.PrivilegeController.pageInfo(org.flow.vo.PrivilegeVO)
+18-06-07.03:40:48.599 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/privilege],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Privilege> org.flow.controller.PrivilegeController.createPrivilege(org.flow.pojo.Privilege)
+18-06-07.03:40:48.599 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/privilege],methods=[PUT],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Privilege> org.flow.controller.PrivilegeController.updatePrivilege(org.flow.pojo.Privilege)
+18-06-07.03:40:48.599 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/privilege],methods=[PATCH],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Privilege> org.flow.controller.PrivilegeController.updatePartPrivilege(org.flow.pojo.Privilege)
+18-06-07.03:40:48.600 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/privilege/{id}],methods=[DELETE],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Privilege> org.flow.controller.PrivilegeController.deletePrivilege(java.lang.Long)
+18-06-07.03:40:48.601 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/resource/{id}],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Resource> org.flow.controller.ResourceController.findOne(java.lang.Long)
+18-06-07.03:40:48.601 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/resource],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<java.util.List<org.flow.pojo.Resource>> org.flow.controller.ResourceController.findAll()
+18-06-07.03:40:48.601 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/resource/pageInfo],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.BootStrapResult<java.util.List<org.flow.pojo.Resource>> org.flow.controller.ResourceController.pageInfo(org.flow.vo.ResourceVO)
+18-06-07.03:40:48.602 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/resourcetree],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<java.util.List<org.flow.pojo.ResourceTree>> org.flow.controller.ResourceController.findOraTree()
+18-06-07.03:40:48.602 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/resource],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Resource> org.flow.controller.ResourceController.createAccount(org.flow.pojo.Resource)
+18-06-07.03:40:48.602 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/resource],methods=[PUT],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Resource> org.flow.controller.ResourceController.updateAccount(org.flow.pojo.Resource)
+18-06-07.03:40:48.602 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/resource],methods=[PATCH],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Resource> org.flow.controller.ResourceController.updatePartAccount(org.flow.pojo.Resource)
+18-06-07.03:40:48.602 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/resource/{id}],methods=[DELETE],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Resource> org.flow.controller.ResourceController.deleteAccount(java.lang.Long)
+18-06-07.03:40:48.602 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/menutree],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<java.util.List<org.flow.pojo.ResourceTree>> org.flow.controller.ResourceController.findMuneTree()
+18-06-07.03:40:48.604 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/role/{id}],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Role> org.flow.controller.RoleController.findOne(java.lang.Long)
+18-06-07.03:40:48.604 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/role],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<java.util.List<org.flow.pojo.Role>> org.flow.controller.RoleController.findAll()
+18-06-07.03:40:48.604 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/role/pageInfo],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.BootStrapResult<java.util.List<org.flow.pojo.Role>> org.flow.controller.RoleController.pageInfo(org.flow.vo.RoleVO)
+18-06-07.03:40:48.604 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/role],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Role> org.flow.controller.RoleController.createAccount(org.flow.pojo.Role)
+18-06-07.03:40:48.604 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/role],methods=[PUT],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Role> org.flow.controller.RoleController.updateAccount(org.flow.pojo.Role)
+18-06-07.03:40:48.605 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/role],methods=[PATCH],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Role> org.flow.controller.RoleController.updatePartAccount(org.flow.pojo.Role)
+18-06-07.03:40:48.605 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/role/{id}],methods=[DELETE],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<org.flow.pojo.Role> org.flow.controller.RoleController.deleteAccount(java.lang.Long)
+18-06-07.03:40:48.605 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/api/accountrole/{id}],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public org.flow.utils.common.utils.ResponseResult<java.util.List<org.flow.pojo.Role>> org.flow.controller.RoleController.findRoleRel(java.lang.Long)
+18-06-07.03:40:48.606 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+18-06-07.03:40:48.607 [restartedMain   ] INFO  RequestMappingHandlerMapping  - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+18-06-07.03:40:48.628 [restartedMain   ] INFO  SimpleUrlHandlerMapping  - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-06-07.03:40:48.628 [restartedMain   ] INFO  SimpleUrlHandlerMapping  - Mapped URL path [/static/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-06-07.03:40:48.638 [restartedMain   ] INFO  ExceptionHandlerExceptionResolver  - Detected @ExceptionHandler methods in errorController
+18-06-07.03:40:48.638 [restartedMain   ] INFO  ExceptionHandlerExceptionResolver  - Detected @ExceptionHandler methods in exceptionAspect
+18-06-07.03:40:48.695 [restartedMain   ] INFO  WelcomePageHandlerMapping  - Adding welcome page template: index
+18-06-07.03:40:49.110 [restartedMain   ] INFO  OptionalLiveReloadServer  - LiveReload server is running on port 35729
+18-06-07.03:40:49.134 [restartedMain   ] INFO  AnnotationMBeanExporter  - Registering beans for JMX exposure on startup
+18-06-07.03:40:49.135 [restartedMain   ] INFO  AnnotationMBeanExporter  - Bean with name 'dataSource' has been autodetected for JMX exposure
+18-06-07.03:40:49.140 [restartedMain   ] INFO  AnnotationMBeanExporter  - Bean with name 'rabbitConnectionFactory' has been autodetected for JMX exposure
+18-06-07.03:40:49.142 [restartedMain   ] INFO  AnnotationMBeanExporter  - Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+18-06-07.03:40:49.143 [restartedMain   ] INFO  AnnotationMBeanExporter  - Located managed bean 'rabbitConnectionFactory': registering with JMX server as MBean [org.springframework.amqp.rabbit.connection:name=rabbitConnectionFactory,type=CachingConnectionFactory]
+18-06-07.03:40:49.321 [restartedMain   ] INFO  DefaultLifecycleProcessor  - Starting beans in phase 2147483647
+18-06-07.03:40:49.327 [restartedMain   ] INFO  Http11NioProtocol       - Starting ProtocolHandler ["http-nio-8080"]
+18-06-07.03:40:49.330 [restartedMain   ] INFO  NioSelectorPool         - Using a shared selector for servlet write/read
+18-06-07.03:40:49.338 [restartedMain   ] INFO  TomcatWebServer         - Tomcat started on port(s): 8080 (http) with context path ''
+18-06-07.03:40:49.340 [restartedMain   ] INFO  SpringbootApplication   - Started SpringbootApplication in 3.503 seconds (JVM running for 4.123)
+18-06-07.03:41:04.032 [http-nio-8080-exec-1] INFO  [/]                     - Initializing Spring FrameworkServlet 'dispatcherServlet'
+18-06-07.03:41:04.032 [http-nio-8080-exec-1] INFO  DispatcherServlet       - FrameworkServlet 'dispatcherServlet': initialization started
+18-06-07.03:41:04.042 [http-nio-8080-exec-1] INFO  DispatcherServlet       - FrameworkServlet 'dispatcherServlet': initialization completed in 10 ms
+18-06-07.03:41:04.051 [http-nio-8080-exec-1] INFO  LogInterceptor          - Request Path ：/
+18-06-07.03:41:04.263 [http-nio-8080-exec-1] WARN  ExpressionProcessor     - Fragment expression "layout/layout" is being wrapped as a Thymeleaf 3 fragment expression (~{...}) for backwards compatibility purposes.  This wrapping will be dropped in the next major version of the expression processor, so please rewrite as a Thymeleaf 3 fragment expression to future-proof your code.  See https://github.com/thymeleaf/thymeleaf/issues/451 for more information.
+18-06-07.03:41:04.439 [http-nio-8080-exec-2] INFO  LogInterceptor          - Request Path ：/static/css/bootstrap.min.css
+18-06-07.03:41:04.443 [http-nio-8080-exec-4] INFO  LogInterceptor          - Request Path ：/static/css/plugins/bootstrap-select/1.12.4/bootstrap-select.min.css
+18-06-07.03:41:04.448 [http-nio-8080-exec-3] INFO  LogInterceptor          - Request Path ：/static/css/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.css
+18-06-07.03:41:04.448 [http-nio-8080-exec-5] INFO  LogInterceptor          - Request Path ：/static/css/plugins/font-awesome/font-awesome.min.css
+18-06-07.03:41:04.449 [http-nio-8080-exec-6] INFO  LogInterceptor          - Request Path ：/static/css/plugins/pace/1.0.2/pace-theme-flash.css
+18-06-07.03:41:04.452 [http-nio-8080-exec-7] INFO  LogInterceptor          - Request Path ：/static/css/custom.min.css
+18-06-07.03:41:04.459 [http-nio-8080-exec-8] INFO  LogInterceptor          - Request Path ：/static/css/plugins/bootstrap-daterangepicker/daterangepicker.css
+18-06-07.03:41:04.461 [http-nio-8080-exec-10] INFO  LogInterceptor          - Request Path ：/static/img/img.jpg
+18-06-07.03:41:04.464 [http-nio-8080-exec-6] INFO  LogInterceptor          - Request Path ：/static/css/plugins/bootstrap-table/bootstrap-table.css
+18-06-07.03:41:04.499 [http-nio-8080-exec-5] INFO  LogInterceptor          - Request Path ：/static/js/bootstrap.min.js
+18-06-07.03:41:04.499 [http-nio-8080-exec-4] INFO  LogInterceptor          - Request Path ：/static/js/plugins/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js
+18-06-07.03:41:04.501 [http-nio-8080-exec-1] INFO  LogInterceptor          - Request Path ：/static/js/jquery.min.js
+18-06-07.03:41:04.501 [http-nio-8080-exec-8] INFO  LogInterceptor          - Request Path ：/static/js/custom.min.js
+18-06-07.03:41:04.501 [http-nio-8080-exec-3] INFO  LogInterceptor          - Request Path ：/static/js/plugins/pace/1.0.2/pace.js
+18-06-07.03:41:04.508 [http-nio-8080-exec-9] INFO  LogInterceptor          - Request Path ：/static/js/plugins/fastclick/fastclick.js
+18-06-07.03:41:04.511 [http-nio-8080-exec-1] INFO  LogInterceptor          - Request Path ：/static/js/plugins/bootstrap-select/1.12.4/bootstrap-select.min.js
+18-06-07.03:41:04.512 [http-nio-8080-exec-9] INFO  LogInterceptor          - Request Path ：/static/fonts/fontawesome-webfont.woff2
+18-06-07.03:41:04.517 [http-nio-8080-exec-7] INFO  LogInterceptor          - Request Path ：/static/js/plugins/sweetalert2/7.20.4/sweetalert2.all.js
+18-06-07.03:41:04.519 [http-nio-8080-exec-1] INFO  LogInterceptor          - Request Path ：/static/js/plugins/bootstrap-select/1.12.4/i18n/defaults-zh_CN.min.js
+18-06-07.03:41:04.521 [http-nio-8080-exec-7] INFO  LogInterceptor          - Request Path ：/static/js/plugins/moment/min/moment.min.js
+18-06-07.03:41:04.523 [http-nio-8080-exec-10] INFO  LogInterceptor          - Request Path ：/static/js/plugins/bootstrap-daterangepicker/daterangepicker.js
+18-06-07.03:41:04.524 [http-nio-8080-exec-9] INFO  LogInterceptor          - Request Path ：/static/js/plugins/layer/v3.1.1/layer.js
+18-06-07.03:41:04.526 [http-nio-8080-exec-2] INFO  LogInterceptor          - Request Path ：/static/fonts/glyphicons-halflings-regular.woff2
+18-06-07.03:41:04.527 [http-nio-8080-exec-9] INFO  LogInterceptor          - Request Path ：/static/js/plugins/metismenu/metisMenu.js
+18-06-07.03:41:04.529 [http-nio-8080-exec-10] INFO  LogInterceptor          - Request Path ：/static/js/layoutmenu.js
+18-06-07.03:41:04.620 [http-nio-8080-exec-6] INFO  LogInterceptor          - Request Path ：/static/js/plugins/layer/v3.1.1/theme/default/layer.css
+18-06-07.03:41:04.635 [http-nio-8080-exec-5] INFO  LogInterceptor          - Request Path ：/api/menutree
+18-06-07.03:41:04.644 [http-nio-8080-exec-1] INFO  LogInterceptor          - Request Path ：/home
+18-06-07.03:41:04.661 [http-nio-8080-exec-1] WARN  ExpressionProcessor     - Fragment expression "home/index" is being wrapped as a Thymeleaf 3 fragment expression (~{...}) for backwards compatibility purposes.  This wrapping will be dropped in the next major version of the expression processor, so please rewrite as a Thymeleaf 3 fragment expression to future-proof your code.  See https://github.com/thymeleaf/thymeleaf/issues/451 for more information.
+18-06-07.03:41:04.668 [http-nio-8080-exec-5] DEBUG selectMenuAll           - ==>  Preparing: select resource_id, name, url ,method, parent_id, parent_ids, permission,data_target, icon, component, type, enabled, create_time, update_time from resource where type=1 or type is null 
+18-06-07.03:41:04.677 [http-nio-8080-exec-5] DEBUG selectMenuAll           - ==> Parameters: 
+18-06-07.03:41:04.687 [http-nio-8080-exec-5] TRACE selectMenuAll           - <==    Columns: resource_id, name, url, method, parent_id, parent_ids, permission, data_target, icon, component, type, enabled, create_time, update_time
+18-06-07.03:41:04.687 [http-nio-8080-exec-5] TRACE selectMenuAll           - <==        Row: 11000, 首页, /home, null, 10000, null, null, _self, null, null, 1, 1, 2018-05-28 18:27:54, 2018-05-28 18:27:54
+18-06-07.03:41:04.689 [http-nio-8080-exec-5] TRACE selectMenuAll           - <==        Row: 20000, 系统组织管理, #, null, 10000, null, null, _self, null, null, 1, 1, 2018-05-21 14:31:04, 2018-05-22 13:26:02
+18-06-07.03:41:04.690 [http-nio-8080-exec-5] TRACE selectMenuAll           - <==        Row: 21000, 组织机构管理, /organization, null, 20000, null, organization:*, _self, null, null, 1, 1, 2018-05-11 16:18:44, 2018-05-23 12:02:26
+18-06-07.03:41:04.690 [http-nio-8080-exec-5] TRACE selectMenuAll           - <==        Row: 30000, 用户角色管理, #, null, 10000, null, null, _self, null, null, 1, 1, 2018-05-21 14:31:25, 2018-05-28 15:43:08
+18-06-07.03:41:04.690 [http-nio-8080-exec-5] TRACE selectMenuAll           - <==        Row: 31000, 用户管理, /account, null, 30000, null, account:*, _self, null, null, 1, 1, 2018-05-11 16:07:49, 2018-05-28 15:45:24
+18-06-07.03:41:04.691 [http-nio-8080-exec-5] TRACE selectMenuAll           - <==        Row: 32000, 角色管理, /role, null, 30000, null, role:*, _self, null, null, 1, 1, 2018-05-11 16:16:15, 2018-05-23 11:50:54
+18-06-07.03:41:04.691 [http-nio-8080-exec-5] TRACE selectMenuAll           - <==        Row: 40000, 权限资源管理, #, null, 10000, null, null, _self, null, null, 1, 1, 2018-05-21 14:31:43, 2018-05-22 13:26:12
+18-06-07.03:41:04.691 [http-nio-8080-exec-5] TRACE selectMenuAll           - <==        Row: 41000, 资源管理, /resource, null, 40000, null, resource:*, _self, null, null, 1, 1, 2018-05-11 16:22:18, 2018-05-23 11:50:56
+18-06-07.03:41:04.692 [http-nio-8080-exec-5] TRACE selectMenuAll           - <==        Row: 42000, 权限管理, /privilege, null, 40000, null, privilege:*, _self, null, null, 1, 1, 2018-05-11 16:42:41, 2018-05-23 11:50:58
+18-06-07.03:41:04.692 [http-nio-8080-exec-5] TRACE selectMenuAll           - <==        Row: 10000, 资源, null, null, 0, null, null, , null, null, null, 1, 2018-05-11 16:04:49, 2018-05-21 16:05:25
+18-06-07.03:41:04.692 [http-nio-8080-exec-5] DEBUG selectMenuAll           - <==      Total: 10
+18-06-07.03:41:04.710 [http-nio-8080-exec-7] INFO  LogInterceptor          - Request Path ：/static/js/plugins/bootstrap-table/bootstrap-table.min.js
+18-06-07.03:41:04.713 [http-nio-8080-exec-7] INFO  LogInterceptor          - Request Path ：/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js
+18-06-07.03:41:04.715 [http-nio-8080-exec-7] INFO  LogInterceptor          - Request Path ：/static/js/account.js
+18-06-07.03:41:04.793 [http-nio-8080-exec-4] INFO  LogInterceptor          - Request Path ：/api/menutree
+18-06-07.03:41:04.794 [http-nio-8080-exec-4] DEBUG selectMenuAll           - ==>  Preparing: select resource_id, name, url ,method, parent_id, parent_ids, permission,data_target, icon, component, type, enabled, create_time, update_time from resource where type=1 or type is null 
+18-06-07.03:41:04.794 [http-nio-8080-exec-4] DEBUG selectMenuAll           - ==> Parameters: 
+18-06-07.03:41:04.795 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==    Columns: resource_id, name, url, method, parent_id, parent_ids, permission, data_target, icon, component, type, enabled, create_time, update_time
+18-06-07.03:41:04.795 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 11000, 首页, /home, null, 10000, null, null, _self, null, null, 1, 1, 2018-05-28 18:27:54, 2018-05-28 18:27:54
+18-06-07.03:41:04.795 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 20000, 系统组织管理, #, null, 10000, null, null, _self, null, null, 1, 1, 2018-05-21 14:31:04, 2018-05-22 13:26:02
+18-06-07.03:41:04.795 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 21000, 组织机构管理, /organization, null, 20000, null, organization:*, _self, null, null, 1, 1, 2018-05-11 16:18:44, 2018-05-23 12:02:26
+18-06-07.03:41:04.796 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 30000, 用户角色管理, #, null, 10000, null, null, _self, null, null, 1, 1, 2018-05-21 14:31:25, 2018-05-28 15:43:08
+18-06-07.03:41:04.796 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 31000, 用户管理, /account, null, 30000, null, account:*, _self, null, null, 1, 1, 2018-05-11 16:07:49, 2018-05-28 15:45:24
+18-06-07.03:41:04.796 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 32000, 角色管理, /role, null, 30000, null, role:*, _self, null, null, 1, 1, 2018-05-11 16:16:15, 2018-05-23 11:50:54
+18-06-07.03:41:04.797 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 40000, 权限资源管理, #, null, 10000, null, null, _self, null, null, 1, 1, 2018-05-21 14:31:43, 2018-05-22 13:26:12
+18-06-07.03:41:04.798 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 41000, 资源管理, /resource, null, 40000, null, resource:*, _self, null, null, 1, 1, 2018-05-11 16:22:18, 2018-05-23 11:50:56
+18-06-07.03:41:04.798 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 42000, 权限管理, /privilege, null, 40000, null, privilege:*, _self, null, null, 1, 1, 2018-05-11 16:42:41, 2018-05-23 11:50:58
+18-06-07.03:41:04.799 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 10000, 资源, null, null, 0, null, null, , null, null, null, 1, 2018-05-11 16:04:49, 2018-05-21 16:05:25
+18-06-07.03:41:04.799 [http-nio-8080-exec-4] DEBUG selectMenuAll           - <==      Total: 10
+18-06-07.03:41:08.330 [http-nio-8080-exec-9] INFO  LogInterceptor          - Request Path ：/account
+18-06-07.03:41:08.336 [http-nio-8080-exec-9] WARN  ExpressionProcessor     - Fragment expression "account/index" is being wrapped as a Thymeleaf 3 fragment expression (~{...}) for backwards compatibility purposes.  This wrapping will be dropped in the next major version of the expression processor, so please rewrite as a Thymeleaf 3 fragment expression to future-proof your code.  See https://github.com/thymeleaf/thymeleaf/issues/451 for more information.
+18-06-07.03:41:08.354 [http-nio-8080-exec-1] INFO  LogInterceptor          - Request Path ：/static/css/plugins/pace/1.0.2/pace-theme-flash.css
+18-06-07.03:41:08.354 [http-nio-8080-exec-10] INFO  LogInterceptor          - Request Path ：/static/css/bootstrap.min.css
+18-06-07.03:41:08.355 [http-nio-8080-exec-2] INFO  LogInterceptor          - Request Path ：/static/css/plugins/font-awesome/font-awesome.min.css
+18-06-07.03:41:08.356 [http-nio-8080-exec-5] INFO  LogInterceptor          - Request Path ：/static/css/plugins/bootstrap-select/1.12.4/bootstrap-select.min.css
+18-06-07.03:41:08.356 [http-nio-8080-exec-7] INFO  LogInterceptor          - Request Path ：/static/css/custom.min.css
+18-06-07.03:41:08.354 [http-nio-8080-exec-6] INFO  LogInterceptor          - Request Path ：/static/css/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.css
+18-06-07.03:41:08.359 [http-nio-8080-exec-3] INFO  LogInterceptor          - Request Path ：/static/css/plugins/bootstrap-daterangepicker/daterangepicker.css
+18-06-07.03:41:08.361 [http-nio-8080-exec-8] INFO  LogInterceptor          - Request Path ：/static/css/plugins/bootstrap-table/bootstrap-table.css
+18-06-07.03:41:08.362 [http-nio-8080-exec-9] INFO  LogInterceptor          - Request Path ：/static/js/plugins/fastclick/fastclick.js
+18-06-07.03:41:08.362 [http-nio-8080-exec-4] INFO  LogInterceptor          - Request Path ：/static/js/bootstrap.min.js
+18-06-07.03:41:08.363 [http-nio-8080-exec-2] INFO  LogInterceptor          - Request Path ：/static/js/plugins/pace/1.0.2/pace.js
+18-06-07.03:41:08.363 [http-nio-8080-exec-10] INFO  LogInterceptor          - Request Path ：/static/js/jquery.min.js
+18-06-07.03:41:08.365 [http-nio-8080-exec-5] INFO  LogInterceptor          - Request Path ：/static/js/plugins/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js
+18-06-07.03:41:08.366 [http-nio-8080-exec-7] INFO  LogInterceptor          - Request Path ：/static/js/custom.min.js
+18-06-07.03:41:08.368 [http-nio-8080-exec-6] INFO  LogInterceptor          - Request Path ：/static/js/plugins/sweetalert2/7.20.4/sweetalert2.all.js
+18-06-07.03:41:08.369 [http-nio-8080-exec-6] INFO  LogInterceptor          - Request Path ：/static/js/plugins/bootstrap-select/1.12.4/i18n/defaults-zh_CN.min.js
+18-06-07.03:41:08.371 [http-nio-8080-exec-1] INFO  LogInterceptor          - Request Path ：/static/js/plugins/bootstrap-select/1.12.4/bootstrap-select.min.js
+18-06-07.03:41:08.372 [http-nio-8080-exec-8] INFO  LogInterceptor          - Request Path ：/static/js/plugins/moment/min/moment.min.js
+18-06-07.03:41:08.371 [http-nio-8080-exec-4] INFO  LogInterceptor          - Request Path ：/static/js/plugins/metismenu/metisMenu.js
+18-06-07.03:41:08.373 [http-nio-8080-exec-3] INFO  LogInterceptor          - Request Path ：/static/js/plugins/layer/v3.1.1/layer.js
+18-06-07.03:41:08.373 [http-nio-8080-exec-2] INFO  LogInterceptor          - Request Path ：/static/js/plugins/bootstrap-daterangepicker/daterangepicker.js
+18-06-07.03:41:08.375 [http-nio-8080-exec-10] INFO  LogInterceptor          - Request Path ：/static/js/plugins/bootstrap-table/bootstrap-table.min.js
+18-06-07.03:41:08.375 [http-nio-8080-exec-7] INFO  LogInterceptor          - Request Path ：/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js
+18-06-07.03:41:08.376 [http-nio-8080-exec-1] INFO  LogInterceptor          - Request Path ：/static/js/layoutmenu.js
+18-06-07.03:41:08.376 [http-nio-8080-exec-5] INFO  LogInterceptor          - Request Path ：/static/js/account.js
+18-06-07.03:41:08.391 [http-nio-8080-exec-6] INFO  LogInterceptor          - Request Path ：/static/js/plugins/layer/v3.1.1/theme/default/layer.css
+18-06-07.03:41:08.397 [http-nio-8080-exec-9] INFO  LogInterceptor          - Request Path ：/static/fonts/fontawesome-webfont.woff2
+18-06-07.03:41:08.410 [http-nio-8080-exec-4] INFO  LogInterceptor          - Request Path ：/api/menutree
+18-06-07.03:41:08.411 [http-nio-8080-exec-4] DEBUG selectMenuAll           - ==>  Preparing: select resource_id, name, url ,method, parent_id, parent_ids, permission,data_target, icon, component, type, enabled, create_time, update_time from resource where type=1 or type is null 
+18-06-07.03:41:08.411 [http-nio-8080-exec-4] DEBUG selectMenuAll           - ==> Parameters: 
+18-06-07.03:41:08.412 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==    Columns: resource_id, name, url, method, parent_id, parent_ids, permission, data_target, icon, component, type, enabled, create_time, update_time
+18-06-07.03:41:08.412 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 11000, 首页, /home, null, 10000, null, null, _self, null, null, 1, 1, 2018-05-28 18:27:54, 2018-05-28 18:27:54
+18-06-07.03:41:08.412 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 20000, 系统组织管理, #, null, 10000, null, null, _self, null, null, 1, 1, 2018-05-21 14:31:04, 2018-05-22 13:26:02
+18-06-07.03:41:08.412 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 21000, 组织机构管理, /organization, null, 20000, null, organization:*, _self, null, null, 1, 1, 2018-05-11 16:18:44, 2018-05-23 12:02:26
+18-06-07.03:41:08.413 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 30000, 用户角色管理, #, null, 10000, null, null, _self, null, null, 1, 1, 2018-05-21 14:31:25, 2018-05-28 15:43:08
+18-06-07.03:41:08.413 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 31000, 用户管理, /account, null, 30000, null, account:*, _self, null, null, 1, 1, 2018-05-11 16:07:49, 2018-05-28 15:45:24
+18-06-07.03:41:08.413 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 32000, 角色管理, /role, null, 30000, null, role:*, _self, null, null, 1, 1, 2018-05-11 16:16:15, 2018-05-23 11:50:54
+18-06-07.03:41:08.413 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 40000, 权限资源管理, #, null, 10000, null, null, _self, null, null, 1, 1, 2018-05-21 14:31:43, 2018-05-22 13:26:12
+18-06-07.03:41:08.413 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 41000, 资源管理, /resource, null, 40000, null, resource:*, _self, null, null, 1, 1, 2018-05-11 16:22:18, 2018-05-23 11:50:56
+18-06-07.03:41:08.414 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 42000, 权限管理, /privilege, null, 40000, null, privilege:*, _self, null, null, 1, 1, 2018-05-11 16:42:41, 2018-05-23 11:50:58
+18-06-07.03:41:08.414 [http-nio-8080-exec-4] TRACE selectMenuAll           - <==        Row: 10000, 资源, null, null, 0, null, null, , null, null, null, 1, 2018-05-11 16:04:49, 2018-05-21 16:05:25
+18-06-07.03:41:08.414 [http-nio-8080-exec-4] DEBUG selectMenuAll           - <==      Total: 10
+18-06-07.03:41:08.422 [http-nio-8080-exec-3] INFO  LogInterceptor          - Request Path ：/static/fonts/glyphicons-halflings-regular.woff2
+18-06-07.03:41:08.427 [http-nio-8080-exec-2] INFO  LogInterceptor          - Request Path ：/api/account/pageInfo
+18-06-07.03:41:08.468 [http-nio-8080-exec-2] DEBUG selectByPager           - ==>  Preparing: SELECT t1.id, t1.username, t1.password, t1.enabled, t1.create_time, t1.update_time FROM account AS t1 JOIN ( SELECT id FROM account where 1=1 ORDER BY id asc LIMIT ? , ?) AS t2 WHERE t1.id = t2.id ORDER BY id asc LIMIT ? 
+18-06-07.03:41:08.469 [http-nio-8080-exec-2] DEBUG selectByPager           - ==> Parameters: 0(Integer), 10(Integer), 10(Integer)
+18-06-07.03:41:08.469 [http-nio-8080-exec-2] TRACE selectByPager           - <==    Columns: id, username, password, enabled, create_time, update_time
+18-06-07.03:41:08.470 [http-nio-8080-exec-2] TRACE selectByPager           - <==        Row: 1, admin, admin, 1, 2018-05-10 14:42:17, 2018-05-28 09:42:37
+18-06-07.03:41:08.470 [http-nio-8080-exec-2] TRACE selectByPager           - <==        Row: 2, user, user, 1, 2018-05-10 14:42:17, 2018-05-13 12:30:28
+18-06-07.03:41:08.470 [http-nio-8080-exec-2] TRACE selectByPager           - <==        Row: 3, anonymous, anonymous, 1, 2018-05-10 14:42:17, 2018-05-13 12:30:34
+18-06-07.03:41:08.470 [http-nio-8080-exec-2] TRACE selectByPager           - <==        Row: 15, john, john, 1, 2018-05-11 17:37:42, 2018-05-13 12:30:40
+18-06-07.03:41:08.470 [http-nio-8080-exec-2] TRACE selectByPager           - <==        Row: 16, hulk, hulk, 1, 2018-05-11 17:37:42, 2018-05-13 12:30:44
+18-06-07.03:41:08.471 [http-nio-8080-exec-2] TRACE selectByPager           - <==        Row: 17, stark, stark, 1, 2018-05-11 17:37:42, 2018-05-13 12:30:49
+18-06-07.03:41:08.471 [http-nio-8080-exec-2] TRACE selectByPager           - <==        Row: 18, tom, tom, 1, 2018-05-11 17:37:42, 2018-05-13 12:30:53
+18-06-07.03:41:08.471 [http-nio-8080-exec-2] TRACE selectByPager           - <==        Row: 19, jerry, jerry, 1, 2018-05-11 17:37:43, 2018-06-05 14:08:08
+18-06-07.03:41:08.471 [http-nio-8080-exec-2] TRACE selectByPager           - <==        Row: 20, boss, boss, 1, 2018-05-11 17:37:43, 2018-06-05 20:09:59
+18-06-07.03:41:08.471 [http-nio-8080-exec-2] TRACE selectByPager           - <==        Row: 21, johnsnow, johnsnow, 2, 2018-05-16 17:47:05, 2018-06-05 14:08:03
+18-06-07.03:41:08.471 [http-nio-8080-exec-2] DEBUG selectByPager           - <==      Total: 10
+18-06-07.03:41:08.472 [http-nio-8080-exec-2] DEBUG selectCount             - ==>  Preparing: select count(id) from account 
+18-06-07.03:41:08.472 [http-nio-8080-exec-2] DEBUG selectCount             - ==> Parameters: 
+18-06-07.03:41:08.473 [http-nio-8080-exec-2] TRACE selectCount             - <==    Columns: count(id)
+18-06-07.03:41:08.473 [http-nio-8080-exec-2] TRACE selectCount             - <==        Row: 26
+18-06-07.03:41:08.473 [http-nio-8080-exec-2] DEBUG selectCount             - <==      Total: 1
+18-06-07.03:41:11.803 [http-nio-8080-exec-8] INFO  LogInterceptor          - Request Path ：/static/js/plugins/layer/v3.1.1/theme/default/loading-1.gif
+18-06-07.04:45:42.393 [Thread-16       ] INFO  AnnotationConfigServletWebServerApplicationContext  - Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@479dbd3d: startup date [Thu Jun 07 03:40:46 CST 2018]; root of context hierarchy
+18-06-07.04:45:42.396 [Thread-16       ] INFO  DefaultLifecycleProcessor  - Stopping beans in phase 2147483647
+18-06-07.04:45:42.396 [Thread-16       ] INFO  DefaultLifecycleProcessor  - Stopping beans in phase 0
+18-06-07.04:45:42.412 [Thread-16       ] INFO  AnnotationMBeanExporter  - Unregistering JMX-exposed beans on shutdown
+18-06-07.04:45:42.412 [Thread-16       ] INFO  AnnotationMBeanExporter  - Unregistering JMX-exposed beans
+18-06-07.04:45:42.413 [Thread-16       ] INFO  LocalContainerEntityManagerFactoryBean  - Closing JPA EntityManagerFactory for persistence unit 'default'
+18-06-07.04:45:42.414 [Thread-16       ] INFO  DruidDataSource         - {dataSource-1} closed

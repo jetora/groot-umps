@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/htmlHead :: common_header(~{::title},~{::link})">
+    <title>AccountRole</title>
+    <!-- bootstrap table -->
+    <link href="../../static/css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" th:href="@{/static/css/plugins/bootstrap-table/bootstrap-table.css}" />
+</head>
+
+<body class="nav-md gray-bg">
+<div class="container body">
+    <div class="main_container">
+        <div th:fragment="navbar"  class="wrapper wrapper-content animated zoomInUp"  role="navigation">
+            <div layout:fragment="content" id="ifcontent" class="wrapper wrapper-content animated zoomInUp"></div>
+        </div>
+    </div>
+</div>
+<!--使用公有js-->
+<div th:replace="common/htmlJS::common_js(~{::script})">
+    <!--每个页面自己的js-->
+    <!-- bootstrap table -->
+    <script src="../../static/js/plugins/bootstrap-table/bootstrap-table.min.js" th:src="@{/static/js/plugins/bootstrap-table/bootstrap-table.min.js}"></script>
+    <script src="../../static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" th:src="@{/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
+    <script src="../../static/js/accrole.js" th:src="@{/static/js/accrole.js}"></script>
+</div>
+
+</body>
+</html>

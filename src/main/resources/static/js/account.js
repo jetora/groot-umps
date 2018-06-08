@@ -184,7 +184,7 @@ function optFormatter(value, row) {
     var edit_permit = row.editPermit;
     var remove_permit = row.removePermit;
     ret_butns.push('<a class="edit" href="javascript:void(0)" title="edit"><i class="fa fa-edit"></i></a> ');
-    ret_butns.push('<a class="roles" href="javascript:void(0)" title="roles"><i class="fa fa-book"></i></a> ');
+    //ret_butns.push('<a class="roles" href="javascript:void(0)" title="roles"><i class="fa fa-book"></i></a> ');
     ret_butns.push('<a class="remove" href="javascript:void(0)" title="delete"><i class="fa fa-trash-o"></i></a> ');
     if (ret_butns.length > 0) {
         return ret_butns.join('');
@@ -449,15 +449,51 @@ function relData(row) {
     //var accountroleModal = $('#accountroleModal');
 
     //accountroleModal.modal('show');
+    console.log(111111111111111111)
+    console.log(row.id);
+    $.ajax({
+        url: "/api/accountrole/"+row.id,
+        type: 'get',
+        contentType:"application/json; charset=utf-8",
+        dataType: 'json',
+        cache: false,
+        async: true,
+        //beforeSend: function(request) {
+        //    request.setRequestHeader("Authorization", "Bearer xxxxxxxxxx");
+        //},
+        //data: JSON.stringify(data),
+        success: function (ret) {
+            console.log(ret.data)
+            if (ret.code ==200){
+                //$("#accountrel").append(ret.data[0]);
+                alert(ret.data)
+            }
+        },
+        error:function(XMLHttpRequest, textStatus, errorThrown){
+            switch(XMLHttpRequest.status){
+                case 401:
+                    break;
+                case 404:
+                    break;
+                case 500:
+                    break;
+            }
+        }
+    })
     //iframe层-多媒体
 
+    //iframe层-父子操作
+    /*
+    console.log(1111111111111111111)
+    console.log(row.id)
     layer.open({
         type: 2,
-        title: false,
-        area: ['630px', '360px'],
-        shade: 0.8,
-        closeBtn: 0,
-        shadeClose: true,
-        content: '//player.youku.com/embed/XMjY3MzgzODg0'
+        title:'用户角色信息',
+        area: ['700px', '450px'],
+        fixed: false, //不固定
+        maxmin: true,
+        content: 'accountrole'
     });
+    */
 }
+

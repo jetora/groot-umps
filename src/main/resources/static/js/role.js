@@ -163,7 +163,7 @@ function optFormatter(value, row) {
     var edit_permit = row.editPermit;
     var remove_permit = row.removePermit;
     ret_butns.push('<a class="edit" href="javascript:void(0)" title="edit"><i class="fa fa-edit"></i></a> ');
-    ret_butns.push('<a class="grant" href="javascript:void(0)" title="grant"><i class="fa fa-truck"></i></a> ');
+    //ret_butns.push('<a class="grant" href="javascript:void(0)" title="grant"><i class="fa fa-truck"></i></a> ');
     ret_butns.push('<a class="remove" href="javascript:void(0)" title="delete"><i class="fa fa-trash-o"></i></a> ');
     if (ret_butns.length > 0) {
         return ret_butns.join('');
