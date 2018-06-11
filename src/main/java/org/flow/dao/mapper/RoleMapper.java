@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.flow.dto.AccountRoleDTO;
 import org.flow.pojo.Role;
 @Mapper
 public interface RoleMapper {
@@ -25,4 +26,6 @@ public interface RoleMapper {
     int selectByWhereCount(@Param("ordername") String ordername,@Param("order") String order,@Param("rolename") String rolename,@Param("enabled") int enabled);
 
     int selectCount();
+
+    List<AccountRoleDTO> selectRoleByAccountIds(List<Long> roleids);
 }

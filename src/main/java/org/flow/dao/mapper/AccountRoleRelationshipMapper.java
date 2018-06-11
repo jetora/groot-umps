@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.flow.dto.AccountRoleDTO;
 import org.flow.pojo.AccountRoleRelationship;
 import org.flow.vo.AccRole;
 
@@ -27,4 +28,8 @@ public interface AccountRoleRelationshipMapper {
     int updateByPrimaryKey(AccountRoleRelationship record);
 
     List<AccRole> selectRelPager(@Param("params") Map<String, Object> params);
+
+    int selectByWhereCount(@Param("params") Map<String, Object> params);
+
+    List<AccountRoleDTO> selectRoleByAccountIds(List<Long> accountids);
 }

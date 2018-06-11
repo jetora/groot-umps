@@ -1,6 +1,8 @@
 package org.flow.service;
 
+import org.flow.dto.AccountRoleDTO;
 import org.flow.pojo.AccountRoleRelationship;
+import org.flow.pojo.Role;
 import org.flow.vo.AccRole;
 
 import java.util.List;
@@ -15,4 +17,6 @@ public interface AccountRoleRelService {
     int deleteAccountRoleRelById(Long id);
     List<AccRole> findRelAll();
     List<AccRole> findRelPager(Map params);
+    int findWhereTotal(Map params);
+    List<AccountRoleDTO> findGrantRole(Long id);
 }

@@ -1,6 +1,8 @@
 package org.flow.service.impl;
 
 import org.flow.dao.mapper.AccountRoleRelationshipMapper;
+import org.flow.dao.mapper.RoleMapper;
+import org.flow.dto.AccountRoleDTO;
 import org.flow.pojo.AccountRoleRelationship;
 import org.flow.service.AccountRoleRelService;
 import org.flow.utils.common.utils.StringUtils;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +21,8 @@ public class AccountRoleRelServiceImpl implements AccountRoleRelService {
 
     @Resource
     private AccountRoleRelationshipMapper accountRoleRelationshipMapper;
+    @Resource
+    private RoleMapper roleMapper;
 
     @Override
     public List<AccountRoleRelationship> findAccountRoleRelAll() {
@@ -56,11 +61,29 @@ public class AccountRoleRelServiceImpl implements AccountRoleRelService {
 
     @Override
     public List<AccRole> findRelPager(Map params) {
-        System.out.println("1111111111111111111111");
-        System.out.println(params);
+        return accountRoleRelationshipMapper.selectRelPager(params);
+    }
 
+    @Override
+    public int findWhereTotal(Map params) {
+        return accountRoleRelationshipMapper.selectByWhereCount(params);
+    }
 
+    @Override
+    public List<AccountRoleDTO> findGrantRole(Long id) {
 
-        return null;
+        List<AccountRoleDTO> accountRoleDTOList = new ArrayList<>();
+        List<AccountRoleRelationship> accountRoleRelationshipList = new ArrayList<>();
+        accountRoleRelationshipList = accountRoleRelationshipMapper.selectByAccountId(id);
+        List<Long> roleids = new ArrayList<>();
+        if (accountRoleRelationshipList.size()!=0){
+            for (AccountRoleRelationship accountRoleRelationship : accountRoleRelationshipList){
+                roleids.add(accountRoleRelationship.getRoleId());
+            }
+        }
+        if (roleids.size() != 0) {
+            accountRoleDTOList = roleMapper.selectRoleByAccountIds(roleids);
+        }
+        return accountRoleDTOList;
     }
 }

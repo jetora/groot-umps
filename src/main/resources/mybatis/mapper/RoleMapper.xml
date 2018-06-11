@@ -108,4 +108,12 @@
     </if>
     ORDER BY #{ordername} #{order}
   </select>
+  <select id="selectRoleByAccountIds" resultType="org.flow.dto.AccountRoleDTO" >
+    select distinct id,name
+    from role
+    where 1=1 and id in
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
 </mapper>

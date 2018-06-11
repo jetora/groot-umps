@@ -75,13 +75,115 @@ FROM
         1 = 1 order by id asc) t2
     WHERE
         t1.id = t2.id
-        <if test="ordername!=null">
-        order by #{ordername} asc
-        </if>
+       order by id asc
       ) a,
     account b,
     role c
 WHERE
     a.account_id = b.id AND a.role_id = c.id
   </select>
+  <select id="selectRelPager" parameterType="Map" resultType="org.flow.vo.AccRole" >
+    SELECT
+    a.id,
+    a.account_id as accountId,
+    b.username as username,
+    a.role_id as roleId,
+    c.name as rolename,
+    a.create_time as createTime,
+    a.update_time as updateTime
+FROM
+    (SELECT
+        t1.id, account_id, role_id, create_time, update_time
+    FROM
+        account_role_relationship t1
+    JOIN (SELECT
+        id
+    FROM
+        account_role_relationship
+    WHERE
+        1 = 1
+      <if test="params.accountid !=null and params.accountid!=''">
+          and account_id=#{params.accountid}
+      </if>
+      <if test="params.roleid !=null and params.roleid!=''">
+          and role_id=#{params.roleid}
+      </if>
+      <if test="params.ordername!=null and params.ordername!=''">
+          order by ${params.ordername}
+      </if>
+      ${params.order} LIMIT ${params.offset},${params.pageSize}
+      ) t2
+    WHERE
+        t1.id = t2.id
+        <if test="params.accountid !=null and params.accountid!=''">
+            and account_id=#{params.accountid}
+        </if>
+        <if test="params.roleid !=null and params.roleid!=''">
+           and role_id=#{params.roleid}
+        </if>
+        <if test="params.ordername!=null and params.ordername!=''">
+            order by ${params.ordername}
+        </if>
+        ${params.order} LIMIT ${params.pageSize}
+      ) a,
+    account b,
+    role c
+WHERE
+    a.account_id = b.id AND a.role_id = c.id
+      <if test="params.username !=null and params.username!=''">
+          and b.username=#{params.username}
+      </if>
+      <if test="params.rolename !=null and params.rolename!=''">
+          and c.name=#{params.rolename}
+      </if>
+  </select>
+    <select id="selectByWhereCount" resultType="java.lang.Integer" >
+        SELECT
+        count(*)
+        FROM
+        (SELECT
+        t1.id, account_id, role_id, create_time, update_time
+        FROM
+        account_role_relationship t1
+        JOIN (SELECT
+        id
+        FROM
+        account_role_relationship
+        WHERE
+        1 = 1
+        <if test="params.accountid !=null and params.accountid!=''">
+            and account_id=#{params.accountid}
+        </if>
+        <if test="params.roleid !=null and params.roleid!=''">
+            and role_id=#{params.roleid}
+        </if>
+        <if test="params.ordername!=null and params.ordername!=''">
+            order by ${params.ordername}
+        </if>
+        ${params.order}
+        ) t2
+        WHERE
+        t1.id = t2.id
+        <if test="params.accountid !=null and params.accountid!=''">
+            and account_id=#{params.accountid}
+        </if>
+        <if test="params.roleid !=null and params.roleid!=''">
+            and role_id=#{params.roleid}
+        </if>
+        <if test="params.ordername!=null and params.ordername!=''">
+            order by ${params.ordername}
+        </if>
+        ${params.order}
+        ) a,
+        account b,
+        role c
+        WHERE
+        a.account_id = b.id AND a.role_id = c.id
+        <if test="params.username !=null and params.username!=''">
+            and b.username=#{params.username}
+        </if>
+        <if test="params.rolename !=null and params.rolename!=''">
+            and c.name=#{params.rolename}
+        </if>
+    </select>
 </mapper>

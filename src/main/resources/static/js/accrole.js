@@ -57,6 +57,26 @@ function getAllRoles() {
     })
 
 }
+//获得全部角色数据
+function getAllGrantRoles(id) {
+    $.ajax({
+        type: 'get',
+        url: '/api/roleids/'+id,
+        dataType: "json",
+        success: function (ret) {
+            if (ret.code==200) {
+                var opstr = "";
+                $.each(ret.data, function (i, n) {
+                    opstr += " <option value=\"" + n.id + "\">" + n.name + "</option>";
+                })
+                $("#sel_role").append(opstr);
+                $("#sel_role").selectpicker('refresh');
+
+            }
+        }
+    })
+
+}
 function resetData() {
     $('#search_accountid').val("")
     $('#search_username').val("")
@@ -158,11 +178,15 @@ var TableInit = function () {
                     field: 'username',
                     title: '用户名',
                     sortable: true
-                }, {
+                },{
                     field: 'roleId',
                     title: '角色ID',
                     sortable: true
-                }, {
+                },{
+                    field: 'rolename',
+                    title: '角色名',
+                    sortable: true
+                },{
                     field: 'createTime',
                     title: '创建时间',
                     sortable: true
