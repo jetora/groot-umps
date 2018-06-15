@@ -2,11 +2,15 @@ package org.flow.vo;
 
 import org.flow.pojo.AccountRoleRelationship;
 
+import java.util.List;
+
 public class AccRole extends AccountRoleRelationship {
 
     private static final long serialVersionUID = -3476677412549457836L;
     private String username;
     private String rolename;
+    private List<Long> accountids;
+    private List<Long> roleids;
 
     public String getUsername() {
         return username;
@@ -24,6 +28,22 @@ public class AccRole extends AccountRoleRelationship {
         this.rolename = rolename;
     }
 
+    public List<Long> getAccountids() {
+        return accountids;
+    }
+
+    public void setAccountids(List<Long> accountids) {
+        this.accountids = accountids;
+    }
+
+    public List<Long> getRoleids() {
+        return roleids;
+    }
+
+    public void setRoleids(List<Long> roleids) {
+        this.roleids = roleids;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -35,6 +55,8 @@ public class AccRole extends AccountRoleRelationship {
         sb.append(", username=").append(getUsername());
         sb.append(", roleId=").append(super.getRoleId());
         sb.append(", rolename=").append(getRolename());
+        sb.append(", accountids=").append(getAccountids());
+        sb.append(", roleids=").append(getRoleids());
         sb.append(", createTime=").append(super.getCreateTime());
         sb.append(", updateTime=").append(super.getUpdateTime());
         sb.append("]");

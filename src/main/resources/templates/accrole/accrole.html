@@ -97,9 +97,9 @@
                                         <button id="btn_add" type="button" class="btn btn-primary" onclick="addData()">
                                             <i class="icon-plus" aria-hidden="true"></i> 新增
                                         </button>
-                                        <button id="btn_upd" type="button" class="btn btn-warning" onclick="updDatabatch()" data-toggle="tooltip" data-placement="top" title="批量置为可用或不可用">
+                                        <!--<button id="btn_upd" type="button" class="btn btn-warning" onclick="updDatabatch()" data-toggle="tooltip" data-placement="top" title="批量置为可用或不可用">
                                             <i class="icon-plus" aria-hidden="true"></i> 批量修改
-                                        </button>
+                                        </button>-->
                                         <button id="btn_del" type="button" class="btn btn-danger" onclick="delDatabatch()">
                                             <i class="icon-plus" aria-hidden="true"></i> 批量删除
                                         </button>
@@ -124,34 +124,17 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3" for="username">用户名</label>
                                                             <div class="col-md-8 col-xs-11">
-                                                                <input type="text" min="0" id="username" class="form-control" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-3" for="password">密码</label>
-                                                            <div class="col-md-8 col-xs-11">
-                                                                <input type="password" id="password" class="form-control" required>
-                                                            </div>
-                                                        </div>
-                                                        <!--
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-3" for="sel_role">角色</label>
-                                                            <div class="col-md-8 col-xs-11">
-                                                                <select class="selectpicker" title="请选择角色" data-live-search="true" id="sel_role">
+                                                                <select id="username" multiple="multiple">
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        -->
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3" for="enabled">是否可用</label>
+                                                            <label class="control-label col-md-3" for="roleids">角色名</label>
                                                             <div class="col-md-8 col-xs-11">
-                                                                <select class="selectpicker" id="enabled">
-                                                                    <option value="1">可用</option>
-                                                                    <option value="2">不可用</option>
-                                                                </select>
+                                                            <select id="roleids" multiple="multiple">
+                                                            </select>
                                                             </div>
                                                         </div>
-
                                                         <input type="hidden" id="id">
                                                         <input type="hidden" id="opt_type">
                                                     </form>

@@ -7,14 +7,13 @@ import org.flow.utils.common.enums.ErrorCode;
 import org.flow.utils.common.exception.ResourceNotFoundException;
 import org.flow.utils.common.utils.*;
 import org.flow.vo.AccRole;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -112,5 +111,43 @@ public class AccountRoleRelController extends BaseController{
             return ResultUtil.buildErrorResult(ErrorCode.NOT_FOUND.getCode(),ErrorCode.NOT_FOUND.getMessage());
         }
     }
+    //创建Account
+    @PostMapping(value = "/accrole", produces = { "application/json;charset=UTF-8" })
+    public ResponseResult<AccRole> createAccountRole(@RequestBody AccRole accRole){
+        ResponseResult<AccRole> result = new ResponseResult<>();
+        int retcode = 0;
+        try {
+            retcode = accountRoleRelService.createAccountRoleRel(accRole);
+            if (retcode ==0 ){
+                return ResultUtil.buildResult(ErrorCode.UNPROCESABLE_ENTITY.getCode(),ErrorCode.UNPROCESABLE_ENTITY.getMessage());
+            }else {
+                return ResultUtil.buildResult(ErrorCode.CREATED.getCode(),ErrorCode.CREATED.getMessage());
+            }
+        }catch (Exception ex){
+            logger.info("Account not created...",ex);
+            return ResultUtil.buildResult(ErrorCode.UNPROCESABLE_ENTITY.getCode(),ErrorCode.UNPROCESABLE_ENTITY.getMessage());
+        }
+    }
 
+    //修改Account
+    @PutMapping(value = "/accrole", produces = { "application/json;charset=UTF-8" })
+    public ResponseResult<AccRole> updateAccount(@RequestBody AccRole accRole){
+        ResponseResult<AccRole> result = new ResponseResult<>();
+
+        System.out.println("111111111111111");
+        System.out.println(accRole);
+        int retcode = 0;
+        if (accRole.getAccountids()==null || accRole.getRoleids()==null){
+            return ResultUtil.buildResult(ErrorCode.NOT_ACCEPTABLE.getCode(),ErrorCode.NOT_ACCEPTABLE.getMessage());
+        }
+        try {
+            retcode = accountRoleRelService.updateAccountRoleRel(accRole);
+            System.out.println("2222222222222222222222");
+            System.out.println(retcode);
+            return ResultUtil.buildResult(ErrorCode.OK.getCode(),ErrorCode.OK.getMessage());
+        }catch (Exception ex){
+            logger.info("Account not created...",ex);
+            return ResultUtil.buildResult(ErrorCode.INTERNAL_SERVER_ERROR.getCode(),ErrorCode.INTERNAL_SERVER_ERROR.getMessage());
+        }
+    }
 }

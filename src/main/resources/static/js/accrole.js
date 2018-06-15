@@ -279,6 +279,81 @@ window.optEvents = {
         })
     }
 };
+//获得全部角色数据
+function getRoles() {
+    $.ajax({
+        type: 'get',
+        url: '/api/role',
+        dataType: "json",
+        success: function (ret) {
+            if (ret.code==200) {
+                $("#roleids").empty();
+                var opstr = "";
+                //var options = $("#roleids");
+                $.each(ret.data, function (i, n) {
+                    opstr += " <option value=\"" + n.id + "\">" + n.name + "</option>";
+                    //options.append($("<option />").val(n.id).text(n.name));
+                })
+                $("#roleids").append(opstr);
+                $('#roleids').multiselect({
+                    optionClass: function(element) {
+                        var value = $(element).val();
+                        if (value%2 == 0) {
+                            return 'even';
+                        }
+                        else {
+                            return 'odd';
+                        }
+                    },
+                    includeSelectAllOption: true,
+                    enableFiltering: true,
+                    selectAllJustVisible: true,
+                    buttonWidth:250,  //选择框的大小
+                    maxHeight: 200,
+                    nonSelectedText: '请选择角色', //默认展示文本
+                    selectAllText: '全选'  //全选文本
+                }).multiselect('rebuild');
+            }
+        }
+    })
+}
+function getAccounts() {
+    $.ajax({
+        type: 'get',
+        url: '/api/account',
+        dataType: "json",
+        success: function (ret) {
+            if (ret.code==200) {
+                $("#username").empty();
+                var opstr = "";
+                //var options = $("#roleids");
+                $.each(ret.data, function (i, n) {
+                    opstr += " <option value=\"" + n.id + "\">" + n.username + "</option>";
+                    //options.append($("<option />").val(n.id).text(n.name));
+                })
+                $("#username").append(opstr);
+                $('#username').multiselect({
+                    optionClass: function(element) {
+                        var value = $(element).val();
+                        if (value%2 == 0) {
+                            return 'even';
+                        }
+                        else {
+                            return 'odd';
+                        }
+                    },
+                    includeSelectAllOption: true,
+                    enableFiltering: true,
+                    selectAllJustVisible: true,
+                    buttonWidth:250,  //选择框的大小
+                    maxHeight: 200,
+                    nonSelectedText: '请选择用户', //默认展示文本
+                    selectAllText: '全选'  //全选文本
+                }).multiselect('rebuild');
+            }
+        }
+    })
+}
 // 添加项目
 function addData() {
     // 设置标题
@@ -287,21 +362,102 @@ function addData() {
     // 初始化form表单内容
     accountModal.find('.modal-body #opt_type').val("add");
     accountModal.find('.modal-body #id').val("");
-    accountModal.find('.modal-body #username').val("");
-    accountModal.find('.modal-body #password').val("");
-    getAllRoles();
-    accountModal.find('.modal-body #enabled').selectpicker('val',1);
+    //accountModal.find('.modal-body #username').val("");
+
+//    accountModal.find('.modal-body #roleids').val("");
+    getAccounts();
+    getRoles();
     accountModal.modal("show");
+}
+function getEditAccounts(id) {
+    $.ajax({
+        type: 'get',
+        url: '/api/account',
+        dataType: "json",
+        success: function (ret) {
+            if (ret.code==200) {
+                $("#username").empty();
+                var opstr = "";
+                //var options = $("#roleids");
+                $.each(ret.data, function (i, n) {
+                    if (n.id == id ){
+                        opstr += " <option value=\"" + n.id + "\" selected='selected'>" + n.username + "</option>";
+                    } else {
+                        opstr += " <option value=\"" + n.id + "\">" + n.username + "</option>";
+                    }
+                    //options.append($("<option />").val(n.id).text(n.name));
+                })
+                $("#username").append(opstr);
+                $('#username').multiselect({
+                    optionClass: function(element) {
+                        var value = $(element).val();
+                        if (value%2 == 0) {
+                            return 'even';
+                        }
+                        else {
+                            return 'odd';
+                        }
+                    },
+                    includeSelectAllOption: true,
+                    enableFiltering: true,
+                    selectAllJustVisible: true,
+                    buttonWidth:250,  //选择框的大小
+                    maxHeight: 200,
+                    nonSelectedText: '请选择用户', //默认展示文本
+                    selectAllText: '全选'  //全选文本
+                }).multiselect('rebuild');
+            }
+        }
+    })
+}
+function getEditRoles(id) {
+    $.ajax({
+        type: 'get',
+        url: '/api/role',
+        dataType: "json",
+        success: function (ret) {
+            if (ret.code==200) {
+                $("#roleids").empty();
+                var opstr = "";
+                //var options = $("#roleids");
+                $.each(ret.data, function (i, n) {
+                    if (n.id == id ){
+                        opstr += " <option value=\"" + n.id + "\" selected='selected'>" + n.name + "</option>";
+                    } else {
+                        opstr += " <option value=\"" + n.id + "\">" + n.name + "</option>";
+                    }
+                    //options.append($("<option />").val(n.id).text(n.name));
+                })
+                $("#roleids").append(opstr);
+                $('#roleids').multiselect({
+                    optionClass: function(element) {
+                        var value = $(element).val();
+                        if (value%2 == 0) {
+                            return 'even';
+                        }
+                        else {
+                            return 'odd';
+                        }
+                    },
+                    includeSelectAllOption: true,
+                    enableFiltering: true,
+                    selectAllJustVisible: true,
+                    buttonWidth:250,  //选择框的大小
+                    maxHeight: 200,
+                    nonSelectedText: '请选择角色', //默认展示文本
+                    selectAllText: '全选'  //全选文本
+                }).multiselect('rebuild');
+            }
+        }
+    })
 }
 function editData(row) {
     $('#modalTitle').text('修改项目');
     var accountModal = $('#accountModal');
     accountModal.find('.modal-body #opt_type').val("edit");
     accountModal.find('.modal-body #id').val(row.id);
-    accountModal.find('.modal-body #username').val(row.username);
-    accountModal.find('.modal-body #password').val(row.password);
-    accountModal.find('.modal-body #enabled').selectpicker('val',row.enabled);
-    accountModal.find('.modal-body #enabled').val(row.enabled);
+    getEditAccounts(row.accountId);
+    getEditRoles(row.roleId);
     accountModal.modal('show');
 }
 // 新增或编辑form表单内容
@@ -311,8 +467,6 @@ function get_form_data() {
     // 获取表单内容
     data.opt_type = accountModal.find('.modal-body #opt_type').val();
     data.id = accountModal.find('.modal-body #id').val();
-    data.username = accountModal.find('.modal-body #username').val();
-    data.password = accountModal.find('.modal-body #password').val();
     if ("edit" == data.opt_type) {
         data.change_flag = true;
     } else {
@@ -327,33 +481,49 @@ function optData() {
     //var change_flag = data.change_flag;
     opt_account(data);
 }
+function get_Account_Selected() {
+    var selected = [];
+    $('#username option:selected').each(function () {
+        selected.push($(this).val());
+    });
+    return selected;
+}
+function get_Role_Selected() {
+    var selected = [];
+    $('#roleids option:selected').each(function () {
+        selected.push($(this).val());
+    });
+    return selected;
+}
 function opt_account(data) {
     var change_flag = data.change_flag;
     var req_type;
     var id = $('#id').val();
-    var username = $('#username').val();
-    var password = $('#password').val();
-    var enabled = $('#enabled').val();
+    //var username = $('#username').val();
+    //var password = $('#password').val();
+    //var enabled = $('#enabled').val();
+    var accountids = [];
+    var roleids = [];
+    accountids = get_Account_Selected();
+    roleids = get_Role_Selected();
     var data;
     if (change_flag){
         req_type="put";
         data = {
             id:id,
-            username:username,
-            password:password,
-            enabled:enabled
+            accountids:accountids,
+            roleids:roleids
         };
     } else {
         req_type="post";
         data = {
-            username:username,
-            password:password,
-            enabled:enabled
+            accountids:accountids,
+            roleids:roleids
         };
     }
     // ajax新增项目数据
     $.ajax({
-        url: encodeURI("/api/account"),
+        url: encodeURI("/api/accrole"),
         type: req_type,
         contentType:"application/json; charset=utf-8",
         dataType: 'json',
@@ -377,7 +547,22 @@ function opt_account(data) {
                     timer: 1500
                 })
                 //resetData();
-            } else {
+            }else if(ret.code == 422) {
+
+                swal({
+                    position: 'top-end',
+                    type: 'error',
+                    title: 'Record Exist...',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                // 隐藏modal框
+                $('#accountModal').modal('hide');
+                $('#account_table').bootstrapTable('refresh');
+            }else {
+                // 隐藏modal框
+                $('#accountModal').modal('hide');
+                $('#account_table').bootstrapTable('refresh');
                 swal({
                     position: 'top-end',
                     type: 'error',

@@ -111,7 +111,10 @@ FROM
       <if test="params.ordername!=null and params.ordername!=''">
           order by ${params.ordername}
       </if>
-      ${params.order} LIMIT ${params.offset},${params.pageSize}
+      ${params.order}
+      <if test="params.username ==null or params.username =='' or params.rolename ==null or params.rolename ==''">
+        LIMIT ${params.offset},${params.pageSize}
+      </if>
       ) t2
     WHERE
         t1.id = t2.id
@@ -124,7 +127,9 @@ FROM
         <if test="params.ordername!=null and params.ordername!=''">
             order by ${params.ordername}
         </if>
-        ${params.order} LIMIT ${params.pageSize}
+        <if test="params.username ==null or params.username =='' or params.rolename ==null or params.rolename ==''">
+            ${params.order} LIMIT ${params.pageSize}
+        </if>
       ) a,
     account b,
     role c
@@ -186,4 +191,36 @@ WHERE
             and c.name=#{params.rolename}
         </if>
     </select>
+    <insert id="insertRel" parameterType="org.flow.bo.AccRoleBo" >
+    insert into account_role_relationship (account_id, role_id)
+        values
+        <foreach collection="roleIds" item="rId" separator=",">
+            (${accountId},#{rId})
+        </foreach>
+    </insert>
+    <insert id="insertRelBatch" parameterType="org.flow.bo.AccRoleBo" >
+        insert into account_role_relationship (account_id, role_id)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+
+            <foreach collection="item.roleIds" item="rId" separator=",">
+                (${item.accountId},#{rId})
+            </foreach>
+        </foreach>
+    </insert>
+  <select id="selectBothId" resultMap="BaseResultMap" parameterType="Map" >
+    select id from account_role_relationship
+    where account_id = #{params.accountid} and role_id = #{params.roleid}
+  </select>
+  <update id="updateRelBatch" parameterType="org.flow.bo.AccRoleBo" >
+    insert into account_role_relationship (account_id, role_id)
+        values
+      <foreach collection="list" item="item" index="index" separator=",">
+
+          <foreach collection="item.roleIds" item="rId" separator=",">
+              (${item.accountId},#{rId})
+          </foreach>
+      </foreach>
+      on duplicate key update account_id=values(account_id),role_id=values(role_id)
+  </update>
 </mapper>

@@ -55,6 +55,14 @@ public class AccountRoleRelationship implements Serializable {
         this.updateTime = updateTime;
     }
 
+    public AccountRoleRelationship() {
+    }
+
+    public AccountRoleRelationship(Long accountId, Long roleId) {
+        this.accountId = accountId;
+        this.roleId = roleId;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

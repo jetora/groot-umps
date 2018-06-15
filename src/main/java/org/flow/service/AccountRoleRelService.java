@@ -12,11 +12,12 @@ public interface AccountRoleRelService {
     List<AccountRoleRelationship> findAccountRoleRelAll();
     AccountRoleRelationship findAccountRoleRelById(Long id);
     List<AccountRoleRelationship> findAccountRoleRelByAccountId(Long id);
-    int createAccountRoleRel(AccountRoleRelationship account);
-    int updateAccountRoleRelById(AccountRoleRelationship account);
+    int createAccountRoleRel(AccRole accRole);
+    int updateAccountRoleRel(AccRole accRole);
     int deleteAccountRoleRelById(Long id);
     List<AccRole> findRelAll();
     List<AccRole> findRelPager(Map params);
     int findWhereTotal(Map params);
     List<AccountRoleDTO> findGrantRole(Long id);
+    List<AccountRoleRelationship> findBothIdExist(Map params);
 }

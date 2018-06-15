@@ -160,7 +160,6 @@ public class AccountController extends BaseController{
         }
     }
     //修改Account
-
     @PutMapping(value = "/account", produces = { "application/json;charset=UTF-8" })
     public ResponseResult<Account> updateAccount(@RequestBody Account account){
         ResponseResult<Account> result = new ResponseResult<>();
