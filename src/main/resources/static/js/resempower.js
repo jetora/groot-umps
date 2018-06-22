@@ -22,11 +22,11 @@ $(document).on('keydown', function (event) {
 // 初始化页面加载表格数据
 $(function () {
     $('#enabled_type').val("")
-    $('#search_accountid').val("")
-    $('#search_username').val("")
-    $('#search_roleid').val("")
-    $('#search_rolename').val("")
-    $('#search_rolename').bind('keyup', function (event) {
+    $('#search_privilegeid').val("")
+    $('#search_privilegename').val("")
+    $('#search_resourceid').val("")
+    $('#search_resourcename').val("")
+    $('#search_resourcename').bind('keyup', function (event) {
         if (event.keyCode == "13") {
             //回车执行查询
             searchData();
@@ -78,10 +78,10 @@ function getAllGrantRoles(id) {
 
 }
 function resetData() {
-    $('#search_accountid').val("")
-    $('#search_username').val("")
-    $('#search_roleid').val("")
-    $('#search_rolename').val("")
+    $('#search_privilegeid').val("")
+    $('#search_privilegename').val("")
+    $('#search_resourceid').val("")
+    $('#search_resourcename').val("")
     searchData()
 }
 // 点击查询按钮
@@ -104,10 +104,10 @@ var queryParams = function (params) {
         offset: params.offset,
         order: params.order,
         ordername: params.sort,
-        accountid: $("#search_accountid").val(),
-        username: $("#search_username").val(),
-        roleid: $("#search_roleid").val(),
-        rolename: $("#search_rolename").val()
+        privilegeid: $("#search_privilegeid").val(),
+        privilegename: $("#search_privilegename").val(),
+        resourceid: $("#search_resourceid").val(),
+        resourcename: $("#search_resourcename").val()
     };
     //$.each(params, function (index, value) {
     //    console.log(index+"---"+value);
@@ -118,7 +118,7 @@ var TableInit = function () {
     var oTableInit = new Object();
     oTableInit.Init = function () {
         $('#account_table').bootstrapTable({
-            url: '/api/accrole/pageInfo',                      //请求后台的URL（*）
+            url: '/api/prires/pageInfo',                      //请求后台的URL（*）
             method: 'GET',                      //请求方式（*）
             dataType: "json",
             contentType: 'application/json,charset=utf-8',
@@ -151,7 +151,7 @@ var TableInit = function () {
             paginationLastText: "Last",
             responseHandler: responseHandler,
             onLoadSuccess: function (data) {
-                //console.log(data);
+                console.log(data);
             },
             onLoadError: function (data) {
                 layer.msg("加载数据失败", {time : 1500, icon : 2});
@@ -171,20 +171,24 @@ var TableInit = function () {
                     title: 'ID',
                     sortable: true
                 },{
-                    field: 'accountId',
-                    title: '用户ID',
+                    field: 'privilegeId',
+                    title: '权限ID',
                     sortable: true
                 },{
-                    field: 'username',
-                    title: '用户名',
+                    field: 'privilegename',
+                    title: '权限名称',
                     sortable: true
                 },{
-                    field: 'roleId',
-                    title: '角色ID',
+                    field: 'resourceId',
+                    title: '资源ID',
                     sortable: true
                 },{
-                    field: 'rolename',
-                    title: '角色名',
+                    field: 'resourcename',
+                    title: '资源名称',
+                    sortable: true
+                },{
+                    field: 'enabled',
+                    title: '是否可用',
                     sortable: true
                 },{
                     field: 'createTime',
@@ -279,23 +283,23 @@ window.optEvents = {
         })
     }
 };
-//获得全部角色数据
-function getRoles() {
+//获得全部权限数据
+function getPrivileges() {
     $.ajax({
         type: 'get',
-        url: '/api/role',
+        url: '/api/privilege',
         dataType: "json",
         success: function (ret) {
             if (ret.code==200) {
-                $("#roleids").empty();
+                $("#privilegeids").empty();
                 var opstr = "";
                 //var options = $("#roleids");
                 $.each(ret.data, function (i, n) {
                     opstr += " <option value=\"" + n.id + "\">" + n.name + "</option>";
                     //options.append($("<option />").val(n.id).text(n.name));
                 })
-                $("#roleids").append(opstr);
-                $('#roleids').multiselect({
+                $("#privilegeids").append(opstr);
+                $('#privilegeids').multiselect({
                     optionClass: function(element) {
                         var value = $(element).val();
                         if (value%2 == 0) {
@@ -317,22 +321,23 @@ function getRoles() {
         }
     })
 }
-function getAccounts() {
+//获取全部资源信息
+function getResources() {
     $.ajax({
         type: 'get',
-        url: '/api/account',
+        url: '/api/resource',
         dataType: "json",
         success: function (ret) {
             if (ret.code==200) {
-                $("#username").empty();
+                $("#resourceids").empty();
                 var opstr = "";
                 //var options = $("#roleids");
                 $.each(ret.data, function (i, n) {
-                    opstr += " <option value=\"" + n.id + "\">" + n.username + "</option>";
+                    opstr += " <option value=\"" + n.id + "\">" + n.name + "</option>";
                     //options.append($("<option />").val(n.id).text(n.name));
                 })
-                $("#username").append(opstr);
-                $('#username').multiselect({
+                $("#resourceids").append(opstr);
+                $('#resourceids').multiselect({
                     optionClass: function(element) {
                         var value = $(element).val();
                         if (value%2 == 0) {
@@ -365,8 +370,8 @@ function addData() {
     //accountModal.find('.modal-body #username').val("");
 
 //    accountModal.find('.modal-body #roleids').val("");
-    getAccounts();
-    getRoles();
+    getPrivileges();
+    getResources();
     accountModal.modal("show");
 }
 function getEditAccounts(id) {

@@ -61,6 +61,11 @@ public class DefaultController extends BaseController {
         return "privilege/privilege";
     }
 
+    @GetMapping("/resempower")
+    public String Resempower(){
+        return "resempower/resempower";
+    }
+
     @GetMapping("/demo")
     public String demo(){
         return "demo";

@@ -39,4 +39,120 @@
     select id, privilege_id, resource_id, enabled, create_time, update_time
     from privilege_resource_relationship
   </select>
+  <select id="selectRelPager" parameterType="Map" resultType="org.flow.vo.PriRes" >
+    SELECT
+    a.id,
+    a.privilege_id as privilegeId,
+    b.name as privilegename,
+    a.resource_id as resourceId,
+    c.name as resourcename,
+    a.enabled,
+    a.create_time as createTime,
+    a.update_time as updateTime
+FROM
+    (SELECT
+        t1.id,
+            privilege_id,
+            resource_id,
+            enabled,
+            create_time,
+            update_time
+    FROM
+        privilege_resource_relationship t1
+    JOIN (SELECT
+        id
+    FROM
+        privilege_resource_relationship
+    WHERE
+        1 = 1
+    <if test="params.privilegeid !=null and params.privilegeid!=''">
+      and privilege_id=#{params.privilegeid}
+    </if>
+    <if test="params.resourceid !=null and params.resourceid!=''">
+      and resource_id=#{params.resourceid}
+    </if>
+    <if test="params.ordername!=null and params.ordername!=''">
+      order by ${params.ordername}
+    </if>
+    ${params.order}
+    <if test="params.privilegename ==null or params.privilegename =='' or params.resourcename ==null or params.resourcename ==''">
+      LIMIT ${params.offset},${params.pageSize}
+    </if>
+        ) t2
+    WHERE
+        t1.id = t2.id
+    <if test="params.privilegeid !=null and params.privilegeid!=''">
+      and privilege_id=#{params.privilegeid}
+    </if>
+    <if test="params.resourceid !=null and params.resourceid!=''">
+      and resource_id=#{params.resourceid}
+    </if>
+    <if test="params.ordername!=null and params.ordername!=''">
+      order by ${params.ordername}
+    </if>
+    <if test="params.privilegename ==null or params.privilegename =='' or params.resourcename ==null or params.resourcename ==''">
+      ${params.order} LIMIT ${params.pageSize}
+    </if>
+    ) a,
+    privilege b,
+    resource c
+    WHERE
+    a.privilege_id = b.id
+    AND a.resource_id = c.resource_id
+  </select>
+    <select id="selectByWhereCount" resultType="java.lang.Integer" >
+        SELECT
+        count(*)
+        FROM
+        (SELECT
+        t1.id,
+        privilege_id,
+        resource_id,
+        enabled,
+        create_time,
+        update_time
+        from
+        privilege_resource_relationship t1
+        JOIN (SELECT
+        id
+        FROM
+        privilege_resource_relationship
+        WHERE
+        1 = 1
+        <if test="params.privilegeid !=null and params.privilegeid!=''">
+            and privilege_id=#{params.privilegeid}
+        </if>
+        <if test="params.resourceid !=null and params.resourceid!=''">
+            and resource_id=#{params.resourceid}
+        </if>
+        <if test="params.ordername!=null and params.ordername!=''">
+            order by ${params.ordername}
+        </if>
+        ${params.order}
+        ) t2
+        WHERE
+        t1.id = t2.id
+        <if test="params.privilegeid !=null and params.privilegeid!=''">
+            and privilege_id=#{params.privilegeid}
+        </if>
+        <if test="params.resourceid !=null and params.resourceid!=''">
+            and resource_id=#{params.resourceid}
+        </if>
+        <if test="params.ordername!=null and params.ordername!=''">
+            order by ${params.ordername}
+        </if>
+        ${params.order}
+        ) a,
+        privilege b,
+        resource c
+        WHERE
+        a.privilege_id = b.id
+        AND a.resource_id = c.resource_id
+        <if test="params.privilegename !=null and params.privilegename!=''">
+            and b.name=#{params.privilegename}
+        </if>
+        <if test="params.resourcename !=null and params.resourcename!=''">
+            and c.name=#{params.resourcename}
+        </if>
+    </select>
 </mapper>

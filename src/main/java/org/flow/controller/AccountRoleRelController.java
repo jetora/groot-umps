@@ -133,17 +133,24 @@ public class AccountRoleRelController extends BaseController{
     @PutMapping(value = "/accrole", produces = { "application/json;charset=UTF-8" })
     public ResponseResult<AccRole> updateAccount(@RequestBody AccRole accRole){
         ResponseResult<AccRole> result = new ResponseResult<>();
-
-        System.out.println("111111111111111");
-        System.out.println(accRole);
         int retcode = 0;
         if (accRole.getAccountids()==null || accRole.getRoleids()==null){
             return ResultUtil.buildResult(ErrorCode.NOT_ACCEPTABLE.getCode(),ErrorCode.NOT_ACCEPTABLE.getMessage());
         }
         try {
             retcode = accountRoleRelService.updateAccountRoleRel(accRole);
-            System.out.println("2222222222222222222222");
-            System.out.println(retcode);
+            return ResultUtil.buildResult(ErrorCode.OK.getCode(),ErrorCode.OK.getMessage());
+        }catch (Exception ex){
+            logger.info("Account not created...",ex);
+            return ResultUtil.buildResult(ErrorCode.INTERNAL_SERVER_ERROR.getCode(),ErrorCode.INTERNAL_SERVER_ERROR.getMessage());
+        }
+    }
+    //删除Account
+    @DeleteMapping(value = "/accrole/{id}", produces = { "application/json;charset=UTF-8" })
+    public ResponseResult<AccRole> deleteAccount(@PathVariable Long id){
+        ResponseResult<AccRole> result = new ResponseResult<>();
+        try {
+            accountRoleRelService.deleteAccountRoleRelById(id);
             return ResultUtil.buildResult(ErrorCode.OK.getCode(),ErrorCode.OK.getMessage());
         }catch (Exception ex){
             logger.info("Account not created...",ex);
